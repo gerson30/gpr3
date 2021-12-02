@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+        <div style="border:black 1px solid; width: 30%; margin-right: 10px; display: grid; align-items: center; justify-content: center;">
+            <div class="encabezadocol"><b>Selectores</b></div>
+            <div class="tcentrado"><b>Dependencia</b></div>
+            <div class="filtros">
+
+                <h:form>
+
+                    <h:selectManyCheckbox layout="pageDirection">
+                        <f:selectItem itemValue="Administrativa" itemLabel="Administrativa"></f:selectItem>
+                        <f:selectItem itemValue="Operativa" itemLabel="Operativa"></f:selectItem>
+                        <f:selectItem itemValue="Jurídica" itemLabel="Jurídica"></f:selectItem>
+                    </h:selectManyCheckbox>
+                </h:form>
+            </div>
+            <div class="tcentrado"><b>Estado</b></div>
+
+
+            <div class="filtros">
+
+                <h:form>
+
+                    <h:selectManyCheckbox layout="pageDirection">
+                        <f:selectItem itemValue="Asignado" itemLabel="Asignado"></f:selectItem>
+                        <f:selectItem itemValue="Disponible" itemLabel="Disponible"></f:selectItem>
+                        <f:selectItem itemValue="Inactivo" itemLabel="Inactivo"></f:selectItem>
+                    </h:selectManyCheckbox>
+
+                </h:form>
+            </div>
+            <div class="tcentrado"><b>Tipo</b></div>
+
+
+            <div class="filtros">
+
+                <h:form>
+
+                    <h:selectManyCheckbox layout="pageDirection">
+                        <f:selectItem itemValue="PC escritorio" itemLabel="PC escritorio"></f:selectItem>
+                        <f:selectItem itemValue="Portatil" itemLabel="Portatil"></f:selectItem>
+                        <f:selectItem itemValue="Todo en uno" itemLabel="Todo en uno"></f:selectItem>
+                    </h:selectManyCheckbox>
+
+                </h:form>
+            </div>
+
+
+            <div class="tcentrado"><b>Condicion</b></div>
+
+
+            <div class="filtros">
+
+                <h:form>
+
+                    <h:selectManyCheckbox layout="pageDirection">
+                        <f:selectItem itemValue="Nuevo" itemLabel="Nuevo"></f:selectItem>
+                        <f:selectItem itemValue="Usado" itemLabel="Usado"></f:selectItem>
+                    </h:selectManyCheckbox>
+
+                </h:form>
+            </div>
+        </div>
+
+
+
+
+    </ui:composition>
+
+</html>
+

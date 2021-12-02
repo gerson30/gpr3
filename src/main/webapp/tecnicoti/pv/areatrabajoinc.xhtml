@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+
+        <div style="display: flex;
+             align-items: stretch;
+             justify-content: center;
+             padding: 10px;
+             max-width: 1200px;
+             margin: auto;
+             border: gray 1px solid;">
+
+
+            <div class="fila" style="width: 100%;">
+
+                <div style="border:black 1px solid; width: 100%;">
+                    <div class="topnav">
+                        <a class="exportar" href="../gestion/RegistrarIncidente.html">Nuevo Ticket</a>
+                    </div>
+                    <div style="display: flex; align-items: stretch;
+                         justify-content: space-between;
+                         padding: 10px;
+                         max-width: 1200px;
+                         margin: auto;
+                         border: gray 1px solid;
+                         ">
+                        <div style="margin-top:15px">Mis Tickets</div>
+                        <div class="topnav">
+                            <inputText type="text" placeholder="Busqueda.."></inputText>
+
+                        </div>
+
+
+                        <div class="hscroll">
+                            <table width="100%" border="1" cellspacing="0" cellpadding="6" style="margin-top: 30px;">
+
+                                <tr>
+                                    <th>Act</th>
+                                    <th>ID Ticket</th>
+                                    <th>Asunto</th>
+                                    <th>Area</th>
+                                    <th>Fecha Creación</th>
+                                    <th>Detalles</th>
+                                    <th>Solicitado Por</th>
+                                    <th>Estado</th>
+                                    <th>Categoria</th>
+                                    <th>Asignado A</th>
+                                    <th>Análisis</th>
+                                    <th>ID Inventario</th>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <button><a class="ri-eye-line" href="../gestion/VisualizarTicket.html"></a></button>
+                                        <button><a class="ri-pencil-line" href="../gestion/SolucionTicket.html" ></a></button>
+
+                                    </td>
+                                    <td>1234</td>
+                                    <td>Fallo Office</td>
+                                    <td>Operativa</td>
+                                    <td>1/1/2021</td>
+                                    <td>Al abrir word o Excel dice que no es posible ejecutar</td>
+                                    <td>Viviana Vivas</td>
+                                    <td>Cerrado</td>
+                                    <td>Media</td>
+                                    <td>Diego Cañón</td>
+                                    <td>Sin conexión con servidor para validar licencia</td>
+                                    <td>1115</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <button><a class="ri-eye-line" href="../gestion/VisualizarTicket.html"></a></button>
+                                        <button><a class="ri-pencil-line" href="../gestion/SolucionTicket.html"></a></button>
+
+                                    </td>
+                                    <td>1235</td>
+                                    <td>Equipo no enciende</td>
+                                    <td>Adminsitrativa</td>
+                                    <td>12/4/2021</td>
+                                    <td>Al presionar boton de encendido solo suena como si fuera a prender y no enciende</td>
+                                    <td>Rodrigo Rodriguez</td>
+                                    <td>En Progreso</td>
+                                    <td>Media</td>
+                                    <td>Gerson Jimenez</td>
+                                    <td>Fuente de poder - Solicitar a Proveedor</td>
+                                    <td>1109</td>
+
+                                </tr>
+
+
+
+
+                            </table>
+
+
+                            <div class="topnav">
+                                <a class="exportar" href="#">Historico atención</a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:composition>
+</html>
+
+

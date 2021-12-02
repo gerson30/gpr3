@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition>
+        <div class="formprincipal">
+            <br></br>
+            <br></br>
+
+            <div class="tituloinv">
+                <h3>ASIGNAR INVENTARIO</h3>
+            </div>
+            <br></br>
+            <br></br>
+            <div class="tituloinv">
+                <h5>Detalles de asignación</h5>
+            </div>
+            <br></br>
+            <br></br>
+
+
+            <div class="form-group col-md-12" align="center">
+
+                <h:form class="row g-3 needs-validation">
+                    <div class="col-md-12">
+                        <outputLabel for="validationServer01">Inventario a Entregar</outputLabel>
+                        <h:selectOneMenu class="form-control" id="validationServer01" html5:placeholder="Seleccione la marca" >
+                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                            <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
+                            <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
+                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                        </h:selectOneMenu>
+
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+
+                        <div class="col-md-12">
+                            <outputLabel for="validationServer02">Cédula</outputLabel>
+                            <h:selectOneMenu class="form-control" id="validationServer02">
+                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                                <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
+                                <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
+                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
+                            </h:selectOneMenu>
+
+                        </div>
+                        <br></br>
+                        <div class="align-center">
+                            <a class="btn btn-primary" html5:type="submit" href="" >Guardar</a>
+                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/coordinador/indexinv.xhtml">Cancelar</a>
+                        </div>
+
+                    </div>
+
+                </h:form>
+
+                <br></br>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </ui:composition>
+
+
+</html>
