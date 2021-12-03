@@ -21,4 +21,24 @@
     <welcome-file-list>
         <welcome-file>login.xhtml</welcome-file>
     </welcome-file-list>
+    <data-source>
+        <name>java:app/gprdatasource</name>
+        <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
+        <server-name>localhost</server-name>
+        <port-number>3307</port-number>
+        <database-name>gpr</database-name>
+        <user>root</user>
+        <password>root1234*</password>
+        <property>
+            <name>useSSL</name>
+            <value>false</value>
+        </property>
+        <property>
+            <name>serverTimeZone</name>
+            <value>UTC</value>
+        </property>
+        <initial-pool-size>8</initial-pool-size>
+        <max-pool-size>32</max-pool-size>
+        <min-pool-size>8</min-pool-size>
+    </data-source>
 </web-app>
