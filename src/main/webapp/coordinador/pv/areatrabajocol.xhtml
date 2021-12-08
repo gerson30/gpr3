@@ -5,7 +5,7 @@
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
-          
+
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
@@ -29,8 +29,8 @@
 
                 <tr>
                     <th>Act</th>
-                    <th>Cédula/ID</th>
-                    <th>Tipo ID</th>
+                    <th>Cod. Colaborador</th>
+                    <th>Cédula</th>
                     <th>Fecha Ingreso</th>
                     <th>Fecha Retiro</th>
                     <th>Estado</th>
@@ -59,42 +59,41 @@
                 <c:forEach items="#{colaboradorView.verCol()}" 
                            var="col">
                     <tr>
-                    <td style="text-align: center;">
-                        <div class="button">
-                            <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarcol.xhtml"></a>
-                            <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarcol.xhtml"></a>
-                        </div>
+                        <td style="text-align: center;">
+                            <div class="button">
+                                <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarcol.xhtml"></a>
+                                <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarcol.xhtml"></a>
+                            </div>
 
-                    </td>
-
+                        </td>
+                        <td>--id_Colab--</td>
                         <td>#{col.cedula}</td>
-                        <td>----</td>
                         <td>#{col.fechaIngreso}</td>
                         <td>#{col.colabFechaRetiro}</td>
                         <td>#{col.idEstadoColab.nombreEstadoColab}</td>
                         <td>#{col.nombre}</td>
                         <td>#{col.apellido}</td>
-                    <td>2000-03-21</td>
-                    <td>Union libre</td>
-                    <td>Masculino</td>
-                    <td>Cra 34 15 65</td>
-                    <td>CIUDAD JARDIN</td>
-                    <td>BOGOTÁ</td>
-                    <td>6547896</td>
-                    <td>3152654897</td>
-                    <td>Jurídica</td>
-                    <td>Marcela</td>
-                    <td>Lopez</td>
-                    <td>Madre</td>
-                    <td>3152654899</td>
-                    <td>5236945</td>
-                    <td>xx</td>
-                    <td>*********</td>
-                    <td>cp@gconsultor.com.co</td>
-                    <td>1101</td>
-                </tr>
+                        <td>2000-03-21</td>
+                        <td>Union libre</td>
+                        <td>Masculino</td>
+                        <td>Cra 34 15 65</td>
+                        <td>CIUDAD JARDIN</td>
+                        <td>BOGOTÁ</td>
+                        <td>6547896</td>
+                        <td>3152654897</td>
+                        <td>Jurídica</td>
+                        <td>Marcela</td>
+                        <td>Lopez</td>
+                        <td>Madre</td>
+                        <td>3152654899</td>
+                        <td>5236945</td>
+                        <td>xx</td>
+                        <td>*********</td>
+                        <td>cp@gconsultor.com.co</td>
+                        <td>1101</td>
+                    </tr>
                 </c:forEach>
-               
+
 
             </table>
         </div>

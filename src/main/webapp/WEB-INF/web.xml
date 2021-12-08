@@ -25,10 +25,10 @@
         <name>java:app/gprdatasource</name>
         <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
         <server-name>localhost</server-name>
-        <port-number>3307</port-number>
+        <port-number>3306</port-number>
         <database-name>gpr</database-name>
         <user>root</user>
-        <password>root1234*</password>
+        <password>1234$</password>
         <property>
             <name>useSSL</name>
             <value>false</value>

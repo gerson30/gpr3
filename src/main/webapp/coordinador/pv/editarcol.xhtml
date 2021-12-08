@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-         <div>
+        <div>
 
             <tr>
                 <br></br>
@@ -44,11 +44,11 @@
                             </h:inputText>
                             <h:message style="color: red" for="new_fec"></h:message>
                         </td>
-                        
-                        
 
-                            
-                            
+
+
+
+
 
                         <td>
 
@@ -220,6 +220,19 @@
                             </h:inputText>
                             <h:message style="color: red" for="new_fecnac"></h:message>
                         </td>
+
+                        <td>
+                            <h:outputLabel for="new_arecol">Estado</h:outputLabel>
+                            <h:selectOneMenu 
+                                required="true"
+                                value="" 
+                                class="form-control" 
+                                id="new_areacol">
+                                <f:selectItem  itemValue="Activo" itemLabel="Activo"/>
+                                <f:selectItem  itemValue="Inactivo" itemLabel="Inactivo"/>                       
+                            </h:selectOneMenu>
+
+                        </td>
                     </tr>
 
 
@@ -329,7 +342,6 @@
                             <br></br>
                             <a class="btn btn-primary" html5:type="submit" href="" >Guardar</a>
                             <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/coordinador/indexcol.xhtml" value="cancelar">Cancelar</a>
-                            <a class="btn btn-secondary" html5:type="submit" href="#{request.contextPath}/coordinador/index.xhtml" value="cancelar">Acta usuario</a>
 
                         </td>
                         <br></br>
