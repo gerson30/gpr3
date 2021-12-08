@@ -29,5 +29,11 @@ public interface InventarioFacadeLocal {
     List<Inventario> findRange(int[] range);
 
     int count();
+
+    public List<Inventario> verInv();
+/*leerTodo es para consulta agregar inventario*/
+    public List<Inventario> leerTodo();
     
+    public boolean ingresarInventario(Inventario inv);
+
 }

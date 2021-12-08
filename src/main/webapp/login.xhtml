@@ -20,6 +20,8 @@
 
     </h:head>
     <h:body>
+
+
         <div class="wrapper fadeInDown">
             <div id="formContent">
                 <!-- Tabs Titles -->
@@ -33,12 +35,42 @@
                 </div>
 
                 <!-- Login Form -->
+
                 <h:form>
 
-                    <h:inputText html5:type="text" id="usuario" class="fadeIn second" html5:placeholder="Ingrese Usuario" value="" required="true"></h:inputText>
-                    <h:inputSecret html5:type="text" id="contraseña" class="fadeIn second" html5:placeholder="Ingrese Contraseña" value="" required="true"></h:inputSecret>
+
+                    <div class="form-group">
+                        <h:outputLabel for="InputEmail"></h:outputLabel>
+                        <h:inputText 
+                            value=""
+                            required="true"
+                            requiredMessage="Ingrese correo valido"
+                            html5:placeholder="Ingrese Usuario"
+                            html5:type="email"
+                            class="fadeIn second" 
+                            id="InputEmail" />
+                        <br></br>
+                        <small id="emailHelp" class="form-text text-muted">
+                            <h:message for="InputEmail" style="color: red"></h:message>
+                        </small>
+                    </div>
+                    <h:outputLabel for="password"></h:outputLabel>
+                    <h:inputText 
+                        value=""
+                        required="true"
+                        requiredMessage="Contraseña incorrecta"
+                        html5:placeholder="Ingrese Contraseña"  
+                        html5:type="password"
+                        class="fadeIn second" 
+                        id="password" />
+                    <br></br>
+                    <small id="password" class="form-text text-muted">
+                        <h:message for="password" style="color: red"></h:message>
+                    </small>
+
+                    
                     <div>
-                        <a class="button button_black" href="#{request.contextPath}/index.xhtml">Ingresar</a>
+                        <h:commandButton  class="btn btn-primary" value="INGRESAR"></h:commandButton>
 
                     </div>
                 </h:form>
@@ -50,7 +82,7 @@
 
             </div>
         </div>
-        
+
 
 
     </h:body>

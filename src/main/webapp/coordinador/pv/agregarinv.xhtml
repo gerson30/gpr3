@@ -83,7 +83,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la fecha"
-                                value=""
+                                value="#{inventarioView.invnue.fechaIngreso}" 
                                 class="form-control"
                                 id="new_fec"  
                                 html5:type="date">
@@ -96,7 +96,7 @@
                     <tr>
 
                         <td> <h:outputLabel for="new_mod">Modelo</h:outputLabel>
-                            <h:inputText
+                            <h:inputText 
                                 required="true"
                                 requiredMessage="Indique el modelo"
                                 value=""
