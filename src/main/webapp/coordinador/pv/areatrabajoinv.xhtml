@@ -42,7 +42,6 @@
                         <th scope="col">Cap Disco</th>
                         <th scope="col">Fecha Ingreso</th>
                         <th scope="col">Fecha Salida</th>
-                        <th scope="col">Área</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Comentarios</th>
 
@@ -51,34 +50,35 @@
                 <tbody>
                     <c:forEach items="#{inventarioView.verInv()}"
                                var="inv" >
-                         <tr>
-                        <td style="text-align: center;">
-                            <div class="button">
-                                <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarinv.xhtml"></a>
-                                <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinv.xhtml"></a>
-                            </div>
+                        <tr>
+                            <td style="text-align: center;">
+                                <div class="button">
+                                    <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarinv.xhtml"></a>
+                                    <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinv.xhtml"></a>
+                                </div>
 
-                        </td>
-                        
-                        <td>#{inv.idEquipo.idTipoPc.nombreTipoPc}</td>
-                        <td>Falta Condición</td>
-                        <td>${inv.idEquipo.idMarca.nombreMarca}</td>
-                        <td>#{inv.fechaIngreso}</td>
-                        <td>#{inv.idEquipo.modelo}</td>
-                        <td>#{inv.idEquipo.serial}</td>
-                        <td>falta proveedor}</td>
-                        <td>falta area</td>
-                        <td>#{inv.idEquipo.sistemaOperativo}</td>
-                        <td>#{inv.idEquipo.microssoftOffice}</td>
-                        <td>#{inv.idEquipo.procesador}</td>
-                        <td>#{inv.idEquipo.memoriaRam}</td>
-                        <td>#{inv.idEquipo.capacidadDiscoDuro}</td>
-                        <td>#{inv.idEstadoEquipo.nombreEstadoEquipo}</td>
-                        <td>#{inv.idEquipo.comentarios}</td>
-                        
-                    </tr>
+                            </td>
+
+                            <td>#{inv.idInventario}</td>
+                            <td>#{inv.idEquipo.idEquipo}</td>
+                            <td>#{inv.idEquipo.idTipoPc.nombreTipoPc}</td>
+                            <td>falta Condicion Equipo</td>
+                            <td>${inv.idEquipo.idMarca.nombreMarca}</td>
+                            <td>#{inv.idEquipo.modelo}</td>
+                            <td>#{inv.idEquipo.serial}</td>
+                            <td>#{inv.idEquipo.sistemaOperativo}</td>
+                            <td>#{inv.idEquipo.microssoftOffice}</td>
+                            <td>#{inv.idEquipo.procesador}</td>
+                            <td>#{inv.idEquipo.memoriaRam}</td>
+                            <td>#{inv.idEquipo.capacidadDiscoDuro}</td>
+                            <td>#{inv.fechaIngreso}</td>
+                            <td>#{inv.fechaSalida}</td>
+                            <td>#{inv.idEstadoEquipo.nombreEstadoEquipo}</td>
+                            <td>#{inv.idEquipo.comentarios}</td>
+
+                        </tr>
                     </c:forEach>
-                    
+
 
                 </tbody>
             </table>

@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author gjimenezo
+ * @author usuario
  */
 @Entity
 @Table(name = "tbl_equipos")
@@ -36,8 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Equipos.findAll", query = "SELECT e FROM Equipos e"),
     @NamedQuery(name = "Equipos.findByIdEquipo", query = "SELECT e FROM Equipos e WHERE e.idEquipo = :idEquipo"),
-    @NamedQuery(name = "Equipos.findBySerial", query = "SELECT e FROM Equipos e WHERE e.serial = :serial"),
     @NamedQuery(name = "Equipos.findByModelo", query = "SELECT e FROM Equipos e WHERE e.modelo = :modelo"),
+    @NamedQuery(name = "Equipos.findBySerial", query = "SELECT e FROM Equipos e WHERE e.serial = :serial"),
     @NamedQuery(name = "Equipos.findBySistemaOperativo", query = "SELECT e FROM Equipos e WHERE e.sistemaOperativo = :sistemaOperativo"),
     @NamedQuery(name = "Equipos.findByMicrossoftOffice", query = "SELECT e FROM Equipos e WHERE e.microssoftOffice = :microssoftOffice"),
     @NamedQuery(name = "Equipos.findByProcesador", query = "SELECT e FROM Equipos e WHERE e.procesador = :procesador"),
@@ -54,14 +54,14 @@ public class Equipos implements Serializable {
     private Integer idEquipo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "serial")
-    private String serial;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 30)
     @Column(name = "modelo")
     private String modelo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "serial")
+    private String serial;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -111,10 +111,10 @@ public class Equipos implements Serializable {
         this.idEquipo = idEquipo;
     }
 
-    public Equipos(Integer idEquipo, String serial, String modelo, String sistemaOperativo, String microssoftOffice, String procesador, String memoriaRam, String capacidadDiscoDuro, String comentarios) {
+    public Equipos(Integer idEquipo, String modelo, String serial, String sistemaOperativo, String microssoftOffice, String procesador, String memoriaRam, String capacidadDiscoDuro, String comentarios) {
         this.idEquipo = idEquipo;
-        this.serial = serial;
         this.modelo = modelo;
+        this.serial = serial;
         this.sistemaOperativo = sistemaOperativo;
         this.microssoftOffice = microssoftOffice;
         this.procesador = procesador;
@@ -131,20 +131,20 @@ public class Equipos implements Serializable {
         this.idEquipo = idEquipo;
     }
 
-    public String getSerial() {
-        return serial;
-    }
-
-    public void setSerial(String serial) {
-        this.serial = serial;
-    }
-
     public String getModelo() {
         return modelo;
     }
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
     }
 
     public String getSistemaOperativo() {

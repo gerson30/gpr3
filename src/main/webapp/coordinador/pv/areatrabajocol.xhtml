@@ -56,7 +56,7 @@
                     <th>Inventario Asignado</th>
 
                 </tr>
-                <c:forEach items="#{colaboradorView.verCol()}" 
+                <c:forEach items="#{colaboradorSession.leerTodo()}" 
                            var="col">
                     <tr>
                         <td style="text-align: center;">
@@ -66,31 +66,31 @@
                             </div>
 
                         </td>
-                        <td>--id_Colab--</td>
+                        <td>#{col.idColab}</td>
                         <td>#{col.cedula}</td>
                         <td>#{col.fechaIngreso}</td>
                         <td>#{col.colabFechaRetiro}</td>
                         <td>#{col.idEstadoColab.nombreEstadoColab}</td>
                         <td>#{col.nombre}</td>
                         <td>#{col.apellido}</td>
-                        <td>2000-03-21</td>
-                        <td>Union libre</td>
-                        <td>Masculino</td>
-                        <td>Cra 34 15 65</td>
-                        <td>CIUDAD JARDIN</td>
-                        <td>BOGOTÁ</td>
-                        <td>6547896</td>
-                        <td>3152654897</td>
-                        <td>Jurídica</td>
-                        <td>Marcela</td>
-                        <td>Lopez</td>
-                        <td>Madre</td>
-                        <td>3152654899</td>
-                        <td>5236945</td>
-                        <td>xx</td>
-                        <td>*********</td>
-                        <td>cp@gconsultor.com.co</td>
-                        <td>1101</td>
+                        <td>#{col.fechaNacim}</td>
+                        <td>#{col.idEstadoCivil.nombreEstado}</td>
+                        <td>#{col.idGenero.nombreGenero}</td>
+                        <td>#{col.direccion}</td>
+                        <td>#{col.barrio}</td>
+                        <td>#{col.ciudad}</td>
+                        <td>#{col.idTelefono.telFijo}</td>
+                        <td>#{col.idTelefono.telCel}</td>
+                        <td>#{col.idArea.nombreArea}</td>
+                        <td>#{col.nombreContacto}</td>
+                        <td>#{col.apellidoContacto}</td>
+                        <td>#{col.idParentesco.nombreParentesco}</td>
+                        <td>#{col.idTelefono.telContactCel}</td>
+                        <td>#{col.idTelefono.telContactFijo}</td>
+                        <td>#{col.usuarioDominio}</td>
+                        <td>#{col.contrasenaDominio}</td>
+                        <td>#{col.correo}</td>
+                        <td>#{col.idInventario.idInventario}</td>
                     </tr>
                 </c:forEach>
 

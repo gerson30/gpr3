@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author gjimenezo
+ * @author usuario
  */
 @Entity
 @Table(name = "tbl_incidente")
@@ -62,6 +63,12 @@ public class Incidente implements Serializable {
     @Column(name = "fechaCreacion")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "detalles")
+    private String detalles;
     @Column(name = "fecha_Asignacion")
     @Temporal(TemporalType.DATE)
     private Date fechaAsignacion;
@@ -74,20 +81,25 @@ public class Incidente implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private CategoriaPrioridad idCat;
     @JoinColumns({
+        @JoinColumn(name = "id_Area", referencedColumnName = "id_Area"),
+        @JoinColumn(name = "id_Area", referencedColumnName = "id_Area")})
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Colaboradores colaboradores;
+    @JoinColumns({
         @JoinColumn(name = "fk_colabAsigna", referencedColumnName = "id_Colab"),
         @JoinColumn(name = "fk_colabAsigna", referencedColumnName = "id_Colab")})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Colaboradores colaboradores;
+    private Colaboradores colaboradores1;
     @JoinColumns({
         @JoinColumn(name = "fk_colabCrea", referencedColumnName = "id_Colab"),
         @JoinColumn(name = "fk_colabCrea", referencedColumnName = "id_Colab")})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Colaboradores colaboradores1;
+    private Colaboradores colaboradores2;
     @JoinColumns({
         @JoinColumn(name = "fk_colabSoluciona", referencedColumnName = "id_Colab"),
         @JoinColumn(name = "fk_colabSoluciona", referencedColumnName = "id_Colab")})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Colaboradores colaboradores2;
+    private Colaboradores colaboradores3;
     @JoinColumn(name = "id_EstadoInc", referencedColumnName = "id_EstadoInc")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private EstadoIncidente idEstadoInc;
@@ -99,10 +111,11 @@ public class Incidente implements Serializable {
         this.idTicket = idTicket;
     }
 
-    public Incidente(Integer idTicket, String asunto, Date fechaCreacion) {
+    public Incidente(Integer idTicket, String asunto, Date fechaCreacion, String detalles) {
         this.idTicket = idTicket;
         this.asunto = asunto;
         this.fechaCreacion = fechaCreacion;
+        this.detalles = detalles;
     }
 
     public Integer getIdTicket() {
@@ -127,6 +140,14 @@ public class Incidente implements Serializable {
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
     }
 
     public Date getFechaAsignacion() {
@@ -184,6 +205,14 @@ public class Incidente implements Serializable {
 
     public void setColaboradores2(Colaboradores colaboradores2) {
         this.colaboradores2 = colaboradores2;
+    }
+
+    public Colaboradores getColaboradores3() {
+        return colaboradores3;
+    }
+
+    public void setColaboradores3(Colaboradores colaboradores3) {
+        this.colaboradores3 = colaboradores3;
     }
 
     public EstadoIncidente getIdEstadoInc() {

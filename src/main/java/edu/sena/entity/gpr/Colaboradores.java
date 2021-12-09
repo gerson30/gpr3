@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author gjimenezo
+ * @author usuario
  */
 @Entity
 @Table(name = "tbl_colaboradores")
@@ -42,18 +42,19 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Colaboradores.findAll", query = "SELECT c FROM Colaboradores c"),
     @NamedQuery(name = "Colaboradores.findByIdColab", query = "SELECT c FROM Colaboradores c WHERE c.idColab = :idColab"),
     @NamedQuery(name = "Colaboradores.findByCedula", query = "SELECT c FROM Colaboradores c WHERE c.cedula = :cedula"),
+    @NamedQuery(name = "Colaboradores.findByFechaIngreso", query = "SELECT c FROM Colaboradores c WHERE c.fechaIngreso = :fechaIngreso"),
+    @NamedQuery(name = "Colaboradores.findByColabFechaRetiro", query = "SELECT c FROM Colaboradores c WHERE c.colabFechaRetiro = :colabFechaRetiro"),
     @NamedQuery(name = "Colaboradores.findByNombre", query = "SELECT c FROM Colaboradores c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "Colaboradores.findByApellido", query = "SELECT c FROM Colaboradores c WHERE c.apellido = :apellido"),
-    @NamedQuery(name = "Colaboradores.findByCorreo", query = "SELECT c FROM Colaboradores c WHERE c.correo = :correo"),
     @NamedQuery(name = "Colaboradores.findByFechaNacim", query = "SELECT c FROM Colaboradores c WHERE c.fechaNacim = :fechaNacim"),
     @NamedQuery(name = "Colaboradores.findByDireccion", query = "SELECT c FROM Colaboradores c WHERE c.direccion = :direccion"),
     @NamedQuery(name = "Colaboradores.findByBarrio", query = "SELECT c FROM Colaboradores c WHERE c.barrio = :barrio"),
     @NamedQuery(name = "Colaboradores.findByCiudad", query = "SELECT c FROM Colaboradores c WHERE c.ciudad = :ciudad"),
     @NamedQuery(name = "Colaboradores.findByNombreContacto", query = "SELECT c FROM Colaboradores c WHERE c.nombreContacto = :nombreContacto"),
+    @NamedQuery(name = "Colaboradores.findByApellidoContacto", query = "SELECT c FROM Colaboradores c WHERE c.apellidoContacto = :apellidoContacto"),
     @NamedQuery(name = "Colaboradores.findByUsuarioDominio", query = "SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio"),
-    @NamedQuery(name = "Colaboradores.findByContrase\u00f1aDominio", query = "SELECT c FROM Colaboradores c WHERE c.contrase\u00f1aDominio = :contrase\u00f1aDominio"),
-    @NamedQuery(name = "Colaboradores.findByFechaIngreso", query = "SELECT c FROM Colaboradores c WHERE c.fechaIngreso = :fechaIngreso"),
-    @NamedQuery(name = "Colaboradores.findByColabFechaRetiro", query = "SELECT c FROM Colaboradores c WHERE c.colabFechaRetiro = :colabFechaRetiro")})
+    @NamedQuery(name = "Colaboradores.findByContrasenaDominio", query = "SELECT c FROM Colaboradores c WHERE c.contrasenaDominio = :contrasenaDominio"),
+    @NamedQuery(name = "Colaboradores.findByCorreo", query = "SELECT c FROM Colaboradores c WHERE c.correo = :correo")})
 public class Colaboradores implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,6 +69,14 @@ public class Colaboradores implements Serializable {
     private double cedula;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "fechaIngreso")
+    @Temporal(TemporalType.DATE)
+    private Date fechaIngreso;
+    @Column(name = "colab_FechaRetiro")
+    @Temporal(TemporalType.DATE)
+    private Date colabFechaRetiro;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "nombre")
     private String nombre;
@@ -76,11 +85,6 @@ public class Colaboradores implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "apellido")
     private String apellido;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "correo")
-    private String correo;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fechaNacim")
@@ -103,9 +107,14 @@ public class Colaboradores implements Serializable {
     private String ciudad;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 20)
     @Column(name = "nombreContacto")
     private String nombreContacto;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "apellidoContacto")
+    private String apellidoContacto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -113,28 +122,27 @@ public class Colaboradores implements Serializable {
     private String usuarioDominio;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "contrase\u00f1aDominio")
-    private int contraseñaDominio;
+    @Column(name = "contrasenaDominio")
+    private int contrasenaDominio;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fechaIngreso")
-    @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
-    @Column(name = "colab_FechaRetiro")
-    @Temporal(TemporalType.DATE)
-    private Date colabFechaRetiro;
+    @Size(min = 1, max = 45)
+    @Column(name = "correo")
+    private String correo;
     @JoinTable(name = "tbl_colaboradores_roles", joinColumns = {
         @JoinColumn(name = "fk_id_Colab", referencedColumnName = "id_Colab"),
         @JoinColumn(name = "fk_id_Colab", referencedColumnName = "id_Colab")}, inverseJoinColumns = {
         @JoinColumn(name = "fk_id_Rol", referencedColumnName = "id_Rol")})
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Roles> rolesCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "colaboradores", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "colaboradores", fetch = FetchType.LAZY)
     private Collection<Incidente> incidenteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "colaboradores1", fetch = FetchType.LAZY)
     private Collection<Incidente> incidenteCollection1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "colaboradores2", fetch = FetchType.LAZY)
     private Collection<Incidente> incidenteCollection2;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "colaboradores3", fetch = FetchType.LAZY)
+    private Collection<Incidente> incidenteCollection3;
     @JoinColumn(name = "id_Area", referencedColumnName = "id_Area")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Area idArea;
@@ -164,20 +172,21 @@ public class Colaboradores implements Serializable {
         this.idColab = idColab;
     }
 
-    public Colaboradores(Integer idColab, double cedula, String nombre, String apellido, String correo, Date fechaNacim, String direccion, String barrio, String ciudad, String nombreContacto, String usuarioDominio, int contraseñaDominio, Date fechaIngreso) {
+    public Colaboradores(Integer idColab, double cedula, Date fechaIngreso, String nombre, String apellido, Date fechaNacim, String direccion, String barrio, String ciudad, String nombreContacto, String apellidoContacto, String usuarioDominio, int contrasenaDominio, String correo) {
         this.idColab = idColab;
         this.cedula = cedula;
+        this.fechaIngreso = fechaIngreso;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo = correo;
         this.fechaNacim = fechaNacim;
         this.direccion = direccion;
         this.barrio = barrio;
         this.ciudad = ciudad;
         this.nombreContacto = nombreContacto;
+        this.apellidoContacto = apellidoContacto;
         this.usuarioDominio = usuarioDominio;
-        this.contraseñaDominio = contraseñaDominio;
-        this.fechaIngreso = fechaIngreso;
+        this.contrasenaDominio = contrasenaDominio;
+        this.correo = correo;
     }
 
     public Integer getIdColab() {
@@ -196,6 +205,22 @@ public class Colaboradores implements Serializable {
         this.cedula = cedula;
     }
 
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Date getColabFechaRetiro() {
+        return colabFechaRetiro;
+    }
+
+    public void setColabFechaRetiro(Date colabFechaRetiro) {
+        this.colabFechaRetiro = colabFechaRetiro;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -210,14 +235,6 @@ public class Colaboradores implements Serializable {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
     public Date getFechaNacim() {
@@ -260,6 +277,14 @@ public class Colaboradores implements Serializable {
         this.nombreContacto = nombreContacto;
     }
 
+    public String getApellidoContacto() {
+        return apellidoContacto;
+    }
+
+    public void setApellidoContacto(String apellidoContacto) {
+        this.apellidoContacto = apellidoContacto;
+    }
+
     public String getUsuarioDominio() {
         return usuarioDominio;
     }
@@ -268,28 +293,20 @@ public class Colaboradores implements Serializable {
         this.usuarioDominio = usuarioDominio;
     }
 
-    public int getContraseñaDominio() {
-        return contraseñaDominio;
+    public int getContrasenaDominio() {
+        return contrasenaDominio;
     }
 
-    public void setContraseñaDominio(int contraseñaDominio) {
-        this.contraseñaDominio = contraseñaDominio;
+    public void setContrasenaDominio(int contrasenaDominio) {
+        this.contrasenaDominio = contrasenaDominio;
     }
 
-    public Date getFechaIngreso() {
-        return fechaIngreso;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    public Date getColabFechaRetiro() {
-        return colabFechaRetiro;
-    }
-
-    public void setColabFechaRetiro(Date colabFechaRetiro) {
-        this.colabFechaRetiro = colabFechaRetiro;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     @XmlTransient
@@ -326,6 +343,15 @@ public class Colaboradores implements Serializable {
 
     public void setIncidenteCollection2(Collection<Incidente> incidenteCollection2) {
         this.incidenteCollection2 = incidenteCollection2;
+    }
+
+    @XmlTransient
+    public Collection<Incidente> getIncidenteCollection3() {
+        return incidenteCollection3;
+    }
+
+    public void setIncidenteCollection3(Collection<Incidente> incidenteCollection3) {
+        this.incidenteCollection3 = incidenteCollection3;
     }
 
     public Area getIdArea() {

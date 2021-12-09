@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author gjimenezo
+ * @author usuario
  */
 @Entity
 @Table(name = "tbl_comentarios")
@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Comentarios.findAll", query = "SELECT c FROM Comentarios c"),
     @NamedQuery(name = "Comentarios.findByIdComentario", query = "SELECT c FROM Comentarios c WHERE c.idComentario = :idComentario"),
-    @NamedQuery(name = "Comentarios.findByFechaComentario", query = "SELECT c FROM Comentarios c WHERE c.fechaComentario = :fechaComentario")})
+    @NamedQuery(name = "Comentarios.findByFechaComentario", query = "SELECT c FROM Comentarios c WHERE c.fechaComentario = :fechaComentario"),
+    @NamedQuery(name = "Comentarios.findByIdInventario", query = "SELECT c FROM Comentarios c WHERE c.idInventario = :idInventario"),
+    @NamedQuery(name = "Comentarios.findByIdColabComent", query = "SELECT c FROM Comentarios c WHERE c.idColabComent = :idColabComent")})
 public class Comentarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,6 +58,14 @@ public class Comentarios implements Serializable {
     @Column(name = "fecha comentario")
     @Temporal(TemporalType.DATE)
     private Date fechaComentario;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_Inventario")
+    private int idInventario;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_ColabComent")
+    private int idColabComent;
     @JoinColumn(name = "id_Ticket", referencedColumnName = "id_Ticket")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Incidente idTicket;
@@ -67,10 +77,12 @@ public class Comentarios implements Serializable {
         this.idComentario = idComentario;
     }
 
-    public Comentarios(Integer idComentario, String comentario, Date fechaComentario) {
+    public Comentarios(Integer idComentario, String comentario, Date fechaComentario, int idInventario, int idColabComent) {
         this.idComentario = idComentario;
         this.comentario = comentario;
         this.fechaComentario = fechaComentario;
+        this.idInventario = idInventario;
+        this.idColabComent = idColabComent;
     }
 
     public Integer getIdComentario() {
@@ -95,6 +107,22 @@ public class Comentarios implements Serializable {
 
     public void setFechaComentario(Date fechaComentario) {
         this.fechaComentario = fechaComentario;
+    }
+
+    public int getIdInventario() {
+        return idInventario;
+    }
+
+    public void setIdInventario(int idInventario) {
+        this.idInventario = idInventario;
+    }
+
+    public int getIdColabComent() {
+        return idColabComent;
+    }
+
+    public void setIdColabComent(int idColabComent) {
+        this.idColabComent = idColabComent;
     }
 
     public Incidente getIdTicket() {
