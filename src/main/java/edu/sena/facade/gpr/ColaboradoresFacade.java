@@ -6,6 +6,7 @@
 package edu.sena.facade.gpr;
 
 import edu.sena.entity.gpr.Colaboradores;
+import edu.sena.entity.gpr.Roles;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -37,25 +38,27 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
         Query con = em.createQuery("SELECT c FROM Colaboradores c");
         return con.getResultList();
     }
-    
-    
 
-//    @Override
-//    public boolean agregarCol(Colaboradores colIn) {
-//        try {
-//            Query ac = em.createNativeQuery(
-//                    ac.setParameter(1, colIn.getCedula());
-//            ac.setParameter(2, colIn.getNombre());
-//            ac.setParameter(3, colIn.getApellido());
-//            ac.setParameter(4, colIn.getUsuarioDominio());
-//            ac.setParameter(5, colIn.getContrasenaDominio());
-//            ac.executeUpdate();
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
+    @Override
+    public boolean agregarCol(Colaboradores colIn) {
+        try {
+            Query ac = em.createNativeQuery("INSERT INTO `gpr`.`tbl_colaboradores` (`cedula`, "
+                    + "`fechaIngreso`, `nombre`, `apellido`, `id_EstadoCivil`) VALUES ('?', "
+                    + "'?', '?', '?', '?');");
+            ac.setParameter(1, colIn.getCedula());
+            ac.setParameter(2, colIn.getFechaIngreso());
+            ac.setParameter(3, colIn.getNombre());
+            ac.setParameter(4, colIn.getApellido());
+            ac.setParameter(5, colIn.getIdEstadoCivil());
 
+            ac.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
     public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio) {
         try {
             Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio AND c.contrasenaDominio = :contrasenaDominio");
@@ -68,6 +71,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
 
     }
 
+    @Override
     public Colaboradores recuperarContrasena(String usuarioDominio) {
         try {
             Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio");
@@ -77,5 +81,15 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
             return null;
         }
 
+    }
+
+    @Override
+    public List<Roles> verRoles() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object verRoles(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -36,6 +36,13 @@ RolesFacadeLocal rolesFacadeLocal;
     public List<Colaboradores> leerTodo (){
     return colaboradoresFacadeLocal.findAll();
     }
+    public List<Colaboradores> verCol (){
+    return colaboradoresFacadeLocal.findAll();
+    }
+    
+    public List<Roles> verRoles (){
+    return rolesFacadeLocal.findAll();
+    }
     
     
 }

@@ -6,10 +6,12 @@
 package edu.sena.controlador.gpr;
 
 import edu.sena.entity.gpr.Roles;
+import edu.sena.facade.gpr.RolesFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.EJB;
 
 /**
  *
@@ -19,13 +21,20 @@ import java.util.List;
 @SessionScoped
 public class RolesSession implements Serializable {
 
+    @EJB
+    RolesFacadeLocal rolesFacadeLocal;
+
     /**
      * Creates a new instance of RolesSession
      */
     public RolesSession() {
     }
-   
-    public List<Roles> verRoles (){
-    return rolesFacadeLocal.finAll();
-    } 
+
+    public List<Roles> verRoles() {
+        return rolesFacadeLocal.findAll();
+    }
+    
+    public Roles ponerRoles() {
+        return rolesFacadeLocal.find(this.hashCode());
+    }
 }

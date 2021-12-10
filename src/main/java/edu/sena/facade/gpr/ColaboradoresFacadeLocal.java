@@ -6,6 +6,7 @@
 package edu.sena.facade.gpr;
 
 import edu.sena.entity.gpr.Colaboradores;
+import edu.sena.entity.gpr.Roles;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,5 +32,15 @@ public interface ColaboradoresFacadeLocal {
     int count();
 
     public List<Colaboradores> verCol();
+
+    public boolean agregarCol(Colaboradores colIn);
+
+    public List<Roles> verRoles();
+
+    public Object verRoles(String nombRol);
+
+    public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio);
+
+    public Colaboradores recuperarContrasena(String usuarioDominio);
     
 }
