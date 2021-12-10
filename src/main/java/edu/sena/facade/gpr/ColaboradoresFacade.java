@@ -37,8 +37,6 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
         Query con = em.createQuery("SELECT c FROM Colaboradores c");
         return con.getResultList();
     }
-    
-    
 
 //    @Override
 //    public boolean agregarCol(Colaboradores colIn) {
@@ -55,7 +53,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
 //            return false;
 //        }
 //    }
-
+    @Override
     public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio) {
         try {
             Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio AND c.contrasenaDominio = :contrasenaDominio");
@@ -68,6 +66,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
 
     }
 
+    @Override
     public Colaboradores recuperarContrasena(String usuarioDominio) {
         try {
             Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio");
@@ -77,5 +76,10 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
             return null;
         }
 
+    }
+
+    @Override
+    public Colaboradores inicioSesion(String string, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
