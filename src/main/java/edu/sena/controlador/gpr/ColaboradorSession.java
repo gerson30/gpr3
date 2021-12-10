@@ -6,7 +6,9 @@
 package edu.sena.controlador.gpr;
 
 import edu.sena.entity.gpr.Colaboradores;
+import edu.sena.entity.gpr.Roles;
 import edu.sena.facade.gpr.ColaboradoresFacadeLocal;
+import edu.sena.facade.gpr.RolesFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -22,6 +24,9 @@ import javax.ejb.EJB;
 public class ColaboradorSession implements Serializable {
 @EJB
 ColaboradoresFacadeLocal colaboradoresFacadeLocal;
+@EJB
+RolesFacadeLocal rolesFacadeLocal;
+
     /**
      * Creates a new instance of ColaboradorSession
      */
@@ -31,4 +36,6 @@ ColaboradoresFacadeLocal colaboradoresFacadeLocal;
     public List<Colaboradores> leerTodo (){
     return colaboradoresFacadeLocal.findAll();
     }
+    
+    
 }

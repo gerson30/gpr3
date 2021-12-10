@@ -5,7 +5,8 @@
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:b="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition>
 
 
@@ -49,109 +50,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <h:form>
+                        <c:forEach items="#{incidenteView.verInc()}"
+                                   var="inc" >
+                            <tr>
                                 <td style="text-align: center;">
-                                    <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/histoatencion.xhtml"></a>
-                                    <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinc.xhtml"></a>
-                                    <h:inputText  html5:type="checkbox"></h:inputText>
+                                    <div class="button">
+                                        <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/histoatencion.xhtml"></a>
+                                        <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinc.xhtml"></a>
+                                        <h:inputText  html5:type="checkbox"></h:inputText>
+                                    </div>
                                 </td>
-                            </h:form>
 
-                            <td>1234</td>
-                            <td>Fallo Office</td>
-                            <td>Operativa</td>
-                            <td>1/1/2021</td>
-                            <td>Al abrir word o Excel dice que no es posible ejecutar</td>
-                            <td>Viviana Vivas</td>
-                            <td>Cerrado</td>
-                            <td>Media</td>
-                            <td>Diego Cañón</td>
-                            <td>1/1/2021</td>
-                            <td>Gerson Jimenez</td>
-                            <td>1/1/2021</td>
-                            <td>Sin conexión con servidor para validar licencia</td>
-                            <td>1115</td>
 
-                        </tr>
-
-                        <tr>
-                            <h:form>
-                                <td style="text-align: center;">
-                                    <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/histoatencion.xhtml"></a>
-                                    <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinc.xhtml"></a>
-                                    <h:inputText  html5:type="checkbox"></h:inputText>
-                                    
-                                </td>
-                            </h:form>
-                            <td>1235</td>
-                            <td>Equipo no enciende</td>
-                            <td>Adminsitrativa</td>
-                            <td>12/4/2021</td>
-                            <td>Al presionar boton de encendido solo suena como si fuera a prender y no enciende</td>
-                            <td>Rodrigo Rodriguez</td>
-                            <td>Asignado</td>
-                            <td>Media</td>
-                            <td>Gerson Jimenez</td>
-                            <td>1/1/2021</td>
-                            <td>Gerson Jimenez</td>
-                            <td>1/1/2021</td>
-                            <td>Fuente de poder - Solicitar a Proveedor</td>
-                            <td>1109</td>
-                        </tr>
-
-                        <tr>
-                            <h:form>
-                                <td style="text-align: center;">
-                                    <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/histoatencion.xhtml"></a>
-                                    <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinc.xhtml"></a>
-                                    <h:inputText  html5:type="checkbox"></h:inputText>
-                                </td>
-                            </h:form>
-                            <td>1235</td>
-                            <td>Equipo no enciende</td>
-                            <td>Adminsitrativa</td>
-                            <td>12/4/2021</td>
-                            <td>Al presionar boton de encendido solo suena como si fuera a prender y no enciende</td>
-                            <td>Rodrigo Rodriguez</td>
-                            <td>Por Asignar</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>Fuente de poder - Solicitar a Proveedor</td>
-                            <td>1109</td>
-                        </tr>
-                        <tr>
-                            <h:form>
-                                <td style="text-align: center;">
-                                    <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/histoatencion.xhtml"></a>
-                                    <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinc.xhtml"></a>
-                                    <h:inputText  html5:type="checkbox"></h:inputText>
-                                </td>
-                            </h:form>
-                            <td>1235</td>
-                            <td>Equipo no enciende</td>
-                            <td>Adminsitrativa</td>
-                            <td>12/4/2021</td>
-                            <td>Al presionar boton de encendido solo suena como si fuera a prender y no enciende</td>
-                            <td>Rodrigo Rodriguez</td>
-                            <td>Por asignar</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>Fuente de poder - Solicitar a Proveedor</td>
-                            <td>1109</td>
-                        </tr>
+                                <td>#{inc.idTicket}</td>
+                                <td>#{inc.asunto}</td>
+                                <td>#{inc.colaboradores.idArea.nombreArea}</td>
+                                <td>#{inc.fechaCreacion}</td>
+                                <td>#{inc.detalles}</td>
+                                <td>#{inc.colaboradores2.nombre} #{inc.colaboradores2.apellido}</td>
+                                <td>#{inc.idEstadoInc.nombreEstado}</td>
+                                <td>#{inc.idCat.nombreCategoria}</td>
+                                <td>#{inc.colaboradores3.nombre} #{inc.colaboradores3.apellido}</td>
+                                <td>#{inc.fechaAsignacion}</td>
+                                <td>#{inc.colaboradores1.nombre} #{inc.colaboradores1.apellido}</td>
+                                <td>#{inc.fechaSolucion}</td>
+                                <td>Falta conectar comentarios</td>
+                                <td>#{inc.colaboradores2.idInventario.idInventario}</td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
 
             </div>
             <br></br>
-           </div>
+        </div>
     </ui:composition>
 </html>
 

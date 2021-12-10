@@ -6,9 +6,11 @@
 package edu.sena.facade.gpr;
 
 import edu.sena.entity.gpr.Roles;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,15 @@ public class RolesFacade extends AbstractFacade<Roles> implements RolesFacadeLoc
     public RolesFacade() {
         super(Roles.class);
     }
-    
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<Roles> verRoles() {
+        em.getEntityManagerFactory().getCache().evictAll();
+        Query vr = em.createQuery("SELECT c FROM Roles c");
+        return vr.getResultList();
+    } 
 }

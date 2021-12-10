@@ -5,10 +5,13 @@
  */
 package edu.sena.facade.gpr;
 
+
 import edu.sena.entity.gpr.Incidente;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +31,11 @@ public class IncidenteFacade extends AbstractFacade<Incidente> implements Incide
     public IncidenteFacade() {
         super(Incidente.class);
     }
-    
+
+    @Override
+    public List<Incidente> verInc() {
+        em.getEntityManagerFactory().getCache().evictAll();
+        Query coninc=em.createQuery("SELECT i FROM Incidente i");
+        return coninc.getResultList();
+    }
 }

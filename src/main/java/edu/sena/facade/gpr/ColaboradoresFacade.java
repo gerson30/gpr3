@@ -30,11 +30,52 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
     public ColaboradoresFacade() {
         super(Colaboradores.class);
     }
-    
+
     @Override
-    public List<Colaboradores> verCol(){
+    public List<Colaboradores> verCol() {
         em.getEntityManagerFactory().getCache().evictAll();
-        Query con=em.createQuery("SELECT c FROM Colaboradores c");
+        Query con = em.createQuery("SELECT c FROM Colaboradores c");
         return con.getResultList();
+    }
+    
+    
+
+//    @Override
+//    public boolean agregarCol(Colaboradores colIn) {
+//        try {
+//            Query ac = em.createNativeQuery(
+//                    ac.setParameter(1, colIn.getCedula());
+//            ac.setParameter(2, colIn.getNombre());
+//            ac.setParameter(3, colIn.getApellido());
+//            ac.setParameter(4, colIn.getUsuarioDominio());
+//            ac.setParameter(5, colIn.getContrasenaDominio());
+//            ac.executeUpdate();
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+
+    public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio) {
+        try {
+            Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio AND c.contrasenaDominio = :contrasenaDominio");
+            q.setParameter("usuarioDominio", usuarioDominio);
+            q.setParameter("contrasenaDominio", contrasenaDominio);
+            return (Colaboradores) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    public Colaboradores recuperarContrasena(String usuarioDominio) {
+        try {
+            Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio");
+            q.setParameter("usuarioDominio", usuarioDominio);
+            return (Colaboradores) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }

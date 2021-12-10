@@ -29,5 +29,7 @@ public interface IncidenteFacadeLocal {
     List<Incidente> findRange(int[] range);
 
     int count();
+
+    public List<Incidente> verInc();
     
 }

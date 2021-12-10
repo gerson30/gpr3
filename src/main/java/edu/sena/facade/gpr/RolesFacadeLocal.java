@@ -5,6 +5,7 @@
  */
 package edu.sena.facade.gpr;
 
+import edu.sena.entity.gpr.Colaboradores;
 import edu.sena.entity.gpr.Roles;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,7 @@ public interface RolesFacadeLocal {
     List<Roles> findRange(int[] range);
 
     int count();
+    
+    public List<Roles> verRoles();
     
 }
