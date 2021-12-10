@@ -39,7 +39,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
         return con.getResultList();
     }
 
-<<<<<<< HEAD
+
 //    @Override
 //    public boolean agregarCol(Colaboradores colIn) {
 //        try {
@@ -55,7 +55,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
 //            return false;
 //        }
 //    }
-=======
+
     @Override
     public boolean agregarCol(Colaboradores colIn) {
         try {
@@ -75,7 +75,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
         }
     }
 
->>>>>>> fec238e67f22857f4829b7239b7e23fd89cf363d
+
     @Override
     public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio) {
         try {
@@ -102,16 +102,20 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
     }
 
     @Override
-<<<<<<< HEAD
-    public Colaboradores inicioSesion(String string, String string1) {
-=======
     public List<Roles> verRoles() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object verRoles(String string) {
->>>>>>> fec238e67f22857f4829b7239b7e23fd89cf363d
+    public Object verRoles(String nombRol) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Colaboradores inicioSesion(String usuarioDominio, String contrasenaDominio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
 }

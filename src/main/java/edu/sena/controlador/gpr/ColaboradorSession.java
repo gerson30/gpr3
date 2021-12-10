@@ -65,7 +65,7 @@ public class ColaboradorSession implements Serializable {
     public List<Colaboradores> leerTodo() {
         return colaboradoresFacadeLocal.findAll();
     }
-<<<<<<< HEAD
+
 
     public String getUsuarioDominio() {
         return usuarioDominio;
@@ -91,7 +91,7 @@ public class ColaboradorSession implements Serializable {
         this.usuLogin = usuLogin;
     }
 
-=======
+
     public List<Colaboradores> verCol (){
     return colaboradoresFacadeLocal.findAll();
     }
@@ -101,5 +101,5 @@ public class ColaboradorSession implements Serializable {
     }
     
     
->>>>>>> fec238e67f22857f4829b7239b7e23fd89cf363d
+
 }
