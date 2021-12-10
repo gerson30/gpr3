@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -38,3 +40,4 @@ public class RolesSession implements Serializable {
         return rolesFacadeLocal.find(this.hashCode());
     }
 }
+>>>>>>> fec238e67f22857f4829b7239b7e23fd89cf363d
