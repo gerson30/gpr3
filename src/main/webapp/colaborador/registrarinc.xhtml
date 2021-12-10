@@ -5,6 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="../WEB-INF/template/tema.xhtml">
         
+        
         <ui:define name="areanotificaciones">
             <ui:include src="../colaborador/pv/areanotificacionesinc.xhtml"></ui:include>            
         </ui:define>
@@ -15,11 +16,11 @@
         </ui:define>
 
         <ui:define name="areatrabajo">
-            <ui:include src="../colaborador/pv/areatrabajoinc.xhtml"></ui:include>            
+            <ui:include src="../colaborador/pv/areatrabajoaginc.xhtml"></ui:include>            
         </ui:define>
             
         
-        
+        <ui:param name='pestana' value="Registrar Inc"></ui:param>
         
     </ui:composition>
 </html>
