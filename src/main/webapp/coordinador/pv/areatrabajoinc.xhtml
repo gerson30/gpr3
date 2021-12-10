@@ -53,13 +53,15 @@
                         <c:forEach items="#{incidenteView.verInc()}"
                                    var="inc" >
                             <tr>
-                                <td style="text-align: center;">
-                                    <div class="button">
-                                        <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/histoatencion.xhtml"></a>
-                                        <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinc.xhtml"></a>
-                                        <h:inputText  html5:type="checkbox"></h:inputText>
-                                    </div>
-                                </td>
+                                <h:form>
+                                    <td style="text-align: center;">
+                                        <div class="button">
+                                            <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/histoatencion.xhtml"></a>
+                                            <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinc.xhtml"></a>
+                                            <h:inputText  html5:type="checkbox"></h:inputText>
+                                        </div>
+                                    </td>
+                                </h:form>
 
 
                                 <td>#{inc.idTicket}</td>

@@ -6,6 +6,7 @@
 package edu.sena.facade.gpr;
 
 import edu.sena.entity.gpr.Colaboradores;
+import edu.sena.entity.gpr.Roles;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -38,6 +39,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
         return con.getResultList();
     }
 
+<<<<<<< HEAD
 //    @Override
 //    public boolean agregarCol(Colaboradores colIn) {
 //        try {
@@ -53,6 +55,27 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
 //            return false;
 //        }
 //    }
+=======
+    @Override
+    public boolean agregarCol(Colaboradores colIn) {
+        try {
+            Query ac = em.createNativeQuery("INSERT INTO `gpr`.`tbl_colaboradores` (`cedula`, "
+                    + "`fechaIngreso`, `nombre`, `apellido`, `id_EstadoCivil`) VALUES ('?', "
+                    + "'?', '?', '?', '?');");
+            ac.setParameter(1, colIn.getCedula());
+            ac.setParameter(2, colIn.getFechaIngreso());
+            ac.setParameter(3, colIn.getNombre());
+            ac.setParameter(4, colIn.getApellido());
+            ac.setParameter(5, colIn.getIdEstadoCivil());
+
+            ac.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+>>>>>>> fec238e67f22857f4829b7239b7e23fd89cf363d
     @Override
     public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio) {
         try {
@@ -79,7 +102,16 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
     }
 
     @Override
+<<<<<<< HEAD
     public Colaboradores inicioSesion(String string, String string1) {
+=======
+    public List<Roles> verRoles() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object verRoles(String string) {
+>>>>>>> fec238e67f22857f4829b7239b7e23fd89cf363d
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

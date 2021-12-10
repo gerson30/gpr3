@@ -5,6 +5,7 @@
  */
 package edu.sena.facade.gpr;
 
+
 import edu.sena.entity.gpr.Roles;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -38,7 +39,19 @@ public class RolesFacade extends AbstractFacade<Roles> implements RolesFacadeLoc
     @Override
     public List<Roles> verRoles() {
         em.getEntityManagerFactory().getCache().evictAll();
-        Query vr = em.createQuery("SELECT c FROM Roles c");
+        Query vr = em.createQuery("SELECT r FROM Roles r");
         return vr.getResultList();
     } 
+    
+    @Override
+    public Roles ponerRoles(String tipoRol) {
+        try {
+            Query q = em.createQuery("SELECT r FROM Roles r WHERE r.tipoRol = :tipoRol");
+            q.setParameter("tipoRol", tipoRol);
+            return (Roles) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 }
