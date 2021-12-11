@@ -5,22 +5,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="../WEB-INF/template/tema.xhtml">
         
+        
         <ui:define name="areanotificaciones">
             <ui:include src="../tecnicoti/pv/areanotificacionesinc.xhtml"></ui:include>            
         </ui:define>
 
 
         <ui:define name="menuvertical">
-            <ui:include src="../tecnicoti/pv/menuverticalinc.xhtml"></ui:include>            
+            <ui:include src="../tecnicoti/pv/quitarmenuinvcol.xhtml"></ui:include>            
         </ui:define>
 
         <ui:define name="areatrabajo">
-            <ui:include src="../tecnicoti/pv/areatrabajoinc.xhtml"></ui:include>            
+            <ui:include src="../tecnicoti/pv/areatrabajoaginc.xhtml"></ui:include>            
         </ui:define>
             
-        <ui:param name='pestana' value="Incidente"></ui:param>
+        <ui:param name='pestana' value="Registrar Inc"></ui:param>
         
-        <ui:param name='pestana' value="Index Incidente"></ui:param>
+        
     </ui:composition>
 </html>
 

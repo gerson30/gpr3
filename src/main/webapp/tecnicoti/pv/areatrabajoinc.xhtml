@@ -4,121 +4,87 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:b="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition>
 
-        <div style="display: flex;
-             align-items: stretch;
-             justify-content: center;
-             padding: 10px;
-             max-width: 1200px;
-             margin: auto;
-             border: gray 1px solid;">
 
+        <td>
+            <h3 class="tituloinv">TICKETS POR INCIDENTES</h3>
+        </td>
 
-            <div class="fila" style="width: 100%;">
+        <hr></hr>
+        <div>
 
-                <div style="border:black 1px solid; width: 100%;">
-                    <div class="topnav">
-                        <a class="exportar" href="../gestion/RegistrarIncidente.html">Nuevo Ticket</a>
-                    </div>
-                    <div style="display: flex; align-items: stretch;
-                         justify-content: space-between;
-                         padding: 10px;
-                         max-width: 1200px;
-                         margin: auto;
-                         border: gray 1px solid;
-                         ">
-                        <div style="margin-top:15px">Mis Tickets</div>
-                        <div class="topnav">
-                            <inputText type="text" placeholder="Busqueda.."></inputText>
-
-                        </div>
-
-
-                        <div class="hscroll">
-                            <table width="100%" border="1" cellspacing="0" cellpadding="6" style="margin-top: 30px;">
-
-                                <tr>
-                                    <th>Act</th>
-                                    <th>ID Ticket</th>
-                                    <th>Asunto</th>
-                                    <th>Area</th>
-                                    <th>Fecha Creación</th>
-                                    <th>Detalles</th>
-                                    <th>Solicitado Por</th>
-                                    <th>Estado</th>
-                                    <th>Categoria</th>
-                                    <th>Asignado A</th>
-                                    <th>Análisis</th>
-                                    <th>ID Inventario</th>
-
-
-
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <button><a class="ri-eye-line" href="../gestion/VisualizarTicket.html"></a></button>
-                                        <button><a class="ri-pencil-line" href="../gestion/SolucionTicket.html" ></a></button>
-
-                                    </td>
-                                    <td>1234</td>
-                                    <td>Fallo Office</td>
-                                    <td>Operativa</td>
-                                    <td>1/1/2021</td>
-                                    <td>Al abrir word o Excel dice que no es posible ejecutar</td>
-                                    <td>Viviana Vivas</td>
-                                    <td>Cerrado</td>
-                                    <td>Media</td>
-                                    <td>Diego Cañón</td>
-                                    <td>Sin conexión con servidor para validar licencia</td>
-                                    <td>1115</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <button><a class="ri-eye-line" href="../gestion/VisualizarTicket.html"></a></button>
-                                        <button><a class="ri-pencil-line" href="../gestion/SolucionTicket.html"></a></button>
-
-                                    </td>
-                                    <td>1235</td>
-                                    <td>Equipo no enciende</td>
-                                    <td>Adminsitrativa</td>
-                                    <td>12/4/2021</td>
-                                    <td>Al presionar boton de encendido solo suena como si fuera a prender y no enciende</td>
-                                    <td>Rodrigo Rodriguez</td>
-                                    <td>En Progreso</td>
-                                    <td>Media</td>
-                                    <td>Gerson Jimenez</td>
-                                    <td>Fuente de poder - Solicitar a Proveedor</td>
-                                    <td>1109</td>
-
-                                </tr>
-
-
-
-
-                            </table>
-
-
-                            <div class="topnav">
-                                <a class="exportar" href="#">Historico atención</a>
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-
-
-
-                    </div>
+            <h:form>
+                <div class="topnav">
+                    <a class="exportar" href="#{request.contextPath}/tecnicoti/registrarinc.xhtml">Nuevo Ticket</a>
+                    <a class="exportar" href="#{request.contextPath}/tecnicoti/registrarinc.xhtml">Exportar</a>
+                    <a class="exportar" href="#{request.contextPath}/tecnicoti/histoatencion.xhtml">Historico Atención</a>
+                    <h:inputText  html5:placeholder="Búsqueda"></h:inputText>
                 </div>
+                <br></br>
+            </h:form>
+
+            <div class="hscroll">
+
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Act</th>
+                            <th scope="col">No Ticket</th>
+                            <th scope="col">Asunto</th>
+                            <th scope="col">Area</th>
+                            <th scope="col">Fecha Creación</th>
+                            <th scope="col">Detalles</th>
+                            <th scope="col">Solicitado Por</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Asignado A</th>
+                            <th scope="col">Fecha Asignación</th>
+                            <th scope="col">Quién Asigna</th>
+                            <th scope="col">Fecha Solución</th>
+                            <th scope="col">Análisis</th>
+                            <th scope="col">No Inventario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{incidenteView.verInc()}"
+                                   var="inc" >
+                            <tr>
+                                <h:form>
+                                    <td style="text-align: center;">
+                                        <div class="button">
+                                            <a class="ri-eye-line" action="" href="#{request.contextPath}/tecnicoti/histoatencion.xhtml"></a>
+                                            <a class="ri-pencil-line" href="#{request.contextPath}/tecnicoti/editarinc.xhtml"></a>
+                                            <h:inputText  html5:type="checkbox"></h:inputText>
+                                        </div>
+                                    </td>
+                                </h:form>
+
+
+                                <td>#{inc.idTicket}</td>
+                                <td>#{inc.asunto}</td>
+                                <td>#{inc.colaboradores.idArea.nombreArea}</td>
+                                <td>#{inc.fechaCreacion}</td>
+                                <td>#{inc.detalles}</td>
+                                <td>#{inc.colaboradores2.nombre} #{inc.colaboradores2.apellido}</td>
+                                <td>#{inc.idEstadoInc.nombreEstado}</td>
+                                <td>#{inc.idCat.nombreCategoria}</td>
+                                <td>#{inc.colaboradores3.nombre} #{inc.colaboradores3.apellido}</td>
+                                <td>#{inc.fechaAsignacion}</td>
+                                <td>#{inc.colaboradores1.nombre} #{inc.colaboradores1.apellido}</td>
+                                <td>#{inc.fechaSolucion}</td>
+                                <td>Falta conectar comentarios</td>
+                                <td>#{inc.colaboradores2.idInventario.idInventario}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+
             </div>
+            <br></br>
         </div>
     </ui:composition>
 </html>

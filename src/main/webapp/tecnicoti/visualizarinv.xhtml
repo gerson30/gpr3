@@ -8,16 +8,17 @@
      <ui:composition template="../WEB-INF/template/tema.xhtml">
         
         <ui:define name="areatrabajo">
-            <ui:include src="../coordinador/pv/visualizarinv.xhtml"></ui:include>            
+            <ui:include src="../tecnicoti/pv/visualizarinv.xhtml"></ui:include>            
         </ui:define>
          
          <ui:define name="menuvertical" >
-             <ui:include src="../coordinador/pv/quitarmenuinvcol.xhtml"></ui:include>
+             <ui:include src="../tecnicoti/pv/quitarmenuinvcol.xhtml"></ui:include>
          </ui:define>
          
          <ui:define name="areanotificaciones" >
-             <ui:include src="../coordinador/pv/areanotificacionesinv.xhtml"></ui:include>
+             <ui:include src="../tecnicoti/pv/areanotificacionesinv.xhtml"></ui:include>
          </ui:define>
+         <ui:param name='pestana' value="Ver Inventario"></ui:param>
     </ui:composition>
 
 

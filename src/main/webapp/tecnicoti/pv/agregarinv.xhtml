@@ -83,7 +83,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la fecha"
-                                value=""
+                                value="#{inventarioView.invnue.fechaIngreso}" 
                                 class="form-control"
                                 id="new_fec"  
                                 html5:type="date">
@@ -96,7 +96,7 @@
                     <tr>
 
                         <td> <h:outputLabel for="new_mod">Modelo</h:outputLabel>
-                            <h:inputText
+                            <h:inputText 
                                 required="true"
                                 requiredMessage="Indique el modelo"
                                 value=""
@@ -105,24 +105,6 @@
                             </h:inputText>
                             <h:message style="color: red" for="new_mod"></h:message></td>
 
-                        <td
-                            ><h:outputLabel for="new_prov">Proveedor</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                requiredMessage="Indique el proveedor"
-                                value=""
-                                class="form-control" 
-                                id="new_prov" >
-                                <f:selectItem itemValue="VisionX" itemLabel="VisionX"></f:selectItem>
-                                <f:selectItem itemValue="Jhan Carlo Jaramillo" itemLabel="Jhan Carlo Jaramillo"></f:selectItem>
-                            </h:selectOneMenu>
-
-                        </td>
-
-
-
-                    </tr>
-                    <tr>
 
                         <td> 
                             <h:outputLabel for="new_ser">Serial N° </h:outputLabel>
@@ -134,7 +116,8 @@
                                 id="new_ser" />
                             <h:message style="color: red" for="new_ser"></h:message> 
                         </td>
-
+                    </tr>
+                    <tr>
                         <td
                             > <h:outputLabel for="new_area">Área</h:outputLabel>
                             <h:selectOneMenu  
@@ -147,22 +130,14 @@
                                 <f:selectItem itemValue="Operativo" itemLabel="Operativo"></f:selectItem>
                             </h:selectOneMenu>
                         </td>
-
                     </tr>
-
-
-                    <tr>
+                    <tr>                      
                         <td>
                             <h6 class="tituloinv">Información Hardware</h6>
+
                         </td>
 
                     </tr>
-
-
-
-
-
-
 
 
                     <tr>
@@ -292,7 +267,7 @@
                             <br></br>
                             <br></br>
                             <h:commandButton  class="btn btn-primary" value="Guardar" html5:type="submit"> </h:commandButton>
-                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/coordinador/indexinv.xhtml">Cancelar</a>
+                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/tecnicoti/indexinv.xhtml">Cancelar</a>
                         </td>
                         <br></br>
                     </tr>

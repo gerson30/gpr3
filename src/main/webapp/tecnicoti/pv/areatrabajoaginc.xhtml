@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition>
+        <div>
+
+            <tr>
+                <br></br>
+                <td>
+                    <h3 class="tituloinv">REGISTRAR INCIDENTE</h3>
+                </td>
+
+            </tr>
+            <hr></hr>
+
+            <h:form>
+                <table class="form-group col-md-12">
+                    <tr>
+
+
+                        <td>
+                            <h:outputLabel for="new_asunto">Asunto</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="Ingrese el asunto"
+                                value=""
+                                class="form-control"
+                                id="new_asunto"  
+                                html5:placeholder="Asunto">
+                            </h:inputText>
+                            <h:message style="color: red" for="new_asunto"></h:message>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <h:outputLabel for="new_coment">Comentarios</h:outputLabel>
+                            <h:inputTextarea
+                                required="true"
+                                requiredMessage="Ingrese el asunto"
+                                value=""
+                                class="form-control"
+                                id="new_coment"  
+                                html5:placeholder="Indique de forma detallada los fallos presentados"
+                                >
+                            </h:inputTextarea>
+                            <h:message style="color: red" for="new_coment"></h:message>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <br></br>
+                            <br></br>
+                            <a class="btn btn-primary" html5:type="submit" href="" >Enviar</a>
+                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/tecnicoti/indexinc.xhtml" value="cancelar">Cancelar</a>
+                        </td>
+                        <br></br>
+                    </tr>
+
+
+                </table>
+
+            </h:form>
+
+        </div>
+
+    </ui:composition>
+
+
+</html>
+
+
+

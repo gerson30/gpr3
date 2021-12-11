@@ -250,7 +250,20 @@
                             </h:inputText>
                             <h:message style="color: red" for="new_nomcon"></h:message>
                         </td>
-
+ <td>
+                         <h:outputLabel for="new_apecon">Apellido Contacto Emergencia</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="Ingrese apellido de contacto"
+                                value=""
+                                class="form-control"
+                                id="new_nomcon" 
+                                html5:placeholder="Apellido contacto emergencia">
+                            </h:inputText>
+                            <h:message style="color: red" for="new_apecon"></h:message>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             <h:outputLabel for="new_ncon">N° Celular Contacto</h:outputLabel>
                             <h:inputText 
@@ -263,12 +276,7 @@
                             </h:inputText>
                             <h:message style="color: red" for="new_ncon"></h:message>
                         </td>
-                    </tr>
-
-
-
-
-                    <tr>
+                    
                         <td>
                             <h:outputLabel for="new_par">Parentesco</h:outputLabel>
                             <h:selectOneMenu 
@@ -330,8 +338,8 @@
                             <br></br>
                             <br></br>
                             <a class="btn btn-primary" html5:type="submit" href="" >Guardar</a>
-                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/coordinador/indexcol.xhtml" value="cancelar">Cancelar</a>
-                            <a class="btn btn-secondary" html5:type="submit" href="#{request.contextPath}/coordinador/index.xhtml" value="cancelar">Acta usuario</a>
+                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/tecnicoti/indexcol.xhtml" value="cancelar">Cancelar</a>
+                           
 
                         </td>
                         <br></br>

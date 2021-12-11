@@ -28,7 +28,7 @@
         <port-number>3306</port-number>
         <database-name>gpr</database-name>
         <user>root</user>
-        <password>1234$</password>
+        <password>Todasidi1983</password>
         <property>
             <name>useSSL</name>
             <value>false</value>

@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition>
 
@@ -33,267 +34,132 @@
 
             <h:form>
                 <table class="form-group col-md-12">
-                    <tr>
+                    <c:forEach  items="#{inventarioView.verInv()}"
+                               var="inv" >
+                        <tr>
 
-                        <td>
-                            <h:outputLabel for="new_tipo">Tipo</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                value=""
-                                class="form-control" 
-                                id="new_tipo">
-                                <f:selectItem itemLabel="pcescritorio" itemValue="pcescritorio"></f:selectItem>
-                                <f:selectItem itemLabel="Portatil" itemValue="Portatil"></f:selectItem>
-                                <f:selectItem itemLabel="Todoenuno" itemValue="Todoenuno"></f:selectItem>
-                            </h:selectOneMenu>
-                        </td>
+                            <td>
+                                <h:outputLabel for="new_tipo">Tipo</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value=""
+                                    class="form-control" 
+                                    id="new_tipo">
+                                    <f:selectItem itemLabel="pcescritorio" itemValue="pcescritorio"></f:selectItem>
+                                    <f:selectItem itemLabel="Portatil" itemValue="Portatil"></f:selectItem>
+                                    <f:selectItem itemLabel="Todoenuno" itemValue="Todoenuno"></f:selectItem>
+                                </h:selectOneMenu>
+                            </td>
 
-                        <td>
-                            <h:outputLabel for="new_mar">Marca</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                value=""
-                                class="form-control" 
-                                id="new_mar">
-                                <f:selectItem itemValue="HP" itemLabel="HP"></f:selectItem>
-                                <f:selectItem itemValue="Lenovo" itemLabel="Lenovo"></f:selectItem>
-                                <f:selectItem itemValue="Asus" itemLabel="Asus" ></f:selectItem>
-                                <f:selectItem itemValue="Acer" itemLabel="Acer" ></f:selectItem>
-                                <f:selectItem itemValue="Toshiba" itemLabel="Todhiba"></f:selectItem>
-                                <f:selectItem itemValue="Dell" itemLabel="Dell"></f:selectItem>
-                            </h:selectOneMenu>
+                            <td>
+                                <h:outputLabel for="new_mar">Marca</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value=""
+                                    class="form-control" 
+                                    id="new_mar">
+                                    <f:selectItem itemValue="HP" itemLabel="HP"></f:selectItem>
+                                    <f:selectItem itemValue="Lenovo" itemLabel="Lenovo"></f:selectItem>
+                                    <f:selectItem itemValue="Asus" itemLabel="Asus" ></f:selectItem>
+                                    <f:selectItem itemValue="Acer" itemLabel="Acer" ></f:selectItem>
+                                    <f:selectItem itemValue="Toshiba" itemLabel="Todhiba"></f:selectItem>
+                                    <f:selectItem itemValue="Dell" itemLabel="Dell"></f:selectItem>
+                                </h:selectOneMenu>
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                    <tr>
+                        <tr>
 
-                        <td>
-                            <h:outputLabel for="new_cond">Condición Equipo</h:outputLabel>
-                            <h:selectOneMenu  class="form-control" id="validationServer04" >
-                                <f:selectItem itemValue="Nuevo" itemLabel="Nuevo"></f:selectItem>
-                                <f:selectItem itemValue="Usado" itemLabel="Usado"></f:selectItem>
-                            </h:selectOneMenu>
-                            <h:message style="color: red" for="new_cond"></h:message>
-                        </td>
+                            <td>
+                                <h:outputLabel for="new_cond">Condición Equipo</h:outputLabel>
+                                <h:selectOneMenu  class="form-control" id="validationServer04" >
+                                    <f:selectItem itemValue="Nuevo" itemLabel="Nuevo"></f:selectItem>
+                                    <f:selectItem itemValue="Usado" itemLabel="Usado"></f:selectItem>
+                                </h:selectOneMenu>
+                                <h:message style="color: red" for="new_cond"></h:message>
+                            </td>
 
-                        <td>
-                            <h:outputLabel for="new_fec">Fecha Ingreso</h:outputLabel>
-                            <h:inputText 
-                                required="true"
-                                requiredMessage="Ingrese la fecha"
-                                value=""
-                                class="form-control"
-                                id="new_fec"  
-                                html5:type="date">
-                            </h:inputText>
-                            <h:message style="color: red" for="new_fec"></h:message>
+                            <td>
+                                <h:outputLabel for="new_fec">Fecha Ingreso</h:outputLabel>
+                                <h:inputText 
+                                    required="true"
+                                    requiredMessage="Ingrese la fecha"
+                                    value=""
+                                    class="form-control"
+                                    id="new_fec"  
+                                    html5:type="date">
+                                </h:inputText>
+                                <h:message style="color: red" for="new_fec"></h:message>
 
-                        </td>
+                            </td>
 
-                    </tr>
-                    <tr>
+                        </tr>
+                        <tr>
 
-                        <td> <h:outputLabel for="new_mod">Modelo</h:outputLabel>
-                            <h:inputText
-                                required="true"
-                                requiredMessage="Indique el modelo"
-                                value=""
-                                class="form-control"
-                                id="new_mod">
-                            </h:inputText>
-                            <h:message style="color: red" for="new_mod"></h:message></td>
+                            <td> <h:outputLabel for="new_mod">Modelo</h:outputLabel>
+                                <h:inputText
+                                    required="true"
+                                    requiredMessage="Indique el modelo"
+                                    value=""
+                                    class="form-control"
+                                    id="new_mod">
+                                </h:inputText>
+                                <h:message style="color: red" for="new_mod"></h:message></td>
 
-                        <td
-                            ><h:outputLabel for="new_prov">Proveedor</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                requiredMessage="Indique el proveedor"
-                                value=""
-                                class="form-control" 
-                                id="new_prov" >
-                                <f:selectItem itemValue="VisionX" itemLabel="VisionX"></f:selectItem>
-                                <f:selectItem itemValue="Jhan Carlo Jaramillo" itemLabel="Jhan Carlo Jaramillo"></f:selectItem>
-                            </h:selectOneMenu>
+                            <td
+                                ><h:outputLabel for="new_prov">Proveedor</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    requiredMessage="Indique el proveedor"
+                                    value=""
+                                    class="form-control" 
+                                    id="new_prov" >
+                                    <f:selectItem itemValue="VisionX" itemLabel="VisionX"></f:selectItem>
+                                    <f:selectItem itemValue="Jhan Carlo Jaramillo" itemLabel="Jhan Carlo Jaramillo"></f:selectItem>
+                                </h:selectOneMenu>
 
-                        </td>
-
-
-
-                    </tr>
-                    <tr>
-
-                        <td> 
-                            <h:outputLabel for="new_ser">Serial N° </h:outputLabel>
-                            <h:inputText
-                                required="true"
-                                html5:placeholder="Ingrese el N° serial"
-                                requiredMessage="Se requiere un valor"
-                                class="form-control" 
-                                id="new_ser" />
-                            <h:message style="color: red" for="new_ser"></h:message> 
-                        </td>
-
-                        <td
-                            > <h:outputLabel for="new_area">Área</h:outputLabel>
-                            <h:selectOneMenu  
-                                required="true"
-                                value=""
-                                class="form-control" 
-                                id="new_area">
-                                <f:selectItem itemValue="Administrativo" itemLabel="Administrativo"></f:selectItem>
-                                <f:selectItem itemValue="Juridico" itemLabel="Juridicoo"></f:selectItem>
-                                <f:selectItem itemValue="Operativo" itemLabel="Operativo"></f:selectItem>
-                            </h:selectOneMenu>
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-                        <td>
-                            <h6 class="tituloinv">Información Hardware</h6>
-                        </td>
-
-                    </tr>
+                            </td>
 
 
 
+                        </tr>
+                        <tr>
+
+                            <td> 
+                                <h:outputLabel for="new_ser">Serial N° </h:outputLabel>
+                                <h:inputText
+                                    required="true"
+                                    html5:placeholder="Ingrese el N° serial"
+                                    requiredMessage="Se requiere un valor"
+                                    class="form-control" 
+                                    id="new_ser" />
+                                <h:message style="color: red" for="new_ser"></h:message> 
+                            </td>
+
+                            <td
+                                > <h:outputLabel for="new_area">Área</h:outputLabel>
+                                <h:selectOneMenu  
+                                    required="true"
+                                    value=""
+                                    class="form-control" 
+                                    id="new_area">
+                                    <f:selectItem itemValue="Administrativo" itemLabel="Administrativo"></f:selectItem>
+                                    <f:selectItem itemValue="Juridico" itemLabel="Juridicoo"></f:selectItem>
+                                    <f:selectItem itemValue="Operativo" itemLabel="Operativo"></f:selectItem>
+                                </h:selectOneMenu>
+                            </td>
+
+                        </tr>
 
 
+                        <tr>
+                            <td>
+                                <h6 class="tituloinv">Información Hardware</h6>
+                            </td>
 
-
-
-                    <tr>
-                        <td>
-                            <h:outputLabel  for="new_sis">Sistema Operativo</h:outputLabel>
-                            <h:selectOneMenu
-                                required="true"
-                                value="" 
-                                class="form-control" 
-                                id="new_sis">
-                                <f:selectItem itemValue="W8" itemLabel="W8"></f:selectItem>
-                                <f:selectItem itemValue="W10" itemLabel="W10"> </f:selectItem>
-                            </h:selectOneMenu>
-                        </td>
-
-                        <td
-                            ><h:outputLabel for="new_pro">Procesador</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                value="" 
-                                class="form-control" 
-                                id="new_pro">
-                                <f:selectItem itemValue="Core I3" itemLabel="Core I3"></f:selectItem>
-                                <f:selectItem itemValue="Core I5" itemLabel="Core I5"></f:selectItem>
-                                <f:selectItem itemValue="Core I7" itemLabel="Core I7"></f:selectItem>
-                            </h:selectOneMenu>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h:outputLabel for="new_off">Microsoft Office</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                value="" 
-                                class="form-control" 
-                                id="new_off">
-                                <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
-                                <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
-                                <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
-                                <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
-                            </h:selectOneMenu>
-                        </td>
-
-                        <td>
-                            <h:outputLabel for="new_cap">Capacidad Disco Duro</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                value="" 
-                                class="form-control" 
-                                id="new_cap">
-                                <f:selectItem itemLabel="500" itemValue="500"> </f:selectItem>
-                                <f:selectItem itemLabel="1 TB" itemValue="1 TB"> </f:selectItem>
-                            </h:selectOneMenu>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h:outputLabel for="new_ram">Memoria Ram</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                value="" 
-                                class="form-control" 
-                                id="new_ram">
-                                <f:selectItem itemValue="4 GB" itemLabel="4 GB"></f:selectItem>
-                                <f:selectItem itemValue="8 GB" itemLabel="8 GB"></f:selectItem>
-                                <f:selectItem itemValue="12 GB" itemLabel="12 GB"></f:selectItem>
-                                <f:selectItem itemValue="16 GB" itemLabel="16 GB"></f:selectItem>
-                            </h:selectOneMenu>
-                            <br>
-                                
-                            </br>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <h5 class="tituloinv">Detalles</h5>
-                        </td>
-
-                    </tr>
-
-
-
-
-
-
-                    <tr>
-
-                        <td>
-                            <br></br>
-                            <h:outputLabel for="new_est">Estado</h:outputLabel>
-                            <h:selectOneMenu 
-                                required="true"
-                                value="" 
-                                class="form-control" 
-                                id="new_est">
-                                <f:selectItem itemLabel="Asignado" itemValue="Asignado"></f:selectItem>
-                                <f:selectItem itemLabel="Disponible" itemValue="Disponible"></f:selectItem>
-                                <f:selectItem itemLabel="Disponible" itemValue="Inactivo"></f:selectItem>
-                            </h:selectOneMenu>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h:outputLabel for="new_com">Comentarios</h:outputLabel>
-                            <h:inputTextarea 
-                                required="true"
-                                requiredMessage="Indique los comentarios"
-                                value="" 
-                                class="form-control" 
-                                id="new_com" 
-                                html5:placeholder="Comentarios">
-                            </h:inputTextarea>
-                            <h:message  style="color: red" for="new_com"></h:message>
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>
-                            <h:outputLabel for="new_asi">Asignado A </h:outputLabel>
-                            <h:inputText
-                                required="true"
-                                requiredMessage="Se requiere un valor"
-                                value=""
-                                class="form-control"  
-
-                                id="new_asi" />
-                            <h:message style="color: red" for="new_asi"></h:message> 
-                        </td>
-
-                    </tr>
+                        </tr>
 
 
 
@@ -301,18 +167,155 @@
 
 
 
-                    <tr>
 
-                        <td>
-                            <br></br>
-                            <br></br>
-                            <h:commandButton  class="btn btn-primary" value="Guardar" html5:type="submit"> </h:commandButton>
-                             <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/coordinador/indexcol.xhtml" value="cancelar">Cancelar</a>
-                            <br></br>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <h:outputLabel  for="new_sis">Sistema Operativo</h:outputLabel>
+                                <h:selectOneMenu
+                                    required="true"
+                                    value="" 
+                                    class="form-control" 
+                                    id="new_sis">
+                                    <f:selectItem itemValue="W8" itemLabel="W8"></f:selectItem>
+                                    <f:selectItem itemValue="W10" itemLabel="W10"> </f:selectItem>
+                                </h:selectOneMenu>
+                            </td>
+
+                            <td
+                                ><h:outputLabel for="new_pro">Procesador</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="" 
+                                    class="form-control" 
+                                    id="new_pro">
+                                    <f:selectItem itemValue="Core I3" itemLabel="Core I3"></f:selectItem>
+                                    <f:selectItem itemValue="Core I5" itemLabel="Core I5"></f:selectItem>
+                                    <f:selectItem itemValue="Core I7" itemLabel="Core I7"></f:selectItem>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:outputLabel for="new_off">Microsoft Office</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="" 
+                                    class="form-control" 
+                                    id="new_off">
+                                    <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
+                                    <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
+                                    <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
+                                    <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
+                                </h:selectOneMenu>
+                            </td>
+
+                            <td>
+                                <h:outputLabel for="new_cap">Capacidad Disco Duro</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="" 
+                                    class="form-control" 
+                                    id="new_cap">
+                                    <f:selectItem itemLabel="500" itemValue="500"> </f:selectItem>
+                                    <f:selectItem itemLabel="1 TB" itemValue="1 TB"> </f:selectItem>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:outputLabel for="new_ram">Memoria Ram</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="" 
+                                    class="form-control" 
+                                    id="new_ram">
+                                    <f:selectItem itemValue="4 GB" itemLabel="4 GB"></f:selectItem>
+                                    <f:selectItem itemValue="8 GB" itemLabel="8 GB"></f:selectItem>
+                                    <f:selectItem itemValue="12 GB" itemLabel="12 GB"></f:selectItem>
+                                    <f:selectItem itemValue="16 GB" itemLabel="16 GB"></f:selectItem>
+                                </h:selectOneMenu>
+                                <br>
+
+                                </br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h5 class="tituloinv">Detalles</h5>
+                            </td>
+
+                        </tr>
 
 
+
+
+
+
+                        <tr>
+
+                            <td>
+                                <br></br>
+                                <h:outputLabel for="new_est">Estado</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="" 
+                                    class="form-control" 
+                                    id="new_est">
+                                    <f:selectItem itemLabel="Asignado" itemValue="Asignado"></f:selectItem>
+                                    <f:selectItem itemLabel="Disponible" itemValue="Disponible"></f:selectItem>
+                                    <f:selectItem itemLabel="Disponible" itemValue="Inactivo"></f:selectItem>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:outputLabel for="new_com">Comentarios</h:outputLabel>
+                                <h:inputTextarea 
+                                    required="true"
+                                    requiredMessage="Indique los comentarios"
+                                    value="" 
+                                    class="form-control" 
+                                    id="new_com" 
+                                    html5:placeholder="Comentarios">
+                                </h:inputTextarea>
+                                <h:message  style="color: red" for="new_com"></h:message>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <h:outputLabel for="new_asi">Asignado A </h:outputLabel>
+                                <h:inputText
+                                    required="true"
+                                    requiredMessage="Se requiere un valor"
+                                    value=""
+                                    class="form-control"  
+
+                                    id="new_asi" />
+                                <h:message style="color: red" for="new_asi"></h:message> 
+                            </td>
+
+                        </tr>
+
+
+
+
+
+
+
+                        <tr>
+
+                            <td>
+                                <br></br>
+                                <br></br>
+                                <h:commandButton  class="btn btn-primary" value="Guardar" html5:type="submit"> </h:commandButton>
+                                <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/tecnicoti/indexcol.xhtml" value="cancelar">Cancelar</a>
+                                <br></br>
+                            </td>
+                        </tr>
+
+                    </c:forEach>
                 </table>
 
             </h:form>

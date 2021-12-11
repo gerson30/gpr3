@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:b="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition>
         <h:form>
             <!-- caja de busqueda y botones -->
@@ -13,8 +14,8 @@
 
             <div class="topnav">
                 <a class="exportar" href="#{request.contextPath}/reportes/ReporteColaboradoresGral.xlsx">Exportar</a>
-                <a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>
-                <a href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
+                <a href="#{request.contextPath}/tecnicoti/asignarinv.xhtml">Asignar Inventario</a>
+                <a href="#{request.contextPath}/tecnicoti/agregarinv.xhtml">Agregar Inventario</a>
                 <h:inputText  html5:placeholder="Búsqueda"></h:inputText>
             </div>
             <br>
@@ -26,102 +27,58 @@
             <table class="table table-dark">
                 <thead>
                     <tr>
-                        <th scope="col"></th>
+                        <th scope="col">Act</th>
+                        <th scope="col">Cod. Inventario</th>
+                        <th scope="col">Cod. Equipo</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Condición Equipo</th>
                         <th scope="col">Marca</th>
-                        <th scope="col">Fecha Ingreso</th>
                         <th scope="col">Modelo</th>
                         <th scope="col">Serial N°</th>
-                        <th scope="col">Proveedor</th>
-                        <th scope="col">Área</th>
                         <th scope="col">Sis Operativo</th>
                         <th scope="col">Office</th>
                         <th scope="col">Procesador</th>
                         <th scope="col">Memoria Ram</th>
                         <th scope="col">Cap Disco</th>
+                        <th scope="col">Fecha Ingreso</th>
+                        <th scope="col">Fecha Salida</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Comentarios</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <c:forEach items="#{inventarioView.verInv()}"
+                               var="inv" >
+                        <tr>
+                            <td style="text-align: center;">
+                                <div class="button">
+                                    <a class="ri-eye-line" action="" href="#{request.contextPath}/tecnicoti/visualizarinv.xhtml"></a>
+                                    <a class="ri-pencil-line" href="#{request.contextPath}/tecnicoti/editarinv.xhtml"></a>
+                                </div>
 
+                            </td>
 
+                            <td>#{inv.idInventario}</td>
+                            <td>#{inv.idEquipo.idEquipo}</td>
+                            <td>#{inv.idEquipo.idTipoPc.nombreTipoPc}</td>
+                            <td>Genera Error en Ruta</td>
+                            <td>${inv.idEquipo.idMarca.nombreMarca}</td>
+                            <td>#{inv.idEquipo.modelo}</td>
+                            <td>#{inv.idEquipo.serial}</td>
+                            <td>#{inv.idEquipo.sistemaOperativo}</td>
+                            <td>#{inv.idEquipo.microssoftOffice}</td>
+                            <td>#{inv.idEquipo.procesador}</td>
+                            <td>#{inv.idEquipo.memoriaRam}</td>
+                            <td>#{inv.idEquipo.capacidadDiscoDuro}</td>
+                            <td>#{inv.fechaIngreso}</td>
+                            <td>#{inv.fechaSalida}</td>
+                            <td>#{inv.idEstadoEquipo.nombreEstadoEquipo}</td>
+                            <td>#{inv.idEquipo.comentarios}</td>
 
-                        <td style="text-align: center;">
-                            <div class="button">
-                                <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarinv.xhtml"></a>
-                                <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinv.xhtml"></a>
-                            </div>
+                        </tr>
+                    </c:forEach>
 
-                        </td>
-                        <td>PC Escritorio</td>
-                        <td>Usado</td>
-                        <td>Acer</td>
-                        <td>02/07/21</td>
-                        <td>78AS5874</td>
-                        <td>1101</td>
-                        <td>Vision X</td>
-                        <td>Jurídico</td>
-                        <td>Windows 10</td>
-                        <td>Office 2016</td>
-                        <td>Core I7</td>
-                        <td>4GB</td>
-                        <td>1TB</td>
-                        <td>Disponible</td>
-                        <td>Equipo funcional</td>
-
-
-
-                    </tr>
-                    <tr>
-                        <td style="text-align: center;">
-                            <div class="button">
-                                <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarinv.xhtml"></a>
-                                <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinv.xhtml"></a>
-                            </div>
-                        </td>
-                        <td>PC Escritorio</td>
-                        <td>Usado</td>
-                        <td>Acer</td>
-                        <td>02/07/21</td>
-                        <td>78AS5874</td>
-                        <td>1101</td>
-                        <td>Vision X</td>
-                        <td>Jurídico</td>
-                        <td>Windows 10</td>
-                        <td>Office 2016</td>
-                        <td>Core I7</td>
-                        <td>4GB</td>
-                        <td>1TB</td>
-                        <td>Disponible</td>
-                        <td>Equipo funcional</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center;">
-                            <div class="button">
-                                <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarinv.xhtml"></a>
-                                <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinv.xhtml"></a>
-                            </div>
-                        </td>
-                        <td>PC Escritorio</td>
-                        <td>Usado</td>
-                        <td>Acer</td>
-                        <td>02/07/21</td>
-                        <td>78AS5874</td>
-                        <td>1101</td>
-                        <td>Vision X</td>
-                        <td>Jurídico</td>
-                        <td>Windows 10</td>
-                        <td>Office 2016</td>
-                        <td>Core I7</td>
-                        <td>4GB</td>
-                        <td>1TB</td>
-                        <td>Disponible</td>
-                        <td>Equipo funcional</td>
-                    </tr>
 
                 </tbody>
             </table>
