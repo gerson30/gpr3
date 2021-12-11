@@ -43,4 +43,7 @@ public interface ColaboradoresFacadeLocal {
 
     public Colaboradores recuperarContrasena(String usuarioDominio);
     
+
+    public Colaboradores inicioSesion(String usuarioDominio, String contrasenaDominio);
+    
 }

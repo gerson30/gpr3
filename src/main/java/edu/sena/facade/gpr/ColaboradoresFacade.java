@@ -39,6 +39,23 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
         return con.getResultList();
     }
 
+
+//    @Override
+//    public boolean agregarCol(Colaboradores colIn) {
+//        try {
+//            Query ac = em.createNativeQuery(
+//                    ac.setParameter(1, colIn.getCedula());
+//            ac.setParameter(2, colIn.getNombre());
+//            ac.setParameter(3, colIn.getApellido());
+//            ac.setParameter(4, colIn.getUsuarioDominio());
+//            ac.setParameter(5, colIn.getContrasenaDominio());
+//            ac.executeUpdate();
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+
     @Override
     public boolean agregarCol(Colaboradores colIn) {
         try {
@@ -57,6 +74,7 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
             return false;
         }
     }
+
 
     @Override
     public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio) {
@@ -89,7 +107,15 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
     }
 
     @Override
-    public Object verRoles(String string) {
+    public Object verRoles(String nombRol) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Colaboradores inicioSesion(String usuarioDominio, String contrasenaDominio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
 }
