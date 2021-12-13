@@ -54,4 +54,6 @@ public class RolesFacade extends AbstractFacade<Roles> implements RolesFacadeLoc
         }
 
     }
+    
+    
 }
