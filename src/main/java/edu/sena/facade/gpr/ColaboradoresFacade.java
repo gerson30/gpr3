@@ -77,11 +77,11 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
 
 
     @Override
-    public Colaboradores inicioSesion(String usuarioDominio, int contrasenaDominio) {
+    public Colaboradores inicioSesion(String usuarioDominio, String contrasenaDominio) {
         try {
             Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio AND c.contrasenaDominio = :contrasenaDominio");
             q.setParameter("usuarioDominio", usuarioDominio);
-            q.setParameter("contrasenaDominio", contrasenaDominio);
+            q.setParameter("contrasenaDominio", Integer.parseInt(contrasenaDominio));
             return (Colaboradores) q.getSingleResult();
         } catch (Exception e) {
             return null;
@@ -99,21 +99,6 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
             return null;
         }
 
-    }
-
-    @Override
-    public List<Roles> verRoles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object verRoles(String nombRol) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Colaboradores inicioSesion(String usuarioDominio, String contrasenaDominio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

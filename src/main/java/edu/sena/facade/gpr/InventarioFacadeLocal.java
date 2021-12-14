@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package edu.sena.facade.gpr;
-
 import edu.sena.entity.gpr.Inventario;
 import java.util.List;
 import javax.ejb.Local;
@@ -33,7 +32,9 @@ public interface InventarioFacadeLocal {
     public List<Inventario> verInv();
 /*leerTodo es para consulta agregar inventario*/
     public List<Inventario> leerTodo();
+
+    public boolean ingresarEquipo(Inventario inv);
     
-    public boolean ingresarInventario(Inventario inv);
+    
 
 }

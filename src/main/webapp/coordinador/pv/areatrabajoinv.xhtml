@@ -5,7 +5,8 @@
       xmlns:b="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
         <h:form>
             <!-- caja de busqueda y botones -->
@@ -71,8 +72,18 @@
                             <td>#{inv.idEquipo.procesador}</td>
                             <td>#{inv.idEquipo.memoriaRam}</td>
                             <td>#{inv.idEquipo.capacidadDiscoDuro}</td>
-                            <td>#{inv.fechaIngreso}</td>
-                            <td>#{inv.fechaSalida}</td>
+                            <td>
+                                <h:outputText value="#{inv.fechaIngreso}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy">
+                                    </f:convertDateTime>
+                                </h:outputText>
+                            </td>
+                            <td>
+                            <h:outputText value="#{inv.fechaSalida}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy">
+                                    </f:convertDateTime>
+                                </h:outputText>
+                            </td>
                             <td>#{inv.idEstadoEquipo.nombreEstadoEquipo}</td>
                             <td>#{inv.idEquipo.comentarios}</td>
 
