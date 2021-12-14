@@ -72,6 +72,7 @@ public class InventarioFacade extends AbstractFacade<Inventario> implements Inve
          */
 
     
+    @Override
     public boolean ingresarEquipo(Inventario inv) {
 
         /*se debe controlar el error con try catch (bloque de codigo por try y por catch */
