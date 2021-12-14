@@ -6,7 +6,6 @@
 package edu.sena.facade.gpr;
 
 import edu.sena.entity.gpr.Colaboradores;
-import edu.sena.entity.gpr.Roles;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

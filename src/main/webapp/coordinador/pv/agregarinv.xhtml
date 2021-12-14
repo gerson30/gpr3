@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition>
 
@@ -28,6 +29,18 @@
                 </td>
 
             </tr>
+            <!--estas son alertas-->
+            <c:if test="#{inventarioView.alerta.equalsIgnoreCase('Error')}">
+                <div class="alert alert-danger" role="alert">
+                    Error al crear inventario de equipo!
+                </div>
+            </c:if>
+
+            <c:if test="#{inventarioView.alerta.equalsIgnoreCase('Ok')}">
+                <div class="alert alert-success" role="alert">
+                    Inventario creado con exito !!!
+                </div>
+            </c:if>
 
 
 
@@ -100,7 +113,7 @@
                             </h:inputText>
                             <h:message style="color: red" for="new_mod"></h:message></td>
 
-                        
+
 
                     </tr>
                     <tr>
@@ -117,7 +130,7 @@
                             <h:message style="color: red" for="new_ser"></h:message> 
                         </td>
 
-                        
+
 
                     </tr>
 
@@ -261,7 +274,7 @@
                             <br></br>
                             <br></br>
                             <h:commandButton action="#{inventarioView.ingresarEquipo()}" class="btn btn-primary" value="Guardar" html5:type="submit"> </h:commandButton>
-                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/coordinador/indexinv.xhtml">Cancelar</a>
+                            <a outcome="indexinv.xhtml" class="btn btn-light" html5:type="submit" >Cancelar</a>
                         </td>
                         <br></br>
                     </tr>

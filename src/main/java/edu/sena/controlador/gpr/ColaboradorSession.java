@@ -31,6 +31,7 @@ public class ColaboradorSession implements Serializable {
     @EJB
     RolesFacadeLocal rolesFacadeLocal;
 
+    private Colaboradores colreg = new Colaboradores();
     private Colaboradores usuLogin = new Colaboradores();
     private String usuarioDominio = "";
     private String contrasenaDominio = "";
@@ -38,6 +39,26 @@ public class ColaboradorSession implements Serializable {
     /**
      * metodo de logueo*
      */
+    
+    public void ingresarColaborador() {
+            if (colaboradoresFacadeLocal.agregarCol(colreg)) {
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Usuario',"
+                    + "  'Creado con Exito !!!',"
+                    + "  'success'"
+                    + ")");
+            colreg = new Colaboradores();
+        } else {
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Usuario',"
+                    + "  'No se puede registrar, Intente de nuevo',"
+                    + "  'error'"
+                    + ")");
+
+        }
+    }
+    
+    
     public void validarUsuario() {
         try {
             usuLogin = colaboradoresFacadeLocal.inicioSesion(usuarioDominio,contrasenaDominio);
@@ -55,6 +76,15 @@ public class ColaboradorSession implements Serializable {
         
         }
     }
+    public void cerrarSesion() throws IOException {
+        usuLogin = null;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        fc.getExternalContext().invalidateSession();
+        fc.getExternalContext().redirect("../login.xhtml");
+    }
+
+        
+    
 
     /**
      * Creates a new instance of ColaboradorSession
@@ -97,6 +127,14 @@ public class ColaboradorSession implements Serializable {
 
     public List<Colaboradores> verCol (){
     return colaboradoresFacadeLocal.findAll();
+    }
+
+    public Colaboradores getUsureg() {
+        return colreg;
+    }
+
+    public void setUsureg(Colaboradores usureg) {
+        this.colreg = usureg;
     }
     
    

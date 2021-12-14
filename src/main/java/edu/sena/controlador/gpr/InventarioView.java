@@ -47,6 +47,9 @@ public class InventarioView implements Serializable {
 
     @EJB
     EstadoEquipoFacadeLocal estadoEquipoFacadeLocal;
+    
+    /*alerta */
+    private String alerta  = "";
 
     private ArrayList<CondicionEquipo> listacondiciones = new ArrayList<>();
     private ArrayList<Marca> listademarcas = new ArrayList<>();
@@ -86,8 +89,11 @@ public class InventarioView implements Serializable {
         /* se debe hacer el binding para llamar  gett and setter y se llama invnue */
         if (inventarioFacadeLocal.ingresarEquipo(invnue)) {
             System.out.println("Equipo Agregado");
+            alerta = "ok";
+            invnue = new Inventario();
         } else {
-            System.out.println("Error al agregar el equipo");
+            alerta = "error";
+            System.out.println("error al agregar inventario");
         }
 
     }
@@ -178,5 +184,13 @@ public class InventarioView implements Serializable {
 
     public void setIdEstadoequipo(int idEstadoequipo) {
         this.idEstadoequipo = idEstadoequipo;
+    }
+
+    public String getAlerta() {
+        return alerta;
+    }
+
+    public void setAlerta(String alerta) {
+        this.alerta = alerta;
     }
 }

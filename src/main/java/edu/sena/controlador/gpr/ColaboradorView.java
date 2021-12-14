@@ -6,7 +6,6 @@
 package edu.sena.controlador.gpr;
 
 import edu.sena.entity.gpr.Colaboradores;
-import edu.sena.facade.gpr.ColaboradoresFacade;
 import edu.sena.facade.gpr.ColaboradoresFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
