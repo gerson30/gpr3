@@ -35,13 +35,13 @@ public class ColaboradorSession implements Serializable {
     private Colaboradores usuLogin = new Colaboradores();
     private String usuarioDominio = "";
     private String contrasenaDominio = "";
+    private String flag = "";
 
     /**
      * metodo de logueo*
      */
-    
     public void ingresarColaborador() {
-            if (colaboradoresFacadeLocal.agregarCol(colreg)) {
+        if (colaboradoresFacadeLocal.agregarCol(colreg)) {
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Usuario',"
                     + "  'Creado con Exito !!!',"
@@ -54,37 +54,36 @@ public class ColaboradorSession implements Serializable {
                     + "  'No se puede registrar, Intente de nuevo',"
                     + "  'error'"
                     + ")");
+        }
+    }
+
+    public void validarUsuario() {
+        try {
+            usuLogin = colaboradoresFacadeLocal.inicioSesion(usuarioDominio, contrasenaDominio);
+            if (usuLogin != null) {
+
+                /*captura lo que hay en el conexto*/
+                FacesContext fc = FacesContext.getCurrentInstance();
+                /*se envía hacía afuera*/
+                fc.getExternalContext().redirect("coordinador/indexcol.xhtml");
+            } else {
+                PrimeFaces.current().executeScript("Swal.fire("
+                        + "  'Colaborador?',"
+                        + "  'No existe en la base de datos, Intente de nuevo',"
+                        + "  'error'"
+                        + ")");
+            }
+        } catch (Exception e) {
 
         }
     }
-    
-    
-    public void validarUsuario() {
-        try {
-            usuLogin = colaboradoresFacadeLocal.inicioSesion(usuarioDominio,contrasenaDominio);
-            if (usuLogin != null) {
-                
-                 /*captura lo que hay en el conexto*/
-                    FacesContext fc = FacesContext.getCurrentInstance();
-                    /*se envía hacía afuera*/
-                    fc.getExternalContext().redirect("coordinador/indexcol.xhtml");
-                    
-                    } else {
-                PrimeFaces.current().executeScript("alert(Usuario no existe)");
-            }
-        } catch (IOException e) {
-        
-        }
-    }
+
     public void cerrarSesion() throws IOException {
         usuLogin = null;
         FacesContext fc = FacesContext.getCurrentInstance();
         fc.getExternalContext().invalidateSession();
         fc.getExternalContext().redirect("../login.xhtml");
     }
-
-        
-    
 
     /**
      * Creates a new instance of ColaboradorSession
@@ -95,10 +94,10 @@ public class ColaboradorSession implements Serializable {
     public List<Colaboradores> leerTodo() {
         return colaboradoresFacadeLocal.findAll();
     }
+
     public List<Roles> verRoles() {
         return rolesFacadeLocal.findAll();
     }
-
 
     public String getUsuarioDominio() {
         return usuarioDominio;
@@ -124,9 +123,8 @@ public class ColaboradorSession implements Serializable {
         this.usuLogin = usuLogin;
     }
 
-
-    public List<Colaboradores> verCol (){
-    return colaboradoresFacadeLocal.findAll();
+    public List<Colaboradores> verCol() {
+        return colaboradoresFacadeLocal.findAll();
     }
 
     public Colaboradores getUsureg() {
@@ -136,9 +134,13 @@ public class ColaboradorSession implements Serializable {
     public void setUsureg(Colaboradores usureg) {
         this.colreg = usureg;
     }
-    
-   
-    
-    
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
 
 }
