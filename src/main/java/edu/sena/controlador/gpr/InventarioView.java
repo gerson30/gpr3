@@ -12,6 +12,7 @@ import edu.sena.entity.gpr.Inventario;
 import edu.sena.entity.gpr.Marca;
 import edu.sena.entity.gpr.Tipopc;
 import edu.sena.facade.gpr.CondicionEquipoFacadeLocal;
+import edu.sena.facade.gpr.EquiposFacadeLocal;
 import edu.sena.facade.gpr.EstadoEquipoFacadeLocal;
 import edu.sena.facade.gpr.InventarioFacadeLocal;
 import edu.sena.facade.gpr.MarcaFacadeLocal;
@@ -47,6 +48,9 @@ public class InventarioView implements Serializable {
 
     @EJB
     EstadoEquipoFacadeLocal estadoEquipoFacadeLocal;
+    
+    @EJB
+    EquiposFacadeLocal equiposFacadeLocal;
     
     /*alerta */
     private String alerta  = "";
@@ -87,8 +91,8 @@ public class InventarioView implements Serializable {
     public void ingresarEquipo() {
 
         /* se debe hacer el binding para llamar  gett and setter y se llama invnue */
-        if (inventarioFacadeLocal.ingresarEquipo(invnue)) {
-            System.out.println("Equipo Agregado");
+        if (equiposFacadeLocal.ingresarEquipo(nuevoequipo, idTipoPc, idMarca, idCondicion  )) {
+            inventarioFacadeLocal.agregarinvtbl(fechaingreso, idEstadoequipo);
             alerta = "ok";
             invnue = new Inventario();
         } else {
@@ -97,6 +101,8 @@ public class InventarioView implements Serializable {
         }
 
     }
+    
+    
 
     public Equipos getNuevoequipo() {
         return nuevoequipo;
