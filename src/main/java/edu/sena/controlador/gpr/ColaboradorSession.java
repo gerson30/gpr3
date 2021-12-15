@@ -43,17 +43,18 @@ public class ColaboradorSession implements Serializable {
     public void ingresarColaborador() {
         if (colaboradoresFacadeLocal.agregarCol(colreg)) {
             PrimeFaces.current().executeScript("Swal.fire("
-                    + "  'Usuario',"
+                    + "  'Colaborador',"
                     + "  'Creado con Exito !!!',"
                     + "  'success'"
                     + ")");
             colreg = new Colaboradores();
         } else {
             PrimeFaces.current().executeScript("Swal.fire("
-                    + "  'Usuario',"
+                    + "  'Colaborador',"
                     + "  'No se puede registrar, Intente de nuevo',"
                     + "  'error'"
                     + ")");
+  
         }
     }
 
@@ -61,10 +62,8 @@ public class ColaboradorSession implements Serializable {
         try {
             usuLogin = colaboradoresFacadeLocal.inicioSesion(usuarioDominio, contrasenaDominio);
             if (usuLogin != null) {
-
-                /*captura lo que hay en el conexto*/
+                
                 FacesContext fc = FacesContext.getCurrentInstance();
-                /*se envía hacía afuera*/
                 fc.getExternalContext().redirect("coordinador/indexcol.xhtml");
             } else {
                 PrimeFaces.current().executeScript("Swal.fire("
