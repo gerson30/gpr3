@@ -7,22 +7,20 @@
     <ui:composition>
         <nav>
             <div class="fila">
-                <div class="nav">
+                <div>
                     <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
                 </div>
-                <div class="nav">
-                    
-                    <a class="button button_black" href="#{request.contextPath}/administrativo/registrarinc.xhtml">Registrar Incidente</a>
-                    <a class="button button_black button_selected" href="#{request.contextPath}/administrativo/indexinv.xhtml">Inventario</a>
-                    <a class="button button_black" href="#{request.contextPath}/administrativo/indexcol.xhtml">Colaboradores</a>
+                <div class="">
+                    <a class="button button_black" href="#{request.contextPath}/administrativo/indexcol.xhtml">Regresar</a>
                     <a class="button button_black" href="#{request.contextPath}/login.xhtml">Salir</a>
-                </div>  
-                <div class="nav" style="max-width: 180px;">
+                </div>
+                <div class="colu" style="max-width: 160px;">
                     <div class="avatar">
                         <img class="imguser" src="#{request.contextPath}/assets/image/Logo_user.png" alt="imguser"/>
                     </div>
                     <div style="max-width: 80px;">Administrativo</div>
                 </div>
+
             </div>
         </nav>
     </ui:composition>
