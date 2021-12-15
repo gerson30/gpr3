@@ -25,6 +25,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -93,11 +94,18 @@ public class InventarioView implements Serializable {
         /* se debe hacer el binding para llamar  gett and setter y se llama invnue */
         if (equiposFacadeLocal.ingresarEquipo(nuevoequipo, idTipoPc, idMarca, idCondicion  )) {
             inventarioFacadeLocal.agregarinvtbl(fechaingreso, idEstadoequipo);
-            alerta = "ok";
-            invnue = new Inventario();
-        } else {
-            alerta = "error";
-            System.out.println("error al agregar inventario");
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Equipo',"
+                    + "  'Creado con Exito !!!',"
+                    + "  'success'"
+                    + ")");
+            nuevoequipo = new Equipos();
+        }else {
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Equipo',"
+                    + "  'No se puede registrar, Intente de nuevo',"
+                    + "  'error'"
+                    + ")");
         }
 
     }
