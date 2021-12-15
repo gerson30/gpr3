@@ -6,7 +6,6 @@
 package edu.sena.facade.gpr;
 
 import edu.sena.entity.gpr.Equipos;
-import edu.sena.entity.gpr.Inventario;
 import java.util.List;
 import javax.ejb.Local;
 
