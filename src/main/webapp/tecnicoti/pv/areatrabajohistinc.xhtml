@@ -6,123 +6,224 @@
       xmlns:b="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <ui:composition>
 
 
-        <td>
-            <h3 class="tituloinv">HISTORICO ATENCIÓN INCIDENTE</h3>
-        </td>
 
-        <hr></hr>
         <div>
 
+            <tr>
+                <br></br>
+                <td>
+                    <h3 class="tituloinv">VER INCIDENTE</h3>
+                </td>
+
+            </tr>
+
+
+
+            <tr>
+                <td>
+                    <br></br>
+                    <h5 class="tituloinv">Detalles del Ticket</h5>
+                </td>
+
+            </tr>
             <h:form>
                 <div class="topnav">
                     <a class="exportar" href="#{request.contextPath}/tecnicoti/indexinc.xhtml">Regresar</a>
-                    <a class="exportar" href="#{request.contextPath}/tecnicoti/editarinc.xhtml">Editar Incidente</a>
                     
                 </div>
-                <br></br>
+
             </h:form>
 
-            <div class="formprincipal">
+            <h:form>
+                <table class="form-group col-md-12">
+                    <tr>
+                        <td>
+                            <h:outputLabel for="new_ticket">No Ticket:</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="No puede estar vacio"
+                                value="1234"
+                                class="form-control"
+                                id="new_ticket"  
+                                >
+                            </h:inputText>
+                            <h:message style="color: red" for="new_ticket"></h:message>
+                        </td>
+                        <td>
 
+                            <h:outputLabel for="new_asunto">Asunto:</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="No puede estar vacio"
+                                value="Fallo Office"
+                                class="form-control"
+                                id="new_asunto"  
+                                >
+                            </h:inputText>
+                            <h:message style="color: red" for="new_asunto"></h:message>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel for="new_area">Área:</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="No puede estar vacío"
+                                value="Operativa"
+                                class="form-control"
+                                id="new_area"  
+                                >
+                            </h:inputText>
+                            <h:message style="color: red" for="new_area"></h:message>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel for="new_fechacre">Fecha Creación:</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="Ingrese la fecha"
+                                value="1/1/2021"
+                                class="form-control"
+                                id="new_fechacre"  
+                                html5:type="date">
+                            </h:inputText>
+                            <h:message style="color: red" for="new_fec"></h:message>
+                        </td>
+                        <td>
+                            <h:outputLabel for="new_detalle">Detalles:</h:outputLabel>
+                            <h:inputTextarea 
+                                required="true"
+                                requiredMessage="No puede estar vacío"
+                                value="Al abrir word o Excel dice que no es posible ejecutar"
+                                class="form-control"
+                                id="new_detalle">
+                            </h:inputTextarea>
+                            <h:message style="color: red" for="new_detalle"></h:message>
+                        </td>
+                    </tr>
+                    <tr>
 
-                <br></br>
+                        <td>
+                            <h:outputLabel for="new_solipor">Solicitado por:</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="No puede estar vacío"
+                                value="Viviana Vivas"
+                                class="form-control"
+                                id="new_solipor"  
+                                >
+                            </h:inputText>
+                            <h:message style="color: red" for="new_solipor"></h:message>
 
-                <div class="tituloinv">
-                    <h6>Detalles del Ticket</h6>
-                </div>
-                <br></br>
+                        </td>
 
+                        <td>
+                            <h:outputLabel for="new_numinv">No Inventario:</h:outputLabel>
+                            <h:inputText 
+                                required="true"
+                                requiredMessage="No puede estar vacío"
+                                value=""
+                                class="form-control"
+                                id="new_numinv"  
+                                >
+                            </h:inputText>
+                            <h:message style="color: red" for="new_numinv"></h:message>
+                        </td>
+                    </tr>
+                </table>    
+            </h:form>
 
-                <div class="formprincipal">
-                    <h:form class="row g-3">
-                        <div class="col-md-6">
-                            <label for="validationServer01 ">No Ticket:</label>
-                            <h6>1234</h6>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="validationServer01 ">Asunto</label>
-                            <h6>Fallo Office</h6>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="validationServer02 ">Área</label>
-                            <h6>Operativa</h6>
-
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <label for="validationServer05">Fecha creación</label>
-                            <h6>1/1/2021</h6>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="validationServer05 ">Detalles</label>
-                            <h6>Al abrir word o Excel dice que no es posible ejecutar</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="validationServer03 ">Solicitado Por</label>
-                            <h6>Viviana Vivas</h6>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="validationServer03 ">No Inventario</label>
-                            <h6>1115</h6>
-                        </div>
-                    </h:form>
-                </div>
-
-
-                <br></br>
-
+            <h:form>
                 <div class="tituloinv">
                     <br></br>
-                    <hr></hr>
+
                     <hr></hr>
 
                     <h2>Solución:</h2>
-                </div>
-                <br></br>
+                    <hr></hr>
+                </div> 
 
-                <div class="formprincipal">
-                    <h:form class="row g-3 " >
+                <table class="form-group col-md-12">
+                    <tr>
 
-                        <div class="col-md-6">
-                            <label for="validationServer03">Estado</label>
-                            <h6>Cerrado</h6>
-                        </div>
+                        <td>
+                            <h:outputLabel for="new_estado">Estado:</h:outputLabel>
+                            <h:selectOneMenu 
+                                required="true"
+                                requiredMessage='Debe seleccionar un estado'
+                                value="Cerrado" 
+                                class="form-control" 
+                                id="new_estado">
+                                <f:selectItem  itemValue="Asignado" itemLabel="Asignado"/>
+                                <f:selectItem  itemValue="Por asignar" itemLabel="Por asignar"/>
+                                <f:selectItem  itemValue="Cerrado" itemLabel="Cerrado"/>
+                            </h:selectOneMenu>
+                            <h:message style="color: red" for="new_estado"></h:message>
+                        </td>
 
+                        <td>
+                            <h:outputLabel for="new_prio">Prioridad:</h:outputLabel>
+                            <h:selectOneMenu 
+                                required="true"
+                                requiredMessage='Debe seleccionar una prioridad'
+                                value="Media" 
+                                class="form-control" 
+                                id="new_prio">
+                                <f:selectItem  itemValue="Critico" itemLabel="Crítico"/>
+                                <f:selectItem  itemValue="Alto" itemLabel="Alto"/>
+                                <f:selectItem  itemValue="Medio" itemLabel="Medio"/>
+                                <f:selectItem  itemValue="Bajo" itemLabel="Bajo"/>
+                            </h:selectOneMenu>
+                            <h:message style="color: red" for="new_prio"></h:message>
+                        </td>
 
-                        <div class="col-md-6">
-                            <label for="validationServer03">Prioridad</label>
-                            <h6>Media</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="validationServer06">Asignado A</label>
-                            <h6>Diego Cañón</h6>
-                        </div>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel for="new_asiga">Asigando a:</h:outputLabel>
+                            <h:selectOneMenu 
+                                required="true"
+                                requiredMessage='Debe seleccionar una persona del listado'
+                                value="Media" 
+                                class="form-control" 
+                                id="new_asiga">
+                                <f:selectItem  itemValue="Por asignar" itemLabel="Por asignar"/>
+                                <f:selectItem  itemValue="Diego Canon" itemLabel="Diego Canon"/>
+                                <f:selectItem  itemValue="Diana Moreno" itemLabel="Diana Moreno"/>
+                                <f:selectItem  itemValue="Gerson Jimenez" itemLabel="Gerson Jimenez"/>
+                            </h:selectOneMenu>
+                            <h:message style="color: red" for="new_asiga"></h:message>
+                        </td> 
+                        <td>
+                            <h:outputLabel for="new_analisis">Análisis:</h:outputLabel>
+                            <h:inputTextarea 
+                                required="true"
+                                requiredMessage='Debe escribir la actividad realizada'
+                                value="02/01/2021 14:00:23 Diego Canon Sin conexión con servidor para validar licencia - 02/01/2021 14:40:30 Diego Canon Licencia validada" 
+                                class="form-control" 
+                                id="new_analisis"
+                                html5:placeholder='Debe ingresar las actividades realizadas'>
+                            </h:inputTextarea>
+                            <h:message style="color: red" for="new_analisis"></h:message>
+                        </td>
+                    </tr>
+                    <br></br>
+                    <br></br>
+                </table>
 
-                        <div class="col-md-12">
-                            <label for="validationServer05 ">Análisis</label>
-                            <h6>02/01/2021 14:00:23 Diego Canon Sin conexión con servidor para validar licencia - 02/01/2021 14:40:30 Diego Canon Licencia validada</h6>
-
-                            <br></br>
-                            <br></br>
-                    
-
-                </div>
-</h:form>
-            </div>
-
-
+            </h:form>
 
         </div>
-</div>
+
     </ui:composition>
+
+
 </html>
+
 
 
