@@ -6,6 +6,7 @@
 package edu.sena.facade.gpr;
 
 import edu.sena.entity.gpr.Equipos;
+import edu.sena.entity.gpr.Inventario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,12 @@ public interface EquiposFacadeLocal {
     List<Equipos> findRange(int[] range);
 
     int count();
+
+    public List<Equipos> leerTodo();
+
+    public boolean ingresarEquipo(Equipos nuequi, int idTipopc, int idMarca, int idCondicion);
+
+
+    
     
 }

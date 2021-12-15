@@ -5,6 +5,7 @@
  */
 package edu.sena.facade.gpr;
 import edu.sena.entity.gpr.Inventario;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -33,7 +34,8 @@ public interface InventarioFacadeLocal {
 /*leerTodo es para consulta agregar inventario*/
     public List<Inventario> leerTodo();
 
-    public boolean ingresarEquipo(Inventario inv);
+    public boolean agregarinvtbl(Date fechaIngreso, int idEstadoEquipo);
+
     
     
 
