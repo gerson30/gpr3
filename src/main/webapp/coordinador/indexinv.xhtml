@@ -21,6 +21,10 @@
         </ui:define>
         <ui:param name='pestana' value="Inventario"></ui:param>
         <ui:param name='pestana' value="Index Inventario"></ui:param>
+        
+        <ui:param name='nombrecolaborador' value="#{colaboradorSession.usuLogin.nombre}#{colaboradorSession.usuLogin.apellido}"></ui:param>
+        <ui:param name='correocolaborador' value="#{colaboradorSession.usuLogin.correo}"></ui:param>
+        <ui:param name='rol' value="falta traer rol"></ui:param>
     </ui:composition>
 </html>
 
