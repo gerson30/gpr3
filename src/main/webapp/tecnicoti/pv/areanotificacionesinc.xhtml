@@ -11,11 +11,12 @@
                     <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
                 </div>
                 <div class="">
-                    
-                    <a class="button button_black button_selected" href="#{request.contextPath}/tecnicoti/indexinc.xhtml">Incidentes</a>
-                    <a class="button button_black" href="#{request.contextPath}/tecnicoti/indexcol.xhtml">Colaboradores</a>
-                    <a class="button button_black" href="#{request.contextPath}/tecnicoti/indexinv.xhtml">Inventario</a>
-                    <a class="button button_black" href="#{request.contextPath}/login.xhtml">Salir</a>
+                    <h:form>
+                        <a class="button button_black button_selected" href="#{request.contextPath}/tecnicoti/indexinc.xhtml">Incidentes</a>
+                        <a class="button button_black" href="#{request.contextPath}/tecnicoti/indexcol.xhtml">Colaboradores</a>
+                        <a class="button button_black" href="#{request.contextPath}/tecnicoti/indexinv.xhtml">Inventario</a>
+                        <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
+                    </h:form>
                 </div>
                 <div class="colu" style="max-width: 160px;">
                     <div class="avatar">

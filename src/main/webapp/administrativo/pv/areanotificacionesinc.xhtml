@@ -11,8 +11,10 @@
                     <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
                 </div>
                 <div class="">
-                    <a class="button button_black" href="#{request.contextPath}/administrativo/indexcol.xhtml">Regresar</a>
-                    <a class="button button_black" href="#{request.contextPath}/login.xhtml">Salir</a>
+                    <h:form>  
+                        <a class="button button_black" href="#{request.contextPath}/administrativo/indexcol.xhtml">Regresar</a>
+                        <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
+                    </h:form>
                 </div>
                 <div class="colu" style="max-width: 160px;">
                     <div class="avatar">

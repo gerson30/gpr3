@@ -11,11 +11,10 @@
                     <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
                 </div>
                 <div class="">
-<h:form>
-                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
-                    <a class="button button_black button_selected" href="indexcol.xhtml">Colaboradores</a>
-                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
-                    
+                    <h:form>
+                        <a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
+                        <a class="button button_black button_selected" href="indexcol.xhtml">Colaboradores</a>
+                        <a class="button button_black" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
                         <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
                     </h:form>
                 </div>
