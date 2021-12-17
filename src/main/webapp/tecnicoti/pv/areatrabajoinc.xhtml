@@ -20,7 +20,7 @@
             <h:form>
                 <div class="topnav">
                     <a class="exportar" href="#{request.contextPath}/tecnicoti/registrarinc.xhtml">Nuevo Ticket</a>
-                    <a class="exportar" href="#{request.contextPath}/tecnicoti/exportar.xhtml">Exportar</a>
+                    <a class="exportar" onclick="ExportToExcel('tablaincidentes')" ><large>Exportar</large></a>
                     <a class="exportar" href="#{request.contextPath}/tecnicoti/histoatencion.xhtml">Historico Atención</a>
                     <h:inputText  html5:placeholder="Búsqueda"></h:inputText>
                 </div>
@@ -29,7 +29,7 @@
 
             <div class="hscroll">
 
-                <table class="table table-dark">
+                <table id="tablaincidentes" class="table table-dark">
                     <thead>
                         <tr>
                             <th scope="col">Act</th>
