@@ -48,6 +48,7 @@ public class EquiposFacade extends AbstractFacade<Equipos> implements EquiposFac
     }
     
     
+    
     @Override
     public boolean ingresarEquipo(Equipos nuequi,int idTipopc, int idMarca,int idCondicion) {
 

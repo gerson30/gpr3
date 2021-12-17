@@ -49,12 +49,12 @@ public class InventarioView implements Serializable {
 
     @EJB
     EstadoEquipoFacadeLocal estadoEquipoFacadeLocal;
-    
+
     @EJB
     EquiposFacadeLocal equiposFacadeLocal;
-    
+
     /*alerta */
-    private String alerta  = "";
+    private String alerta = "";
 
     private ArrayList<CondicionEquipo> listacondiciones = new ArrayList<>();
     private ArrayList<Marca> listademarcas = new ArrayList<>();
@@ -81,7 +81,6 @@ public class InventarioView implements Serializable {
         listacondiciones.addAll(condicionEquipoFacadeLocal.findAll());
         listadeestados.addAll(estadoEquipoFacadeLocal.findAll());
     }
-    
 
     public List<Inventario> verInv() {
 
@@ -92,7 +91,7 @@ public class InventarioView implements Serializable {
     public void ingresarEquipo() {
 
         /* se debe hacer el binding para llamar  gett and setter y se llama invnue */
-        if (equiposFacadeLocal.ingresarEquipo(nuevoequipo, idTipoPc, idMarca, idCondicion  )) {
+        if (equiposFacadeLocal.ingresarEquipo(nuevoequipo, idTipoPc, idMarca, idCondicion)) {
             inventarioFacadeLocal.agregarinvtbl(fechaingreso, idEstadoequipo);
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Equipo',"
@@ -100,7 +99,7 @@ public class InventarioView implements Serializable {
                     + "  'success'"
                     + ")");
             nuevoequipo = new Equipos();
-        }else {
+        } else {
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Equipo',"
                     + "  'No se puede registrar, Intente de nuevo',"
@@ -109,9 +108,26 @@ public class InventarioView implements Serializable {
         }
 
     }
-    
-    
 
+    /*
+
+    public String editarEquipo() {
+        try {
+            equiposFacadeLocal.edit(nuevoequipo);
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Equipo',"
+                    + "  'Actualizado, Exitosamente !!!',"
+                    + "  'success'"
+                    + ")");
+        } catch (Exception e) {
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Equipo',"
+                    + "  'No se puede actualizar, Intente de nuevo',"
+                    + "  'error'"
+                    + ")");
+        }
+    }
+*/
     public Equipos getNuevoequipo() {
         return nuevoequipo;
     }
@@ -207,4 +223,14 @@ public class InventarioView implements Serializable {
     public void setAlerta(String alerta) {
         this.alerta = alerta;
     }
+
+    
+    /*
+    public Equipos getEquipoTemporal() {
+        return equipoTemporal;
+    }
+
+    public void setEquipoTemporal(Equipos equipoTemporal) {
+        this.equipoTemporal = equipoTemporal;
+    }   */
 }
