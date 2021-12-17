@@ -11,8 +11,9 @@
                     <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
                 </div>
                 <div class="">
-
-                    <a class="button button_black" href="#{request.contextPath}/login.xhtml">Salir</a>
+                    <h:form>
+                        <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
+                    </h:form>
                 </div>
                 <div class="colu" style="max-width: 160px;">
                     <div class="avatar">

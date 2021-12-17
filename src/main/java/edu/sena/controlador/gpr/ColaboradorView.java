@@ -19,7 +19,6 @@ import edu.sena.facade.gpr.ColaboradoresFacadeLocal;
 import edu.sena.facade.gpr.EstadoCivilFacadeLocal;
 import edu.sena.facade.gpr.EstadoColaboradorFacadeLocal;
 import edu.sena.facade.gpr.GeneroFacadeLocal;
-import edu.sena.facade.gpr.IncidenteFacadeLocal;
 import edu.sena.facade.gpr.InventarioFacadeLocal;
 import edu.sena.facade.gpr.ParentescoFacadeLocal;
 import edu.sena.facade.gpr.RolesFacadeLocal;
