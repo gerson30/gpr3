@@ -13,7 +13,7 @@
             </br>
 
             <div class="topnav">
-                <a class="exportar" href="#{request.contextPath}/reportes/ReporteColaboradoresGral.xlsx">Exportar</a>
+                <a class="exportar" onclick="ExportToExcel('tablainventarioeq')" ><large>Exportar</large></a>
                 <h:inputText  html5:placeholder="Búsqueda"></h:inputText>
             </div>
             <br>
@@ -22,7 +22,7 @@
 
         <div class="hscroll">
 
-            <table class="table table-dark">
+            <table id="tablainventarioeq" class="table table-dark">
                 <thead>
                     <tr>
                         <th scope="col">Act</th>

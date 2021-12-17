@@ -35,7 +35,7 @@
                             <h:outputLabel for="new_tipo">Tipo</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="#{inventarioView.nuevoequipo.}"
+                                value=""
                                 class="form-control" 
                                 id="new_tipo">
                                 <f:selectItems var="tc" value="#{inventarioView.equipoTemporal.listadetipos}" itemLabel="#{tc.nombreTipoPc}" itemValue="#{tc.idTipoPc}"></f:selectItems>
@@ -46,7 +46,7 @@
                             <h:outputLabel for="new_mar">Marca</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="#{inventarioView.idMarca}"
+                                value=""
                                 class="form-control" 
                                 id="new_mar">
                                 <f:selectItems var="mar" value="#{inventarioView.equipoTemporal.listademarcas}" itemLabel="#{mar.nombreMarca}"  itemValue="#{mar.idMarca}"></f:selectItems>

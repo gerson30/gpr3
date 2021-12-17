@@ -11,11 +11,10 @@
                     <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
                 </div>
                 <div class="">
-<h:form>
-                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
-                    <a class="button button_black button_selected" href="indexcol.xhtml">Colaboradores</a>
-                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
-                    
+                    <h:form>
+                        <a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
+                        <a class="button button_black button_selected" href="indexcol.xhtml">Colaboradores</a>
+                        <a class="button button_black" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
                         <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
                     </h:form>
                 </div>
@@ -23,8 +22,7 @@
                     <div class="avatar">
                         <img class="imguser" src="#{request.contextPath}/assets/image/Logo_user.png" alt="imguser"/>
                     </div>
-                    <p class="profile-name">${nombrecolaborador}</p>
-                    <p class="designation">${rol}</p>
+                    <div style="max-width: 80px;">Coordinador</div>
                 </div>
 
             </div>

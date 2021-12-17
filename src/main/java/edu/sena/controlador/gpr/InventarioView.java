@@ -105,7 +105,9 @@ public class InventarioView implements Serializable {
                     + "  'No se puede registrar, Intente de nuevo',"
                     + "  'error'"
                     + ")");
-        }
+            alerta = "ok";
+            invnue = new Inventario();
+        } 
 
     }
 

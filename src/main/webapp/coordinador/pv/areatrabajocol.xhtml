@@ -16,7 +16,7 @@
             </br>
 
             <div class="topnav">
-                <a class="exportar" href="#{request.contextPath}/coordinador/editarcol.xlsx">Exportar</a>
+                <a class="exportar" onclick="ExportToExcel('tablacolaboradores')" ><large>Exportar</large></a>
                 <a href="#{request.contextPath}/coordinador/indexroles.xhtml">Roles</a>
                 <a href="#{request.contextPath}/coordinador/agregarcol.xhtml">Agregar Colaborador</a>
                 <h:inputText  value="Búsqueda"></h:inputText>
@@ -26,7 +26,7 @@
 
         <div class="hscroll">
 
-            <table class="table table-dark ">
+            <table id="tablacolaboradores" class="table table-dark ">
 
                 <tr>
                     <th>Act</th>
