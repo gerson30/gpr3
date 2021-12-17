@@ -39,7 +39,7 @@
                             <h:inputText 
                                 required="false"
                                 requiredMessage="El código es automático"
-                                value=""
+                                value="#{colaboradorView.nuevocol.idColab}"
                                 class="form-control"
                                 id="new_codcol"  
                                 html5:placehorlder="Código Colaborador Automatico">
@@ -52,7 +52,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la cédula"
-                                value=""
+                                value="#{colaboradorView.nuevocol.cedula}"
                                 class="form-control"
                                 id="new_ced"  
                                 html5:placehorlder="Cédula">
@@ -68,7 +68,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la fecha"
-                                value=""
+                                value="#{colaboradorView.fechaIngreso}"
                                 class="form-control"
                                 id="new_fec"  
                                 html5:type="date">
@@ -82,7 +82,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la fecha"
-                                value=""
+                                value="#{colaboradorView.fechaRetiro}"
                                 class="form-control"
                                 id="new_fechre"  
                                 html5:type="date">
@@ -98,11 +98,11 @@
                             <h:outputLabel for="new_estcol">Estado Colaborador</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{colaboradorView.idEstadocolab}" 
                                 class="form-control" 
                                 id="new_estcol">
-                                <f:selectItem  itemValue="Activo" itemLabel="Activo"/>
-                                <f:selectItem  itemValue="Inactivo" itemLabel="Inactivo"/>
+                                <f:selectItems var="ec" value="#{colaboradorView.listadeestadoscol}"  itemValue="#{ec.idEstadocolab}" itemLabel="#{ec.nombreEstadoColab}Activo"/>
+
                             </h:selectOneMenu>
                         </td>
                         <td>
@@ -110,7 +110,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese el nombre"
-                                value=""
+                                value="#{colaboradorView.nuevocol.nombre}"
                                 class="form-control"
                                 id="new_nom"  
                                 html5:placehorlder="Nombre">
@@ -126,7 +126,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese el nombre"
-                                value=""
+                                value="#{colaboradorView.nuevocol.apellido}"
                                 class="form-control"
                                 id="new_apell"  
                                 html5:placehorlder="Apellido">
@@ -139,7 +139,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese una fecha"
-                                value=""
+                                value="#{colaboradorView.fechaNacimiento}"
                                 class="form-control"
                                 id="new_fenac" 
                                 html5:type="date">
@@ -149,17 +149,15 @@
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel for="new_edociv">Estado Civil</h:outputLabel>
+                            <h:outputLabel for="new_edociv">Estado Civil   </h:outputLabel>
+
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{colaboradorView.idEstadociv}" 
                                 class="form-control" 
                                 id="new_edociv">
-                                <f:selectItem  itemValue="Casad@" itemLabel="Casad@"/>
-                                <f:selectItem  itemValue="Union Libre" itemLabel="Union Libre"/>
-                                <f:selectItem  itemValue="Separad@" itemLabel="Separad@"/>
-                                <f:selectItem  itemValue="Solter@" itemLabel="Solter@"/>
-                                <f:selectItem  itemValue="Viud@" itemLabel="Viud@"/>
+                                <f:selectItems var="eci" value="#{colaboradorView.listadeestadociv}"  itemValue="#{eci.idEstadoCivil}" itemLabel="#{eci.nombreEstado}"/>
+
                             </h:selectOneMenu>
                         </td>
 
@@ -167,12 +165,10 @@
                             <h:outputLabel for="new_gen">Género</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{colaboradorView.idGenero}" 
                                 class="form-control" 
                                 id="new_gen">
-                                <f:selectItem  itemValue="Masculino" itemLabel="Masculino"/>
-                                <f:selectItem  itemValue="Femenino" itemLabel="Femenino"/>
-                                <f:selectItem  itemValue="LGBTIQ" itemLabel="LGBTIQ"/>
+                                <f:selectItems var="gen" value="#{colaboradorView.listagenero}" itemValue="#{gen.idGenero}" itemLabel="#{gen.nombreGenero}"/>
                             </h:selectOneMenu>
                         </td>    
 
@@ -184,7 +180,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la dirección"
-                                value=""
+                                value="#{colaboradorView.nuevocol.direccion}"
                                 class="form-control"
                                 id="new_dir"  
                                 html5:placehorlder="Dicerrión">
@@ -198,7 +194,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese el Barrio"
-                                value=""
+                                value="#{colaboradorView.nuevocol.barrio}"
                                 class="form-control"
                                 id="new_bar"  
                                 html5:placehorlder="Barrio">
@@ -216,7 +212,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la ciudad"
-                                value=""
+                                value="#{colaboradorView.nuevocol.ciudad}"
                                 class="form-control"
                                 id="new_ciu"  
                                 html5:placehorlder="Ciudad">
@@ -226,13 +222,13 @@
 
                         <td>
                             <h:outputLabel for="new_numf">N° Fijo</h:outputLabel>
-                            <h:inputText 
+                            <h:inputText
                                 required="true"
-                                requiredMessage="Ingrese el N fijo"
-                                value=""
-                                class="form-control"
-                                id="new_numf"  
-                                html5:placehorlder="N fijo">
+                                requiredMessage="Ingrese telefono fijo"
+                                value="" 
+                                class="form-control" 
+                                id="new_numf"
+                                html5:placeholder="Telefono fijo">
                             </h:inputText>
                             <h:message style="color: red" for="new_numf"></h:message>
                         </td>
@@ -241,13 +237,13 @@
                     <tr>
                         <td>
                             <h:outputLabel for="new_numc">N° Celular</h:outputLabel>
-                            <h:inputText 
+                            <h:inputText
                                 required="true"
-                                requiredMessage="Ingrese el  celular"
-                                value=""
-                                class="form-control"
-                                id="new_numc"  
-                                html5:placehorlder="N celular">
+                                requiredMessage="Ingrese telefono celular"
+                                value="" 
+                                class="form-control" 
+                                id="new_numc"
+                                html5:placeholder="Telefono celular">
                             </h:inputText>
                             <h:message style="color: red" for="new_numc"></h:message>
                         </td> 
@@ -255,12 +251,10 @@
                             <h:outputLabel for="new_arecol">Área</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{colaboradorView.idArea}" 
                                 class="form-control" 
                                 id="new_areacol">
-                                <f:selectItem  itemValue="Administrativa" itemLabel="Administrativa"/>
-                                <f:selectItem  itemValue="Operativa" itemLabel="Operativa"/>                       
-                                <f:selectItem  itemValue="Juridica" itemLabel="Juridica"/>
+                                <f:selectItems var="are" value="#{colaboradorView.listaarea}" itemValue="#{are.idArea}" itemLabel="#{are.nombreArea}"/>
                             </h:selectOneMenu>
 
                         </td>
@@ -283,7 +277,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese nombre de contacto"
-                                value=""
+                                value="#{colaboradorView.nuevocol.nombreContacto}"
                                 class="form-control"
                                 id="new_nomcon" 
                                 html5:placeholder="Nombre contacto emergencia">
@@ -296,9 +290,9 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese apellido de contacto"
-                                value=""
+                                value="#{colaboradorView.nuevocol.apellidoContacto}"
                                 class="form-control"
-                                id="new_nomcon" 
+                                id="new_apecon" 
                                 html5:placeholder="Apellido contacto emergencia">
                             </h:inputText>
                             <h:message style="color: red" for="new_apecon"></h:message>
@@ -310,13 +304,11 @@
                             <h:outputLabel for="new_par">Parentesco</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{colaboradorView.nuevocol.idParentesco.nombreParentesco}" 
                                 class="form-control" 
                                 id="new_par">
-                                <f:selectItem  itemValue="Padre" itemLabel="Padre"/>
-                                <f:selectItem  itemValue="Madre" itemLabel="Madre"/>
-                                <f:selectItem  itemValue="Espos@" itemLabel="Espos@"/>
-                                <f:selectItem  itemValue="Herman@" itemLabel="Herman@"/>
+                                <f:selectItems var="par" value="#{colaboradorView.listaparentesco}"  itemValue="#{par.idParentesco}" itemLabel="#{par.nombreParentesco}Padre"/>
+
                             </h:selectOneMenu>
 
                         </td> 
@@ -324,31 +316,31 @@
 
                         <td>
                             <h:outputLabel for="new_ncon">N° Celular Contacto Emergencia</h:outputLabel>
-                            <h:inputText 
+                            <h:inputText
                                 required="true"
-                                requiredMessage="Ingrese nombre de contacto"
-                                value=""
-                                class="form-control"
-                                id="new_ncon" 
-                                html5:placeholder="Número de contacto">
+                                requiredMessage="Ingrese telefono celular contacto"
+                                value="" 
+                                class="form-control" 
+                                id="new_ncon"
+                                html5:placeholder="Telefono celular contacto">
                             </h:inputText>
                             <h:message style="color: red" for="new_ncon"></h:message>
                         </td>
 
                     </tr>
                     <tr>
-                    <td>
-                        <h:outputLabel for="new_nfcon">N° Fijo Contacto emergencia</h:outputLabel>
-                        <h:inputText 
-                            required="true"
-                            requiredMessage="Ingrese nombre de contacto"
-                            value=""
-                            class="form-control"
-                            id="new_nfcon" 
-                            html5:placeholder="Número de contacto">
-                        </h:inputText>
-                        <h:message style="color: red" for="new_nfcon"></h:message>
-                    </td>
+                        <td>
+                            <h:outputLabel for="new_nfcon">N° Fijo Contacto emergencia</h:outputLabel>
+                            <h:inputText
+                                required="true"
+                                requiredMessage="Ingrese telefono fijo contacto"
+                                value="" 
+                                class="form-control" 
+                                id="new_nfcon"
+                                html5:placeholder="Telefono fijo contacto">
+                            </h:inputText>
+                            <h:message style="color: red" for="new_nfcon"></h:message>
+                        </td>
 
                     </tr>
                     <tr>
@@ -361,14 +353,14 @@
                         <br></br>
 
                     </tr>
-                    
-                        <tr>
+
+                    <tr>
                         <td>
                             <h:outputLabel for="new_dom">Usuario de Dominio</h:outputLabel>
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Usuario ingreso a dominio"
-                                value=""
+                                value="#{colaboradorView.nuevocol.usuarioDominio}"
                                 class="form-control"
                                 id="new_dom" 
                                 html5:placeholder="Número de contacto">
@@ -382,7 +374,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese Contraseña de dominio"
-                                value=""
+                                value="#{colaboradorView.nuevocol.contrasenaDominio}"
                                 class="form-control"
                                 id="new_numcon"
                                 html5:type="pass"
@@ -390,7 +382,7 @@
                             </h:inputText>
                             <h:message style="color: red" for="new_numcon"></h:message>
                         </td>
-                        </tr>
+                    </tr>
                     <tr>
 
                         <td>
@@ -398,7 +390,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese Correo Institucional"
-                                value=""
+                                value="#{colaboradorView.nuevocol.correo}"
                                 class="form-control"
                                 id="new_corrinst"
                                 html5:type="email"
@@ -413,28 +405,25 @@
                             <h:selectOneMenu 
                                 required="true"
                                 requiredMessage="Debe desiganar un Rol"
-                                value="" 
+                                value="#{colaboradorView.idRol}" 
                                 class="form-control" 
                                 id="new_roldes">
-                                <f:selectItem  itemValue="Administrativo" itemLabel="Administrativo"/>
-                                <f:selectItem  itemValue="Colaborador" itemLabel="Colaborador"/>
-                                <f:selectItem  itemValue="Coordinador TI" itemLabel="Coordinador TI"/>
-                                <f:selectItem  itemValue="Tecnico TI" itemLabel="Tecnico TI"/>
+                                <f:selectItems var="rol" value="#{colaboradorView.listarol}"  itemValue="#{rol.idRol}" itemLabel="#{rol.tipoRol}"/>
+
                             </h:selectOneMenu>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <h:outputLabel for="new_invasig">Inventario Asignado</h:outputLabel>
-                            <h:inputText 
-                                required="false"
-                                requiredMessage="Recuerde asignar inventario"
-                                value=""
-                                class="form-control"
-                                id="new_invasig" 
-                                html5:placeholder="Recuerde asignar inventario">
-                            </h:inputText>
-                            <h:message style="color: red" for="new_invasig"></h:message>
+                            <h:selectOneMenu 
+                                required="true"
+                                requiredMessage="Debe desiganar un Rol"
+                                value="#{colaboradorView.idRol}" 
+                                class="form-control" 
+                                id="new_invasig">
+                                <f:selectItems var="inv" value="#{colaboradorView.listainventario}"  itemValue="#{inv.idInventario}" itemLabel="#{inv.idInventario}"/>
+                            </h:selectOneMenu>
                         </td>
 
 
@@ -465,6 +454,3 @@
 
 
 </html>
-
-
-
