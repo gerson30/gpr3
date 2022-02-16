@@ -4,15 +4,18 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition>
 
         <div>
+
+
             <tr>
                 <br></br>
                 <td>
-                    <h3 class="tituloinv">EDITAR INVENTARIO</h3>
+                    <h3 class="tituloinv">AGREGAR INVENTARIO</h3>
                 </td>
 
             </tr>
@@ -26,6 +29,20 @@
                 </td>
 
             </tr>
+            <!--estas son alertas
+            <c:if test="">
+                <div class="alert alert-danger" role="alert">
+                    Error al crear inventario de equipo!
+                </div>
+            </c:if>
+
+            <c:if test="">
+                <div class="alert alert-success" role="alert">
+                    Inventario creado con exito !!!
+                </div>
+            </c:if>
+            -->
+
 
             <h:form>
                 <table class="form-group col-md-12">
@@ -38,7 +55,7 @@
                                 value=""
                                 class="form-control" 
                                 id="new_tipo">
-                                <f:selectItems var="tc" value="#{inventarioView.equipoTemporal.listadetipos}" itemLabel="#{tc.nombreTipoPc}" itemValue="#{tc.idTipoPc}"></f:selectItems>
+                                <f:selectItems var="tc" value="#{inventarioView.listadetipos}" itemLabel="#{tc.nombreTipoPc}" itemValue="#{tc.idTipoPc}"></f:selectItems>
                             </h:selectOneMenu>
                         </td>
 
@@ -49,7 +66,7 @@
                                 value=""
                                 class="form-control" 
                                 id="new_mar">
-                                <f:selectItems var="mar" value="#{inventarioView.equipoTemporal.listademarcas}" itemLabel="#{mar.nombreMarca}"  itemValue="#{mar.idMarca}"></f:selectItems>
+                                <f:selectItems var="mar" value="#{inventarioView.listademarcas}" itemLabel="#{mar.nombreMarca}"  itemValue="#{mar.idMarca}"></f:selectItems>
                             </h:selectOneMenu>
 
                         </td>
@@ -60,7 +77,7 @@
 
                         <td>
                             <h:outputLabel for="new_cond">Condición Equipo</h:outputLabel>
-                            <h:selectOneMenu  value="#{inventarioView.equipoTemporal.idCondicionEquipo}"  class="form-control" id="validationServer04" >
+                            <h:selectOneMenu  value=""  class="form-control" id="validationServer04" >
                                 <f:selectItems var="con"  value="#{inventarioView.listacondiciones}" itemLabel="#{con.nombreCondicionEquipo}"  itemValue="#{con.idCondicionEquipo}"></f:selectItems>
                             </h:selectOneMenu>
                             <h:message style="color: red" for="new_cond"></h:message>
@@ -71,7 +88,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la fecha"
-                                value="#{inventarioView.fechaingreso}" 
+                                value="" 
                                 class="form-control"
                                 id="new_fec"  
                                 html5:type="date">
@@ -90,7 +107,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Indique el modelo"
-                                value="#{inventarioView.nuevoequipo.modelo}"
+                                value=""
                                 class="form-control"
                                 id="new_mod">
                             </h:inputText>
@@ -104,7 +121,7 @@
                         <td> 
                             <h:outputLabel for="new_ser">Serial N° </h:outputLabel>
                             <h:inputText
-                                value="#{inventarioView.nuevoequipo.serial}"
+                                value=""
                                 required="true"
                                 html5:placeholder="Ingrese el N° serial"
                                 requiredMessage="Se requiere un valor"
@@ -137,7 +154,7 @@
                             <h:outputLabel  for="new_sis">Sistema Operativo</h:outputLabel>
                             <h:selectOneMenu
                                 required="true"
-                                value="#{inventarioView.nuevoequipo.sistemaOperativo}" 
+                                value="" 
                                 class="form-control" 
                                 id="new_sis">
                                 <f:selectItem itemValue="W8" itemLabel="W8"></f:selectItem>
@@ -149,7 +166,7 @@
                             ><h:outputLabel for="new_pro">Procesador</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="#{inventarioView.nuevoequipo.procesador}" 
+                                value="" 
                                 class="form-control" 
                                 id="new_pro">
                                 <f:selectItem itemValue="Core I3" itemLabel="Core I3"></f:selectItem>
@@ -163,7 +180,7 @@
                             <h:outputLabel for="new_off">Microsoft Office</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="#{inventarioView.nuevoequipo.microssoftOffice}" 
+                                value="" 
                                 class="form-control" 
                                 id="new_off">
                                 <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
@@ -177,7 +194,7 @@
                             <h:outputLabel for="new_cap">Capacidad Disco Duro</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="#{inventarioView.nuevoequipo.capacidadDiscoDuro}" 
+                                value="" 
                                 class="form-control" 
                                 id="new_cap">
                                 <f:selectItem itemLabel="500" itemValue="500"> </f:selectItem>
@@ -190,7 +207,7 @@
                             <h:outputLabel for="new_ram">Memoria Ram</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="#{inventarioView.nuevoequipo.memoriaRam}" 
+                                value="" 
                                 class="form-control" 
                                 id="new_ram">
                                 <f:selectItem itemValue="4 GB" itemLabel="4 GB"></f:selectItem>
@@ -223,20 +240,20 @@
                             <h:outputLabel for="new_est">Estado</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="#{inventarioView.idEstadoequipo}" 
+                                value="" 
                                 class="form-control" 
                                 id="new_est">
                                 <f:selectItems var="est" value="#{inventarioView.listadeestados}" itemLabel="#{est.nombreEstadoEquipo}" itemValue="#{est.idEstadoEquipo}"></f:selectItems>
                             </h:selectOneMenu>
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
                         <td>
                             <h:outputLabel for="new_com">Comentarios</h:outputLabel>
                             <h:inputTextarea 
                                 required="true"
                                 requiredMessage="Indique los comentarios"
-                                value="#{inventarioView.nuevoequipo.comentarios}" 
+                                value="" 
                                 class="form-control" 
                                 id="new_com" 
                                 html5:placeholder="Comentarios">
@@ -246,12 +263,18 @@
                     </tr>
 
 
+
+
+
+
+
                     <tr>
+
                         <td>
                             <br></br>
                             <br></br>
-                            <h:commandButton action="#{inventarioView.cargarEquipo(equipoin)}()" class="btn btn-primary" value="Guardar" html5:type="submit"> </h:commandButton>
-                            <a outcome="indexinv.xhtml" class="btn btn-light" html5:type="submit" >Cancelar</a>
+                            <h:commandButton action="#{inventarioView.ingresarEquipo()}" class="btn btn-primary" value="Guardar" html5:type="submit"> </h:commandButton>
+                            <a href="#{request.contextPath}/coordinador/indexinv.xhtml" class="btn btn-light" html5:type="submit" >Cancelar</a>
                         </td>
                         <br></br>
                     </tr>
