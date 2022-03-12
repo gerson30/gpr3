@@ -6,94 +6,219 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition>
-        <h:form>
-            <!-- caja de busqueda y botones -->
-            <br>
-            </br>
 
-            <div class="topnav">
-                <a class="exportar" onclick="ExportToExcel('tablainventarioeq')" ><large>Exportar</large></a>
-                <a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>
-                <a href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
-                <h:inputText  html5:placeholder="Búsqueda"></h:inputText>
-            </div>
-            <br>
-            </br>
+        <!-- caja de busqueda y botones -->
+        <br>
+        </br>
+
+        <div class="topnav">
+            <a class="exportar" onclick="ExportToExcel('tablainventarioeq2')"><large>Exportar</large></a>
+            <a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>
+            <a href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
+            <a href="#{request.contextPath}/coordinador/email.xhtml">Enviar Correo</a>
+            <h:inputText  html5:placeholder="Búsqueda"></h:inputText>
+        </div>
+        <br>
+        </br>
+
+        <!--Este es el dialog que se está generando para poder editar
+        <p:dialog widgetVar="wdialogo" resizable="false" modal="true" header="Datos categoria" showEffect="clip">
+
+            <h:form id="valor">
+                <h:panelGrid columns="2" >
+                    <p:outputLabel for="txtinventario" value="Inventario" ></p:outputLabel>
+                    <p:inputText id="txtinventario" value="#{inventarioView.nuevoequipo.idEquipo}" required="true" ></p:inputText>
+                    aqui se crea un nuevo boton para al moemtno de seleccionar editar y muestre el aviso emergente (actualizar) 
+                    <p:commandButton value="Actualizar" actionListener="#{categoriaController.actualizar()}"  update=":valor"  oncomplete="PF('wdialogo'.hide();" ></p:commandButton>
+                </h:panelGrid>
+
+
+            </h:form>
+
+        </p:dialog>
+        -->
+
+        <!-- Esta es una prueba de un tabla -->
+
+        <h:form id="formprincipal">
+            <!--Descargar PDF-->
+
+            <h:commandLink>
+                <h:graphicImage url="/assets/image/excel.jpg" width="50" html5:align="right" ></h:graphicImage>
+                <p:dataExporter type="xls" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
+            </h:commandLink>
+            
+                <p:fieldset   legend="Tabla Inventario" toggleable="false">
+                    <p:dataTable id="tablainventarioeq"  var="inv" value="#{inventarioView.verInv()}" paginator="true" rows="15">
+
+                        <p:column  headerText="Act" >
+                            <div actionclass="button">
+                                <a class="ri-pencil-line" actionListener="" onclick="PF('wdialogo').show();" ></a>
+                            </div>
+                            <p:commandLink class="ri-pencil-line,"  value="ac" actionListener="#{inventarioView.verInv()}"   onclick="PF('wdialogo').show();" >
+
+                            </p:commandLink>
+                        </p:column>
+
+                        <p:column headerText="Cod. Inventario" filterBy="#{inv.idInventario}" filterStyle="width50px" filterMatchMode="contains" >
+                            <h:outputText value="#{inv.idInventario}" > </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Cod. Equipo"  filterBy="#{inv.idEquipo}" filterStyle="width50px" filterMatchMode="contains"  >
+                            <h:outputText value="#{inv.idEquipo.idEquipo}" ></h:outputText>
+                        </p:column>
+
+                        <p:column headerText= "Tipo" filterBy="#{inv.idEquipo.idTipoPc.nombreTipoPc}" filterStyle="width50px" filterMatchMode="contains"  >
+                            <h:outputText value="#{inv.idEquipo.idTipoPc.nombreTipoPc}">   </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Condición equipo" >
+                            <h:outputText value="#{inv.idEquipo.idCondicionEquipo.nombreCondicionEquipo}"> </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Marca" >
+                            <h:outputText value="#{inv.idEquipo.idMarca.nombreMarca}"> </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Modelo" >
+                            <h:outputText value="#{inv.idEquipo.modelo}"> </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Serial" >
+                            <h:outputText value="#{inv.idEquipo.serial}"> </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Sis Operativo" >
+                            <h:outputText value="#{inv.idEquipo.sistemaOperativo}"> </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Office" >
+                            <h:outputText value="#{inv.idEquipo.microssoftOffice}"> </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Cap. Procesador" >
+                            <h:outputText value="#{inv.idEquipo.procesador}"> </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Cap. Memoria">
+                            <h:outputText value="#{inv.idEquipo.memoriaRam}"> </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Cap. Disco" >
+                            <h:outputText value="#{inv.idEquipo.capacidadDiscoDuro}"> </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Fecha Ingreso" >
+                            <h:outputText value="#{inv.fechaIngreso}"> 
+                                <f:convertDateTime pattern="dd-MM-YYYY"> </f:convertDateTime>
+                            </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Fecha Salida" >
+                            <h:outputText value="#{inv.fechaSalida}"> 
+                                <f:convertDateTime pattern="dd-MM-YYYY"> </f:convertDateTime>
+                            </h:outputText>
+                        </p:column>
+
+
+                        <p:column headerText="Estado" >
+                            <h:outputText value="#{inv.idEstadoEquipo.nombreEstadoEquipo}"> </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Comentarios" >
+                            <h:outputText value="#{inv.idEquipo.comentarios}"> </h:outputText>
+                        </p:column>
+
+
+                    </p:dataTable>
+                </p:fieldset>
         </h:form>
 
-        <div class="hscroll">
 
-            <table id="tablainventarioeq" class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Act</th>
-                        <th scope="col">Cod. Inventario</th>
-                        <th scope="col">Cod. Equipo</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Condición Equipo</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Modelo</th>
-                        <th scope="col">Serial N°</th>
-                        <th scope="col">Sis Operativo</th>
-                        <th scope="col">Office</th>
-                        <th scope="col">Procesador</th>
-                        <th scope="col">Memoria Ram</th>
-                        <th scope="col">Cap Disco</th>
-                        <th scope="col">Fecha Ingreso</th>
-                        <th scope="col">Fecha Salida</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Comentarios</th>
+        <h:form>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="#{inventarioView.verInv()}"
-                               var="inv" >
+            <div class="hscroll">
+
+                <table id="tablainventarioeq2" class="table table-dark">
+                    <thead>
                         <tr>
-                            <td style="text-align: center;">
-                                <div class="button">
-                                    <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarinv.xhtml"></a>
-                                    <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinv.xhtml"></a>
-                                </div>
-
-                            </td>
-
-                            <td>#{inv.idInventario}</td>
-                            <td>#{inv.idEquipo.idEquipo}</td>
-                            <td>#{inv.idEquipo.idTipoPc.nombreTipoPc}</td>
-                            <td>#{inv.idEquipo.idCondicionEquipo.nombreCondicionEquipo}</td>
-                            <td>${inv.idEquipo.idMarca.nombreMarca}</td>
-                            <td>#{inv.idEquipo.modelo}</td>
-                            <td>#{inv.idEquipo.serial}</td>
-                            <td>#{inv.idEquipo.sistemaOperativo}</td>
-                            <td>#{inv.idEquipo.microssoftOffice}</td>
-                            <td>#{inv.idEquipo.procesador}</td>
-                            <td>#{inv.idEquipo.memoriaRam}</td>
-                            <td>#{inv.idEquipo.capacidadDiscoDuro}</td>
-                            <td>
-                                <h:outputText value="#{inv.fechaIngreso}">
-                                    <f:convertDateTime pattern="dd-MM-yyyy">
-                                    </f:convertDateTime>
-                                </h:outputText>
-                            </td>
-                            <td>
-                            <h:outputText value="#{inv.fechaSalida}">
-                                    <f:convertDateTime pattern="dd-MM-yyyy">
-                                    </f:convertDateTime>
-                                </h:outputText>
-                            </td>
-                            <td>#{inv.idEstadoEquipo.nombreEstadoEquipo}</td>
-                            <td>#{inv.idEquipo.comentarios}</td>
+                            <th scope="col">Act</th>
+                            <th scope="col">Cod. Inventario</th>
+                            <th scope="col">Cod. Equipo</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Condición Equipo</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Serial N°</th>
+                            <th scope="col">Sis Operativo</th>
+                            <th scope="col">Office</th>
+                            <th scope="col">Procesador</th>
+                            <th scope="col">Memoria Ram</th>
+                            <th scope="col">Cap Disco</th>
+                            <th scope="col">Fecha Ingreso</th>
+                            <th scope="col">Fecha Salida</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Comentarios</th>
 
                         </tr>
-                    </c:forEach>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="#{inventarioView.verInv()}"
+                                   var="inv" >
+                            <tr>
+                                <td style="text-align: center;">
+                                    <div class="button">
+                                        <a class="ri-eye-line" action="" href="#{request.contextPath}/coordinador/visualizarinv.xhtml"></a>
+                                        <a class="ri-pencil-line" href="#{request.contextPath}/coordinador/editarinv.xhtml"></a>
+                                    </div>
+
+                                </td>
+
+                                <td>#{inv.idInventario}</td>
+                                <td>#{inv.idEquipo.idEquipo}</td>
+                                <td>#{inv.idEquipo.idTipoPc.nombreTipoPc}</td>
+                                <td>#{inv.idEquipo.idCondicionEquipo.nombreCondicionEquipo}</td>
+                                <td>${inv.idEquipo.idMarca.nombreMarca}</td>
+                                <td>#{inv.idEquipo.modelo}</td>
+                                <td>#{inv.idEquipo.serial}</td>
+                                <td>#{inv.idEquipo.sistemaOperativo}</td>
+                                <td>#{inv.idEquipo.microssoftOffice}</td>
+                                <td>#{inv.idEquipo.procesador}</td>
+                                <td>#{inv.idEquipo.memoriaRam}</td>
+                                <td>#{inv.idEquipo.capacidadDiscoDuro}</td>
+                                <td>
+                                    <h:outputText value="#{inv.fechaIngreso}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy">
+                                        </f:convertDateTime>
+                                    </h:outputText>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{inv.fechaSalida}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy">
+                                        </f:convertDateTime>
+                                    </h:outputText>
+                                </td>
+                                <td>#{inv.idEstadoEquipo.nombreEstadoEquipo}</td>
+                                <td>#{inv.idEquipo.comentarios}</td>
+
+                            </tr>
+                        </c:forEach>
 
 
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+        </h:form>
     </ui:composition>
 </html>
 

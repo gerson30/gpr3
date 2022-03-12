@@ -196,6 +196,8 @@
 .hscroll {
     overflow: scroll;
     
+    
+    
     /* Horizontal */
     /* Vertical */
 }
@@ -436,7 +438,7 @@ h1 {
 
 .formprincipal {
     border: black 1px solid;
-    width: 70%;
+    width: 20%;
     margin: auto;
     padding: 2%;
     font-family: 'GILL SANS MT', Helvetica, sans-serif;
@@ -465,6 +467,4 @@ h1 {
 
 
 }
-
-
 

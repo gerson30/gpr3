@@ -104,6 +104,7 @@ public class Equipos implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEquipo", fetch = FetchType.LAZY)
     private Collection<Inventario> inventarioCollection;
 
+    
     public Equipos() {
     }
 
@@ -122,7 +123,7 @@ public class Equipos implements Serializable {
         this.capacidadDiscoDuro = capacidadDiscoDuro;
         this.comentarios = comentarios;
     }
-
+    
     public Integer getIdEquipo() {
         return idEquipo;
     }

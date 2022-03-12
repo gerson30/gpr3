@@ -1,0 +1,32 @@
+<!--Este apartado es un aviso emergente si el envio de correo electronico se envia correctamente-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="bodyContent">
+        <h:form id="pollfrml">
+            <p:outputLabel value="Fecha"></p:outputLabel>
+            <p:outputLabel id="tiempo" value="#{serverTimeBean.time}"></p:outputLabel>
+            <p:poll interval="1" listener="#{serverTimeBean.updateTime()}" update="tiempo"></p:poll>            
+        </h:form>
+
+        <h:form id="emailForm">
+            
+            <hr></hr>
+            <div align="center" style="margin-top: 50px">
+                <h1>Email enviado correctamente
+                    <p:panel>
+                        <p:panelGrid columns="2">
+                            <p:commandButton id="atras" value="Atras" action="indexinv"></p:commandButton>
+                        </p:panelGrid>
+                    </p:panel>
+                </h1>
+            </div>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

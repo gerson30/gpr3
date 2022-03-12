@@ -61,6 +61,7 @@ public class InventarioView implements Serializable {
     private ArrayList<Tipopc> listadetipos = new ArrayList<>();
     private ArrayList<EstadoEquipo> listadeestados = new ArrayList<>();
     private Equipos nuevoequipo = new Equipos();
+    // este es temporal de cada inventario private Inventario invTemporal = new Inventario();
     Inventario invnue = new Inventario();
     private int idTipoPc;
     private int idMarca;
@@ -99,6 +100,7 @@ public class InventarioView implements Serializable {
                     + "  'success'"
                     + ")");
             nuevoequipo = new Equipos();
+        
         } else {
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Equipo',"
@@ -109,6 +111,11 @@ public class InventarioView implements Serializable {
             invnue = new Inventario();
         } 
 
+    }
+    
+       /* en este metodo se esta intentando llamar el temporal de cada inventario para poder luego editar esto esta en prueba*/
+    public void cargarID(Equipos in) {
+        this.nuevoequipo = in;
     }
 
     /*
@@ -130,6 +137,13 @@ public class InventarioView implements Serializable {
         }
     }
 */
+    /*Temporal de editar inventario
+    public String guardaTemporal(Inventario invIn){
+        invTemporal =  invIn;
+        return "editarinv";
+    }
+     */
+    
     public Equipos getNuevoequipo() {
         return nuevoequipo;
     }
@@ -235,4 +249,18 @@ public class InventarioView implements Serializable {
     public void setEquipoTemporal(Equipos equipoTemporal) {
         this.equipoTemporal = equipoTemporal;
     }   */
+
+    /*gett and setter de edita inventario
+    public Inventario getInvTemporal() {
+        return invTemporal;
+    }
+
+    public void setInvTemporal(Inventario invTemporal) {
+        this.invTemporal = invTemporal;
+    }
+
+    
+   */
+
+    
 }

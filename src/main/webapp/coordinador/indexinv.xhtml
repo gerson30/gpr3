@@ -1,26 +1,205 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough">
+
+    <!--esta vista se creo muy aparte a los template principales ya que no funcionaba las consultas multicriterio,
+    ademas tampoco funcionaba la paginacion de la tabla, por esta forma se creó toda la vista aquí mismo-->
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/gpr.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"></link>
+<style>
+  .ui-datatable, .ui-datatable-even {
+            background: #f8f8f8;
+     }
+</style>
+    </h:head>
+    <h:body>
+        <!--Area notificaciones-->
+        <nav>
+            <div class="fila">
+                <div class="nav">
+                    <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
+                </div>
+                <div class="nav">
+
+                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
+                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexcol.xhtml">Colaboradores</a>
+                    <a class="button button_black button_selected" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
+                    <h:form>
+                        <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
+                    </h:form>
+                </div>
+                <div class="nav" style="max-width: 180px;">
+                    <div class="avatar">
+                        <img class="imguser" src="#{request.contextPath}/assets/image/Logo_user.png" alt="imguser"/>
+                    </div>
+                    <div style="max-width: 80px;">Coordinador</div>
+                </div>
+            </div>
+        </nav>
+
+        <br>
+        </br>
+        <!--Área de trabajo-->
+
+        <!--Este es el dialog que se está generando para poder editar-->
+        <p:dialog widgetVar="wdialogo" resizable="false" modal="true" header="Datos" showEffect="clip">
+
+            <h:form id="valor">
+                <h:panelGrid columns="2" >
+                    <p:outputLabel for="txtinventario" value="Inventario" ></p:outputLabel>
+                    <p:inputText id="txtinventario" value="#{inventarioView.nuevoequipo.idEquipo}" required="true" ></p:inputText>
+                    <!--aqui se crea un nuevo boton para al moemtno de seleccionar editar y muestre el aviso emergente (actualizar) -->
+                    <p:commandButton value="Actualizar" actionListener="#{categoriaController.actualizar()}"  update=":valor"  oncomplete="PF('wdialogo'.hide();" ></p:commandButton>
+                </h:panelGrid>
 
 
-    <ui:composition template="../WEB-INF/template/tema.xhtml">
-        <ui:define name="areanotificaciones">
-            <ui:include src="../coordinador/pv/areanotificacionesinv.xhtml"></ui:include>            
-        </ui:define>
+            </h:form>
+
+        </p:dialog>
 
 
-        <ui:define name="menuvertical">
-            <ui:include src="../coordinador/pv/menuverticalinv.xhtml"></ui:include>            
-        </ui:define>
 
-        <ui:define name="areatrabajo">
-            <ui:include src="../coordinador/pv/areatrabajoinv.xhtml"></ui:include>            
-        </ui:define>
-        <ui:param name='pestana' value="Inventario"></ui:param>
-        <ui:param name='pestana' value="Index Inventario"></ui:param>
-    </ui:composition>
+        <div class="contenido">
+            <div>
+                <br>
+                </br>
+                <div class="topnav">
+                    <a class="exportar" onclick="ExportToExcel('tablainventarioeq')"><large>Exportar</large></a>
+                    <a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>
+                    <a href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
+                    <a href="#{request.contextPath}/coordinador/email.xhtml">Enviar Correo</a>
+                </div>
+                <br>
+                </br>
+                <!-- esta opcion muestra datos medieante una tabla -->
+
+                <h:form id="formPrincipal">  
+                    <!-- esta es la tabla con sus datos-->
+                    <p:fieldset legend="Datos" toggleable="true" >
+                        <p:dataTable id="tablainventarioeq" var="inv" value="#{inventarioView.verInv()}" paginator="true" rows="10"> 
+
+                            <!--podemos  agregar las etiquetas filterby, filterstyle,filtermatchmode, 
+                            para poder realizar un filtrado sobre las columnas que queramos-->
+                            <p:column  headerText="Act" >
+                                <div actionclass="button">
+                                    <a class="ri-pencil-line" actionListener="" onclick="PF('wdialogo').show();" ></a>
+                                </div>
+                                <p:commandLink class="ri-pencil-line,"  value="ac" actionListener="#{inventarioView.cargarID(in)}"   onclick="PF('wdialogo').show();" >
+
+                                </p:commandLink>
+                            </p:column>
+                            <p:column headerText="N° Inventario" filterBy="#{inv.idInventario}" filterStyle="width50px" filterMatchMode="contains" >
+                                <h:outputText value="#{inv.idInventario}" > </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Cod. Equipo"  filterBy="#{inv.idEquipo}" filterStyle="width50px" filterMatchMode="contains"  >
+                                <h:outputText value="#{inv.idEquipo.idEquipo}" ></h:outputText>
+                            </p:column>
+
+                            <p:column headerText= "Tipo" filterBy="#{inv.idEquipo.idTipoPc.nombreTipoPc}" filterStyle="width50px" filterMatchMode="contains"  >
+                                <h:outputText value="#{inv.idEquipo.idTipoPc.nombreTipoPc}">   </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Serial" filterBy="#{inv.idEquipo.serial}" filterStyle="width40px" filterMatchMode="contains" >
+                                <h:outputText value="#{inv.idEquipo.serial}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Estado"  filterBy="#{inv.idEstadoEquipo.nombreEstadoEquipo}" filterStyle="width40px" filterMatchMode="contains">
+                                <h:outputText value="#{inv.idEstadoEquipo.nombreEstadoEquipo}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Condición equipo" >
+                                <h:outputText value="#{inv.idEquipo.idCondicionEquipo.nombreCondicionEquipo}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Marca" >
+                                <h:outputText value="#{inv.idEquipo.idMarca.nombreMarca}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Modelo" >
+                                <h:outputText value="#{inv.idEquipo.modelo}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Sis Operativo" >
+                                <h:outputText value="#{inv.idEquipo.sistemaOperativo}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Office" >
+                                <h:outputText value="#{inv.idEquipo.microssoftOffice}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Cap. Procesador" >
+                                <h:outputText value="#{inv.idEquipo.procesador}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Cap. Memoria">
+                                <h:outputText value="#{inv.idEquipo.memoriaRam}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Cap. Disco" >
+                                <h:outputText value="#{inv.idEquipo.capacidadDiscoDuro}"> </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Fecha Ingreso" >
+                                <h:outputText value="#{inv.fechaIngreso}"> 
+                                    <f:convertDateTime pattern="dd-MM-YYYY"> </f:convertDateTime>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Fecha Salida" >
+                                <h:outputText value="#{inv.fechaSalida}"> 
+                                    <f:convertDateTime pattern="dd-MM-YYYY"> </f:convertDateTime>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Comentarios" >
+                                <h:outputText value="#{inv.idEquipo.comentarios}"> </h:outputText>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:fieldset>
+
+                    <!-- reporte en pdf-->
+
+                    <h:commandLink>
+                        <h:graphicImage url="/assets/image/excel.jpg" width="50"  ></h:graphicImage>
+                        <p:dataExporter type="xls" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <h:graphicImage url="/assets/image/pdf.png" width="35"></h:graphicImage>
+                        <p:dataExporter type="pdf" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
+                    </h:commandLink>
+
+                    
+                </h:form>    
+
+            </div>
+
+
+        </div>
+        <!--pie de pagina-->
+        <div class="fila">
+
+            <ul class="social-network social-circle">
+
+                <li><a href="https://www.facebook.com/JelkhAbogados/?ti=as" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/grupo_consultor?lang=es" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/grupo-consultor-andino-sa-21a74959/?originalSubdomain=co" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+
+    </h:body>
+
 </html>
+
+
 

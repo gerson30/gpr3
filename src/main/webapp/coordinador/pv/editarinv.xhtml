@@ -15,7 +15,7 @@
             <tr>
                 <br></br>
                 <td>
-                    <h3 class="tituloinv">AGREGAR INVENTARIO</h3>
+                    <h3 class="tituloinv">EDITAR INVENTARIO</h3>
                 </td>
 
             </tr>
@@ -29,19 +29,19 @@
                 </td>
 
             </tr>
-            <!--estas son alertas
-            <c:if test="">
+            <!--estas son alertas-->
+            <c:if test="#{inventarioView.alerta.equalsIgnoreCase('Error')}">
                 <div class="alert alert-danger" role="alert">
                     Error al crear inventario de equipo!
                 </div>
             </c:if>
 
-            <c:if test="">
+            <c:if test="#{inventarioView.alerta.equalsIgnoreCase('Ok')}">
                 <div class="alert alert-success" role="alert">
                     Inventario creado con exito !!!
                 </div>
             </c:if>
-            -->
+
 
 
             <h:form>
@@ -63,7 +63,7 @@
                             <h:outputLabel for="new_mar">Marca</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value=""
+                                value="#{inventarioView.idMarca}"
                                 class="form-control" 
                                 id="new_mar">
                                 <f:selectItems var="mar" value="#{inventarioView.listademarcas}" itemLabel="#{mar.nombreMarca}"  itemValue="#{mar.idMarca}"></f:selectItems>
@@ -77,7 +77,7 @@
 
                         <td>
                             <h:outputLabel for="new_cond">Condición Equipo</h:outputLabel>
-                            <h:selectOneMenu  value=""  class="form-control" id="validationServer04" >
+                            <h:selectOneMenu  value="#{inventarioView.idCondicion}"  class="form-control" id="validationServer04" >
                                 <f:selectItems var="con"  value="#{inventarioView.listacondiciones}" itemLabel="#{con.nombreCondicionEquipo}"  itemValue="#{con.idCondicionEquipo}"></f:selectItems>
                             </h:selectOneMenu>
                             <h:message style="color: red" for="new_cond"></h:message>
@@ -88,7 +88,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Ingrese la fecha"
-                                value="" 
+                                value="#{inventarioView.fechaingreso}" 
                                 class="form-control"
                                 id="new_fec"  
                                 html5:type="date">
@@ -107,7 +107,7 @@
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Indique el modelo"
-                                value=""
+                                value="#{inventarioView.nuevoequipo.modelo}"
                                 class="form-control"
                                 id="new_mod">
                             </h:inputText>
@@ -121,7 +121,7 @@
                         <td> 
                             <h:outputLabel for="new_ser">Serial N° </h:outputLabel>
                             <h:inputText
-                                value=""
+                                value="#{inventarioView.nuevoequipo.serial}"
                                 required="true"
                                 html5:placeholder="Ingrese el N° serial"
                                 requiredMessage="Se requiere un valor"
@@ -154,7 +154,7 @@
                             <h:outputLabel  for="new_sis">Sistema Operativo</h:outputLabel>
                             <h:selectOneMenu
                                 required="true"
-                                value="" 
+                                value="#{inventarioView.nuevoequipo.sistemaOperativo}" 
                                 class="form-control" 
                                 id="new_sis">
                                 <f:selectItem itemValue="W8" itemLabel="W8"></f:selectItem>
@@ -166,7 +166,7 @@
                             ><h:outputLabel for="new_pro">Procesador</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{inventarioView.nuevoequipo.procesador}" 
                                 class="form-control" 
                                 id="new_pro">
                                 <f:selectItem itemValue="Core I3" itemLabel="Core I3"></f:selectItem>
@@ -180,7 +180,7 @@
                             <h:outputLabel for="new_off">Microsoft Office</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{inventarioView.nuevoequipo.microssoftOffice}" 
                                 class="form-control" 
                                 id="new_off">
                                 <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
@@ -194,7 +194,7 @@
                             <h:outputLabel for="new_cap">Capacidad Disco Duro</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{inventarioView.nuevoequipo.capacidadDiscoDuro}" 
                                 class="form-control" 
                                 id="new_cap">
                                 <f:selectItem itemLabel="500" itemValue="500"> </f:selectItem>
@@ -207,7 +207,7 @@
                             <h:outputLabel for="new_ram">Memoria Ram</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{inventarioView.nuevoequipo.memoriaRam}" 
                                 class="form-control" 
                                 id="new_ram">
                                 <f:selectItem itemValue="4 GB" itemLabel="4 GB"></f:selectItem>
@@ -240,7 +240,7 @@
                             <h:outputLabel for="new_est">Estado</h:outputLabel>
                             <h:selectOneMenu 
                                 required="true"
-                                value="" 
+                                value="#{inventarioView.idEstadoequipo}" 
                                 class="form-control" 
                                 id="new_est">
                                 <f:selectItems var="est" value="#{inventarioView.listadeestados}" itemLabel="#{est.nombreEstadoEquipo}" itemValue="#{est.idEstadoEquipo}"></f:selectItems>
@@ -253,7 +253,7 @@
                             <h:inputTextarea 
                                 required="true"
                                 requiredMessage="Indique los comentarios"
-                                value="" 
+                                value="#{inventarioView.nuevoequipo.comentarios}" 
                                 class="form-control" 
                                 id="new_com" 
                                 html5:placeholder="Comentarios">

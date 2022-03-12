@@ -35,6 +35,8 @@ public interface InventarioFacadeLocal {
     public List<Inventario> leerTodo();
 
     public boolean agregarinvtbl(Date fechaIngreso, int idEstadoEquipo);
+    
+    public List<Inventario> leerporId(int Id);
 
     
     

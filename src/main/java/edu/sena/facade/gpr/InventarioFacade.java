@@ -68,4 +68,9 @@ public class InventarioFacade extends AbstractFacade<Inventario> implements Inve
         }
 
     }
+
+    @Override
+    public List<Inventario> leerporId(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
