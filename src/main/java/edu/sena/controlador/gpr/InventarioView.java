@@ -52,6 +52,7 @@ public class InventarioView implements Serializable {
 
     @EJB
     EquiposFacadeLocal equiposFacadeLocal;
+    
 
     /*alerta */
     private String alerta = "";
@@ -113,36 +114,37 @@ public class InventarioView implements Serializable {
 
     }
     
-       /* en este metodo se esta intentando llamar el temporal de cada inventario para poder luego editar esto esta en prueba*/
-    public void cargarID(Equipos in) {
-        this.nuevoequipo = in;
+       // se debe llamar los objetos...en este metodo se esta intentando llamar el temporal de cada inventario para poder luego editar esto esta en prueba
+    public void cargarID(Inventario i) {
+        this.invnue = i;
     }
+    
+   
+    public void actualizar() {
 
-    /*
-
-    public String editarEquipo() {
-        try {
-            equiposFacadeLocal.edit(nuevoequipo);
+        /* se debe hacer el binding para llamar  gett and setter y se llama invnue */
+        if (equiposFacadeLocal.actualizar(nuevoequipo, idTipoPc, idMarca, idCondicion)) {
+            inventarioFacadeLocal.agregarinvtbl(fechaingreso, idEstadoequipo);
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Equipo',"
-                    + "  'Actualizado, Exitosamente !!!',"
+                    + "  'Creado con Exito !!!',"
                     + "  'success'"
                     + ")");
-        } catch (Exception e) {
+            nuevoequipo = new Equipos();
+        
+        } else {
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Equipo',"
-                    + "  'No se puede actualizar, Intente de nuevo',"
+                    + "  'No se puede registrar, Intente de nuevo',"
                     + "  'error'"
                     + ")");
-        }
+            alerta = "ok";
+            invnue = new Inventario();
+        } 
+
     }
-*/
-    /*Temporal de editar inventario
-    public String guardaTemporal(Inventario invIn){
-        invTemporal =  invIn;
-        return "editarinv";
-    }
-     */
+     
+    
     
     public Equipos getNuevoequipo() {
         return nuevoequipo;
