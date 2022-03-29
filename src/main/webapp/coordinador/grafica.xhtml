@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <link rel="stylesheet" href="#{request.contextPath}/assets/css/gpr.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    </h:head>
+    <h:body>
+
+        <nav>
+            <div class="fila">
+                <div class="nav">
+                    <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
+                </div>
+                <div class="nav">
+
+                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
+                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexcol.xhtml">Colaboradores</a>
+                    <a class="button button_black button_selected" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
+                    <h:form>
+                        <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
+                    </h:form>
+                </div>
+                <div class="nav" style="max-width: 180px;">
+                    <div class="avatar">
+                        <img class="imguser" src="#{request.contextPath}/assets/image/Logo_user.png" alt="imguser"/>
+                    </div>
+                    <div style="max-width: 80px;">Coordinador</div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="contenido">
+            <!--areatrabajo -->
+
+            <div class="formprincipal">
+                <br></br>
+                <br></br>
+
+                <div class="tituloinv">
+                    <h3>Generar Gráfica de dispositivos disponibles en Inventario</h3>
+                </div>
+                <br></br>
+                <br></br>
+
+
+                <div class="form-group col-md-12" align="center">
+
+                    <h:form class="row g-3 needs-validation">
+                        <div class="col-md-12">
+                            <outputLabel for="validationServer01">Clic para generar Grafica</outputLabel>
+                        </div>
+                        <br/>
+                        <br/>
+                        
+
+
+
+                        <p:commandButton value="Generar!" actionListener="#{productoGrafica.listar()}" update="panel"/>
+                        <h:panelGroup id="panel" layout="block">
+                            <p:chart type="pie" model="#{productoGrafica.pieModel}" style="width: 600px;height: 500px"
+                                     rendered="#{productoGrafica.pieModel !=null}"/>
+                        </h:panelGroup>
+                    </h:form>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!--piepagina -->    
+        <div class="fila">
+
+            <ul class="social-network social-circle">
+
+                <li><a href="https://www.facebook.com/JelkhAbogados/?ti=as" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/grupo_consultor?lang=es" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/grupo-consultor-andino-sa-21a74959/?originalSubdomain=co" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+
+        <!--piepagina -->
+
+        
+    </h:body>
+</html>
+
+

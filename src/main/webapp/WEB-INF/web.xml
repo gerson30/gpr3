@@ -28,7 +28,7 @@
         <server-name>localhost</server-name>
         <port-number>3306</port-number>
         <database-name>gpr</database-name>
-        <user>AdministradorGPR</user>
+        <user>root</user>
         <password>1234$</password>
 
         <property>

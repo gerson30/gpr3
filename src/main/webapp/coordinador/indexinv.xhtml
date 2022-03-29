@@ -73,11 +73,12 @@
                 <br>
                 </br>
                 <div class="topnav">
-                    <a class="exportar" onclick="ExportToExcel('tablainventarioeq')"><large>Exportar</large></a>
-                    <a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>
-                    <a href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
-                    <a href="#{request.contextPath}/coordinador/email.xhtml">Enviar Correo</a>
-                    <a href="#{request.contextPath}/coordinador/cargarcsv.xhtml">cargar CSV</a>
+                    <!--<a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>-->
+                    <a class="exportar" href="#{request.contextPath}/coordinador/email.xhtml">Enviar Correo</a>
+                    <a class="exportar" href="#{request.contextPath}/coordinador/cargarcsv.xhtml">cargar CSV</a>
+                    <a class="exportar" href="#{request.contextPath}/coordinador/grafica.xhtml">Grafica</a>
+                    <a class="exportar" href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
+                   
                 </div>
                 <br>
                 </br>
@@ -85,6 +86,8 @@
                 <p:growl id="mensaje"></p:growl>-->
                 <!-- esta opcion muestra datos medieante una tabla -->
                 <h:form id="formPrincipal">  
+                    
+                    
                     <!-- esta es la tabla con sus datos-->
                     <p:fieldset legend="Datos" toggleable="true" >
                         <p:dataTable id="tablainventarioeq" var="inv" value="#{inventarioView.verInv()}" paginator="true" rows="10"> 
@@ -92,7 +95,7 @@
                             <!--podemos  agregar las etiquetas filterby, filterstyle,filtermatchmode, 
                             para poder realizar un filtrado sobre las columnas que queramos-->
                             <p:column  >
-                                
+
                                 <p:commandLink class="ri-pencil-line," value="Editar" update=""  actionListener="#{inventarioView.cargarID(in)}"   onclick="PF('wdialogo').show();" >
 
                                 </p:commandLink>
@@ -164,7 +167,7 @@
 
                     <!-- reporte en pdf-->
 
-                   
+
                     <h:commandLink>
                         <h:graphicImage url="/assets/image/pdf.png" width="35"></h:graphicImage>
                         <p:dataExporter type="pdf" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
