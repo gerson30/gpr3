@@ -81,5 +81,10 @@ public class EquiposFacade extends AbstractFacade<Equipos> implements EquiposFac
         }
 
     }
+
+    @Override
+    public boolean actualizar(Equipos eqps, int i, int i1, int i2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

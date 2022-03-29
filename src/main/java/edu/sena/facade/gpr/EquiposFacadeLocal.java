@@ -33,8 +33,9 @@ public interface EquiposFacadeLocal {
     public List<Equipos> leerTodo();
 
     public boolean ingresarEquipo(Equipos nuequi, int idTipopc, int idMarca, int idCondicion);
+    //esta es una prueba para editar equipo
 
-
+    public boolean actualizar(Equipos nuequi, int idTipopc, int idMarca, int idCondicion);
     
     
 }

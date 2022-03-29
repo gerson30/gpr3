@@ -38,6 +38,8 @@ public interface InventarioFacadeLocal {
     
     public List<Inventario> leerporId(int Id);
 
+    public List<Inventario> verInv(Date fechaingreso, int idCondicion, int idEstadoequipo, int idMarca, int idMarca0, int idTipoPc);
+
     
     
 

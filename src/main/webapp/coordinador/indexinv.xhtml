@@ -15,11 +15,11 @@
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"></link>
-<style>
-  .ui-datatable, .ui-datatable-even {
-            background: #f8f8f8;
-     }
-</style>
+        <style>
+            .ui-datatable, .ui-datatable-even {
+                background: #f8f8f8;
+            }
+        </style>
     </h:head>
     <h:body>
         <!--Area notificaciones-->
@@ -58,7 +58,7 @@
                     <p:outputLabel for="txtinventario" value="Inventario" ></p:outputLabel>
                     <p:inputText id="txtinventario" value="#{inventarioView.nuevoequipo.idEquipo}" required="true" ></p:inputText>
                     <!--aqui se crea un nuevo boton para al moemtno de seleccionar editar y muestre el aviso emergente (actualizar) -->
-                    <p:commandButton value="Actualizar" actionListener="#{categoriaController.actualizar()}"  update=":valor"  oncomplete="PF('wdialogo'.hide();" ></p:commandButton>
+                    <p:commandButton value="Actualizar" actionListener="#{inventarioView.actualizar()}" rendered="#{inventarioView.invnue.idInventario != 0}"  update=":valor"  oncomplete="PF('wdialogo'.hide();" ></p:commandButton>
                 </h:panelGrid>
 
 
@@ -77,11 +77,13 @@
                     <a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>
                     <a href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
                     <a href="#{request.contextPath}/coordinador/email.xhtml">Enviar Correo</a>
+                    <a href="#{request.contextPath}/coordinador/cargarcsv.xhtml">cargar CSV</a>
                 </div>
                 <br>
                 </br>
+                <!--
+                <p:growl id="mensaje"></p:growl>-->
                 <!-- esta opcion muestra datos medieante una tabla -->
-
                 <h:form id="formPrincipal">  
                     <!-- esta es la tabla con sus datos-->
                     <p:fieldset legend="Datos" toggleable="true" >
@@ -89,11 +91,9 @@
 
                             <!--podemos  agregar las etiquetas filterby, filterstyle,filtermatchmode, 
                             para poder realizar un filtrado sobre las columnas que queramos-->
-                            <p:column  headerText="Act" >
-                                <div actionclass="button">
-                                    <a class="ri-pencil-line" actionListener="" onclick="PF('wdialogo').show();" ></a>
-                                </div>
-                                <p:commandLink class="ri-pencil-line,"  value="ac" actionListener="#{inventarioView.cargarID(in)}"   onclick="PF('wdialogo').show();" >
+                            <p:column  >
+                                
+                                <p:commandLink class="ri-pencil-line," value="Editar" update=""  actionListener="#{inventarioView.cargarID(in)}"   onclick="PF('wdialogo').show();" >
 
                                 </p:commandLink>
                             </p:column>
@@ -155,12 +155,6 @@
                                 </h:outputText>
                             </p:column>
 
-                            <p:column headerText="Fecha Salida" >
-                                <h:outputText value="#{inv.fechaSalida}"> 
-                                    <f:convertDateTime pattern="dd-MM-YYYY"> </f:convertDateTime>
-                                </h:outputText>
-                            </p:column>
-
                             <p:column headerText="Comentarios" >
                                 <h:outputText value="#{inv.idEquipo.comentarios}"> </h:outputText>
                             </p:column>
@@ -170,16 +164,13 @@
 
                     <!-- reporte en pdf-->
 
-                    <h:commandLink>
-                        <h:graphicImage url="/assets/image/excel.jpg" width="50"  ></h:graphicImage>
-                        <p:dataExporter type="xls" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
-                    </h:commandLink>
+                   
                     <h:commandLink>
                         <h:graphicImage url="/assets/image/pdf.png" width="35"></h:graphicImage>
                         <p:dataExporter type="pdf" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
                     </h:commandLink>
 
-                    
+
                 </h:form>    
 
             </div>

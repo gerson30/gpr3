@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Inventario.findAll", query = "SELECT i FROM Inventario i"),
     @NamedQuery(name = "Inventario.findByIdInventario", query = "SELECT i FROM Inventario i WHERE i.idInventario = :idInventario"),
     @NamedQuery(name = "Inventario.findByFechaIngreso", query = "SELECT i FROM Inventario i WHERE i.fechaIngreso = :fechaIngreso"),
-    @NamedQuery(name = "Inventario.findByFechaSalida", query = "SELECT i FROM Inventario i WHERE i.fechaSalida = :fechaSalida")})
+    })
 public class Inventario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,10 +53,8 @@ public class Inventario implements Serializable {
     @Column(name = "fechaIngreso")
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
-    @Column(name = "fechaSalida")
-    @Temporal(TemporalType.DATE)
-    private Date fechaSalida;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInventario", fetch = FetchType.LAZY)
+    
+    
     private Collection<Colaboradores> colaboradoresCollection;
     @JoinColumn(name = "id_Equipo", referencedColumnName = "id_Equipo")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -91,14 +89,6 @@ public class Inventario implements Serializable {
 
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
-    }
-
-    public Date getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(Date fechaSalida) {
-        this.fechaSalida = fechaSalida;
     }
 
     @XmlTransient
