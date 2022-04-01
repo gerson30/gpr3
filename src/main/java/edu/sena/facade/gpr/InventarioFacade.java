@@ -68,7 +68,32 @@ public class InventarioFacade extends AbstractFacade<Inventario> implements Inve
         }
 
     }
+    
+    @Override
+    public boolean actualizarinvtbl(Date fechaIngreso, int idEstadoEquipo, int idInventario) {
+        
+        /*se debe controlar el error con try catch (bloque de codigo por try y por catch */
+ /*en los cambos "?" la informacion debe cambiar por tal movio se debe dejar "?"  */
+        try {
+            
+            Query qi = em.createNativeQuery("UPDATE tbl_inventario SET"
+                    + " fechaIngreso=?, id_EstadoEquipo=?"
+                    + " WHERE id_Inventario=?");
+            
+            qi.setParameter(1, fechaIngreso);
+            qi.setParameter(2, idEstadoEquipo);
+            qi.setParameter(3, idInventario);
 
+            /* executeUpdate ejecuta el entity manager*/
+            qi.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+
+    }
+    
     @Override
     public List<Inventario> leerporId(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -78,4 +103,20 @@ public class InventarioFacade extends AbstractFacade<Inventario> implements Inve
     public List<Inventario> verInv(Date fechaingreso, int idCondicion, int idEstadoequipo, int idMarca, int idMarca0, int idTipoPc) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean eliminarinvtbl(Integer idInventario) {
+        System.out.println("idInventario: " + idInventario);
+       try {
+            Query qi = em.createNativeQuery("DELETE FROM tbl_inventario where id_Inventario=? ");
+            qi.setParameter(1, idInventario);
+
+            qi.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+    }
+    
 }

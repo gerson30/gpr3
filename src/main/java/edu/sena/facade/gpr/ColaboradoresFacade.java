@@ -100,6 +100,33 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
 
     }
 
+    @Override
+    public boolean eliminarPorInventario(Integer idInventario) {
+          System.out.println("idInventario: " + idInventario);
+       try {
+            Query qi = em.createNativeQuery("DELETE FROM tbl_colaboradores where id_Inventario=? ");
+            qi.setParameter(1, idInventario);
+
+            qi.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+    }
+
+    @Override
+    public List<Colaboradores> buscarPorInventario(Integer idInventario) {
+         try {
+            Query q = em.createQuery("SELECT c FROM Colaboradores c WHERE c.idInventario.idInventario = :idInventario");
+            q.setParameter("idInventario", idInventario);
+            return  q.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    
+    }
+
     
 
 }

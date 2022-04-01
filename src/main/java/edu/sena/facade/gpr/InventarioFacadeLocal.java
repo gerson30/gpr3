@@ -17,30 +17,19 @@ import javax.ejb.Local;
 public interface InventarioFacadeLocal {
 
     void create(Inventario inventario);
-
     void edit(Inventario inventario);
-
     void remove(Inventario inventario);
-
     Inventario find(Object id);
-
     List<Inventario> findAll();
-
     List<Inventario> findRange(int[] range);
-
     int count();
-
     public List<Inventario> verInv();
-/*leerTodo es para consulta agregar inventario*/
+    /*leerTodo es para consulta agregar inventario*/
     public List<Inventario> leerTodo();
-
     public boolean agregarinvtbl(Date fechaIngreso, int idEstadoEquipo);
-    
+    public boolean actualizarinvtbl(Date fechaIngreso, int idEstadoEquipo, int idInventario);  
+    public boolean eliminarinvtbl(Integer idInventario);   
     public List<Inventario> leerporId(int Id);
-
     public List<Inventario> verInv(Date fechaingreso, int idCondicion, int idEstadoequipo, int idMarca, int idMarca0, int idTipoPc);
-
     
-    
-
 }

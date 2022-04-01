@@ -5,15 +5,20 @@
  */
 package edu.sena.controlador.gpr;
 
+import edu.sena.entity.gpr.Colaboradores;
 import edu.sena.entity.gpr.CondicionEquipo;
 import edu.sena.entity.gpr.Equipos;
 import edu.sena.entity.gpr.EstadoEquipo;
+import edu.sena.entity.gpr.Incidente;
 import edu.sena.entity.gpr.Inventario;
 import edu.sena.entity.gpr.Marca;
 import edu.sena.entity.gpr.Tipopc;
+import edu.sena.facade.gpr.ColaboradoresFacadeLocal;
+import edu.sena.facade.gpr.ComentariosFacadeLocal;
 import edu.sena.facade.gpr.CondicionEquipoFacadeLocal;
 import edu.sena.facade.gpr.EquiposFacadeLocal;
 import edu.sena.facade.gpr.EstadoEquipoFacadeLocal;
+import edu.sena.facade.gpr.IncidenteFacadeLocal;
 import edu.sena.facade.gpr.InventarioFacadeLocal;
 import edu.sena.facade.gpr.MarcaFacadeLocal;
 import edu.sena.facade.gpr.TipopcFacadeLocal;
@@ -39,8 +44,17 @@ public class InventarioView implements Serializable {
     InventarioFacadeLocal inventarioFacadeLocal;
 
     @EJB
+    ColaboradoresFacadeLocal colaboradoresFacadeLocal;
+    
+    @EJB
+    ComentariosFacadeLocal comentariosFacadeLocal;
+    
+    @EJB
     TipopcFacadeLocal tipopcFacadeLocal;
 
+    @EJB
+    IncidenteFacadeLocal incidenteFacadeLocal;
+    
     @EJB
     MarcaFacadeLocal marcaFacadeLocal;
 
@@ -69,7 +83,20 @@ public class InventarioView implements Serializable {
     private int idCondicion;
     private Date fechaingreso;
     private int idEstadoequipo;
+    private Inventario selectedInv;
+    
+    private String test = "prueba";
 
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+    
+    
+    
     /**
      * Creates a new instance of InventarioView
      */
@@ -113,24 +140,23 @@ public class InventarioView implements Serializable {
         } 
 
     }
-    
-       // se debe llamar los objetos...en este metodo se esta intentando llamar el temporal de cada inventario para poder luego editar esto esta en prueba
-    public void cargarID(Inventario i) {
-        this.invnue = i;
-    }
-    
-   
-    public void actualizar() {
+      
+    public void modificarInvetario() {
 
         /* se debe hacer el binding para llamar  gett and setter y se llama invnue */
-        if (equiposFacadeLocal.actualizar(nuevoequipo, idTipoPc, idMarca, idCondicion)) {
-            inventarioFacadeLocal.agregarinvtbl(fechaingreso, idEstadoequipo);
+        
+        
+        if (equiposFacadeLocal.actualizar(selectedInv.getIdEquipo())) {
+
+            inventarioFacadeLocal.actualizarinvtbl(selectedInv.getFechaIngreso(), 
+                    selectedInv.getIdEstadoEquipo().getIdEstadoEquipo(),selectedInv.getIdInventario());
+            
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Equipo',"
-                    + "  'Creado con Exito !!!',"
+                    + "  'Actualizado con Exito !!!',"
                     + "  'success'"
                     + ")");
-            nuevoequipo = new Equipos();
+            selectedInv = new Inventario();
         
         } else {
             PrimeFaces.current().executeScript("Swal.fire("
@@ -139,12 +165,54 @@ public class InventarioView implements Serializable {
                     + "  'error'"
                     + ")");
             alerta = "ok";
-            invnue = new Inventario();
+            selectedInv = new Inventario();
         } 
 
     }
-     
     
+    public void eliminarInvetario(){
+        System.out.println("selectedInv : " + selectedInv);
+        System.out.println("selectedInv.getIdEquipo() : " + selectedInv.getIdEquipo());
+        System.out.println("selectedInv.getIdEquipo().getIdEquipo(): " + selectedInv.getIdEquipo().getIdEquipo());
+        
+        List<Colaboradores> listColaboradores =  colaboradoresFacadeLocal.buscarPorInventario(selectedInv.getIdInventario());
+        
+        if(listColaboradores !=null && !listColaboradores.isEmpty()){
+            for(Colaboradores c : listColaboradores){
+                List<Incidente> listIncidente =  incidenteFacadeLocal.buscarPorColaborador(c.getIdColab());
+
+                if(listIncidente != null && !listIncidente.isEmpty()){
+                    for(Incidente incidente : listIncidente){
+                        comentariosFacadeLocal.eliminarPorIncidente(incidente.getIdTicket());
+                    }
+                }
+                incidenteFacadeLocal.eliminar(c.getIdColab());
+            }
+        }
+        
+        
+        if (colaboradoresFacadeLocal.eliminarPorInventario(selectedInv.getIdInventario())) {
+            
+            inventarioFacadeLocal.eliminarinvtbl(selectedInv.getIdInventario());
+            equiposFacadeLocal.eliminar(selectedInv.getIdEquipo().getIdEquipo());
+            
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Equipo',"
+                    + "  'Eliminado con Exito !!!',"
+                    + "  'success'"
+                    + ")");
+            selectedInv = new Inventario();
+        
+        } else {
+            PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Equipo',"
+                    + "  'No se puede registrar, Intente de nuevo',"
+                    + "  'error'"
+                    + ")");
+            alerta = "ok";
+            selectedInv = new Inventario();
+        } 
+    }
     
     public Equipos getNuevoequipo() {
         return nuevoequipo;
@@ -264,5 +332,14 @@ public class InventarioView implements Serializable {
     
    */
 
+    public Inventario getSelectedInv() {
+        return selectedInv;
+    }
+
+    public void setSelectedInv(Inventario selectedInv) {
+        this.selectedInv = selectedInv;
+    }
+    
+    
     
 }

@@ -94,12 +94,7 @@
 
                             <!--podemos  agregar las etiquetas filterby, filterstyle,filtermatchmode, 
                             para poder realizar un filtrado sobre las columnas que queramos-->
-                            <p:column  >
-
-                                <p:commandLink class="ri-pencil-line," value="Editar" update=""  actionListener="#{inventarioView.cargarID(in)}"   onclick="PF('wdialogo').show();" >
-
-                                </p:commandLink>
-                            </p:column>
+                            
                             <p:column headerText="N° Inventario" filterBy="#{inv.idInventario}" filterStyle="width50px" filterMatchMode="contains" >
                                 <h:outputText value="#{inv.idInventario}" > </h:outputText>
                             </p:column>
@@ -160,26 +155,264 @@
 
                             <p:column headerText="Comentarios" >
                                 <h:outputText value="#{inv.idEquipo.comentarios}"> </h:outputText>
+                            </p:column>                            
+                            
+                            <p:column headerText="Modificar" style="text-align: center">
+                                <p:commandButton icon="pi pi-pencil" title="Modificar" styleClass="edit-button rounded-button ui-button-success"
+                                                 oncomplete="PF('dialogoModificar').show();" update=":formModificar">
+                                    <f:setPropertyActionListener target="#{inventarioView.selectedInv}" value="#{inv}"/>
+                                </p:commandButton>
                             </p:column>
-
+                            
+                            <p:column headerText="Eliminar" style="text-align: center">
+                                <p:commandButton icon="pi pi-trash" title="Eliminar" styleClass="edit-button rounded-button ui-button-danger"
+                                                 oncomplete="PF('dialogoEliminar').show();" update=":formEliminar">
+                                    <f:setPropertyActionListener target="#{inventarioView.selectedInv}" value="#{inv}"/>
+                                </p:commandButton>
+                            </p:column>
+                            
                         </p:dataTable>
                     </p:fieldset>
 
                     <!-- reporte en pdf-->
-
-
+                    
                     <h:commandLink>
                         <h:graphicImage url="/assets/image/pdf.png" width="35"></h:graphicImage>
                         <p:dataExporter type="pdf" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
                     </h:commandLink>
 
-
                 </h:form>    
 
             </div>
-
-
+            
         </div>
+        <!--Formulario para editar-->
+        <h:form id="formModificar">
+            
+            <p:dialog id="dlgModificar" header="Modificar Inventario" widgetVar="dialogoModificar" 
+                      resizable="false" showEffect="fade" hideEffect="explode" modal="true" width="60%">
+                <tr>
+                    <td>
+                        <br></br>
+                        <h5 class="tituloinv">Información del equipo</h5>
+                    </td>
+                </tr>
+                <table class="form-group col-md-12">
+                    <tr>
+                        <td>
+                            <div style="margin-right: 10px">
+                                <h:outputLabel for="new_tipo">Tipo</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="#{inventarioView.selectedInv.idEquipo.idTipoPc.idTipoPc}"
+                                    class="form-control" 
+                                    id="new_tipo">
+                                    <f:selectItems var="tc" value="#{inventarioView.listadetipos}" itemLabel="#{tc.nombreTipoPc}" itemValue="#{tc.idTipoPc}"></f:selectItems>
+                                </h:selectOneMenu>                            
+                            </div>
+                        </td>
+                        <td>                            
+                            <div style="margin-right: 10px">                                
+                                <h:outputLabel for="new_mar">Marca</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="#{inventarioView.selectedInv.idEquipo.idMarca.idMarca}"
+                                    class="form-control" 
+                                    id="new_mar">
+                                    <f:selectItems var="mar" value="#{inventarioView.listademarcas}" itemLabel="#{mar.nombreMarca}"  itemValue="#{mar.idMarca}"></f:selectItems>
+                                </h:selectOneMenu>
+                            </div>
+                        </td>
+                        <td>
+                            <h:outputLabel for="new_cond">Condición Equipo</h:outputLabel>
+                            <h:selectOneMenu  value="#{inventarioView.selectedInv.idEquipo.idCondicionEquipo.idCondicionEquipo}"
+                                              class="form-control" id="validationServer04" >
+                                <f:selectItems var="con"  value="#{inventarioView.listacondiciones}" itemLabel="#{con.nombreCondicionEquipo}"  itemValue="#{con.idCondicionEquipo}"></f:selectItems>
+                            </h:selectOneMenu>
+                            <h:message style="color: red" for="new_cond"></h:message>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div style="margin-right: 10px"> 
+                                <h:outputLabel for="new_fec">Fecha Ingreso</h:outputLabel>
+                                <h:inputText 
+                                    required="true"
+                                    requiredMessage="Ingrese la fecha"
+                                    value="#{inventarioView.selectedInv.fechaIngreso}"
+                                    class="form-control"
+                                    id="new_fec"  
+                                    html5:type="date">
+                                    <f:convertDateTime pattern="yyyy-MM-dd">
+                                    </f:convertDateTime>
+                                </h:inputText>
+                                <h:message style="color: red" for="new_fec"></h:message>
+                            </div>
+                        </td>                        
+                        <td>
+                            <div style="margin-right: 10px"> 
+                                <h:outputLabel for="new_mod">Modelo</h:outputLabel>
+                                <h:inputText 
+                                    required="true"
+                                    requiredMessage="Indique el modelo"
+                                    value="#{inventarioView.selectedInv.idEquipo.modelo}"
+                                    class="form-control"
+                                    id="new_mod">
+                                </h:inputText>
+                                <h:message style="color: red" for="new_mod"></h:message>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <h:outputLabel for="new_ser">Serial N° </h:outputLabel>
+                            <h:inputText
+                                value="#{inventarioView.selectedInv.idEquipo.serial}"
+                                required="true"
+                                html5:placeholder="Ingrese el N° serial"
+                                requiredMessage="Se requiere un valor"
+                                class="form-control" 
+                                id="new_ser" />
+                            <h:message style="color: red" for="new_ser"></h:message> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br>
+                            </br>
+                            <h6 class="tituloinv">Información Hardware</h6>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="margin-right: 10px"> 
+                                <h:outputLabel  for="new_sis">Sistema Operativo</h:outputLabel>
+                                <h:selectOneMenu
+                                    required="true"
+                                    value="#{inventarioView.selectedInv.idEquipo.sistemaOperativo}"
+                                    class="form-control" 
+                                    id="new_sis">
+                                    <f:selectItem itemValue="Windows 8" itemLabel="W8"></f:selectItem>
+                                    <f:selectItem itemValue="Windows 10" itemLabel="W10"> </f:selectItem>
+                                </h:selectOneMenu>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="margin-right: 10px"> 
+                                <h:outputLabel for="new_pro">Procesador</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="#{inventarioView.selectedInv.idEquipo.procesador}"
+                                    class="form-control" 
+                                    id="new_pro">
+                                    <f:selectItem itemValue="Core I3" itemLabel="Core I3"></f:selectItem>
+                                    <f:selectItem itemValue="Core I5" itemLabel="Core I5"></f:selectItem>
+                                    <f:selectItem itemValue="Core I7" itemLabel="Core I7"></f:selectItem>
+                                </h:selectOneMenu>
+                            </div>
+                        </td>
+                        <td>
+                            <h:outputLabel for="new_off">Microsoft Office</h:outputLabel>
+                            <h:selectOneMenu 
+                                required="true"
+                                value="#{inventarioView.selectedInv.idEquipo.microssoftOffice}"
+                                class="form-control" 
+                                id="new_off">
+                                <f:selectItem itemValue="Office 2010" itemLabel="2010"></f:selectItem>
+                                <f:selectItem itemValue="Office 2013" itemLabel="2013"></f:selectItem>
+                                <f:selectItem itemValue="Office 2016" itemLabel="2016"></f:selectItem>
+                                <f:selectItem itemValue="Office 2017" itemLabel="2017"></f:selectItem>
+                                <f:selectItem itemValue="Office 2019" itemLabel="2019"></f:selectItem>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="margin-right: 10px"> 
+                                <h:outputLabel for="new_cap">Capacidad Disco Duro</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="#{inventarioView.selectedInv.idEquipo.capacidadDiscoDuro}"
+                                    class="form-control" 
+                                    id="new_cap">
+                                    <f:selectItem itemLabel="500" itemValue="500"> </f:selectItem>
+                                    <f:selectItem itemLabel="1 TB" itemValue="1 TB"> </f:selectItem>
+                                </h:selectOneMenu>
+                            </div>
+                        </td>
+                        <td>
+                            <h:outputLabel for="new_ram">Memoria Ram</h:outputLabel>
+                            <h:selectOneMenu 
+                                required="true"
+                                value="#{inventarioView.selectedInv.idEquipo.memoriaRam}"
+                                class="form-control" 
+                                id="new_ram">
+                                <f:selectItem itemValue="4 GB" itemLabel="4 GB"></f:selectItem>
+                                <f:selectItem itemValue="6 GB" itemLabel="6 GB"></f:selectItem>
+                                <f:selectItem itemValue="8 GB" itemLabel="8 GB"></f:selectItem>
+                                <f:selectItem itemValue="12 GB" itemLabel="12 GB"></f:selectItem>
+                                <f:selectItem itemValue="16 GB" itemLabel="16 GB"></f:selectItem>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br></br>
+                            <h5 class="tituloinv">Detalles</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="margin-right: 10px"> 
+                                <h:outputLabel for="new_est">Estado</h:outputLabel>
+                                <h:selectOneMenu 
+                                    required="true"
+                                    value="#{inventarioView.selectedInv.idEstadoEquipo.idEstadoEquipo}"
+                                    class="form-control" 
+                                    id="new_est">
+                                    <f:selectItems var="est" value="#{inventarioView.listadeestados}" itemLabel="#{est.nombreEstadoEquipo}" itemValue="#{est.idEstadoEquipo}"></f:selectItems>
+                                </h:selectOneMenu>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="margin-right: 10px"> 
+                                <h:outputLabel for="new_com">Comentarios</h:outputLabel>
+                                <h:inputTextarea 
+                                    required="true"
+                                    requiredMessage="Indique los comentarios"
+                                    value="#{inventarioView.selectedInv.idEquipo.comentarios}" 
+                                    class="form-control" 
+                                    id="new_com" 
+                                    html5:placeholder="Comentarios">
+                                </h:inputTextarea>
+                                <h:message  style="color: red" for="new_com"></h:message>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton  value="Guardar" actionListener="#{inventarioView.modificarInvetario()}"
+                                              update=":formPrincipal:tablainventarioeq" oncomplete="PF('dialogoModificar').hide();"/>
+                            <p:commandButton  value="Cancelar" onclick="PF('dialogoModificar').hide();"/>
+                        </td>
+                        <br></br>
+                    </tr>
+                </table>                
+            </p:dialog>
+        </h:form>
+
+        <h:form id="formEliminar">
+            <p:dialog id="dlgEliminar" header="Eliminar Inventario" widgetVar="dialogoEliminar" resizable="false" showEffect="fade" hideEffect="explode" modal="true">
+                <h:outputText value="Desea eliminar este registro?"/>
+                <p:commandButton  value="Si" actionListener="#{inventarioView.eliminarInvetario()}" update=":formPrincipal:tablainventarioeq" oncomplete="PF('dialogoEliminar').hide();"/>
+                <p:commandButton  value="No" onclick="PF('dialogoEliminar').hide();"/>
+            </p:dialog>
+        </h:form>
+        
         <!--pie de pagina-->
         <div class="fila">
 

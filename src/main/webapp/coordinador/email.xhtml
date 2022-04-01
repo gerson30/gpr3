@@ -90,37 +90,7 @@
                         </p:inputText>
                         <p:message for="subject" style="color:red"></p:message>
 
-                        <p:outputLabel value="SMTP"></p:outputLabel>
-                        <p:inputText value="#{emailJSFManagedBean.smtp}"
-                                     validatorMessage="SMTP Requiere una dirección IP"
-                                     id="smtp"
-                                     size="50">
-                            <f:validateRequired for="smtp"></f:validateRequired>
-                        </p:inputText>
-                        <p:message for="smtp" style="color:red"></p:message>
-
-                        <p:outputLabel value="USUARIO"></p:outputLabel>
-                        <p:inputText value="#{emailJSFManagedBean.username}"
-                                     id="usuario"
-                                     size="50">
-                        </p:inputText>
-                        <p:message for="usuario" style="color:red"></p:message>
-
-                        <p:outputLabel value="PASSWORD"></p:outputLabel>
-                        <p:inputText value="#{emailJSFManagedBean.password}"
-                                     id="password"
-                                     type="password"
-                                     size="50">
-                        </p:inputText>
-                        <p:message for="password" style="color:red"></p:message>
-
-                        <p:outputLabel value="PUERTO"></p:outputLabel>
-                        <p:inputText value="#{emailJSFManagedBean.port}"
-                                     style="margin-right: 50px"
-                                     id="puerto"
-                                     size="50">
-                        </p:inputText>
-                        <p:message for="puerto" style="color:red"></p:message>
+                        
 
                         <p:outputLabel value="MENSAJE"></p:outputLabel>
                         <p:inputTextarea  id="descr"

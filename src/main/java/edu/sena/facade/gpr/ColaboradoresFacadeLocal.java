@@ -37,6 +37,10 @@ public interface ColaboradoresFacadeLocal {
     public boolean agregarCol(Colaboradores colIn);
 
     public List<Colaboradores> verCol();
+    
+    public List<Colaboradores> buscarPorInventario(Integer idInventario);
+    
+    public boolean eliminarPorInventario(Integer idInventario);
 
     
 }

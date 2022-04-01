@@ -65,7 +65,7 @@ public class ColaboradorSession implements Serializable {
                 /*captura lo que hay en el conexto*/
                 FacesContext fc = FacesContext.getCurrentInstance();
                 /*se envía hacía afuera*/
-                fc.getExternalContext().redirect("coordinador/indexcol.xhtml");
+                fc.getExternalContext().redirect("coordinador/indexinv.xhtml");
             } else {
                 PrimeFaces.current().executeScript("Swal.fire("
                         + "  'Colaborador?',"

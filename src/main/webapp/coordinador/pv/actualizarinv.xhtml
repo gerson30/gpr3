@@ -17,7 +17,7 @@
             <tr>
                 <br></br>
                 <td>
-                    <h3 class="tituloinv">AGREGAR INVENTARIO</h3>
+                    <h3 class="tituloinv">ACTUALIZAR INVENTARIO</h3>
                 </td>
 
             </tr>
@@ -103,13 +103,14 @@
                         </td>
 
                     </tr>
-                    <tr>
-
-                        <td> <h:outputLabel for="new_mod">Modelo</h:outputLabel>
+                    <tr> 
+                        <td>
+                        <h:outputText  value="#{inventarioView.test}" /> 
+                            <h:outputLabel for="new_mod">Modelo</h:outputLabel>
                             <h:inputText 
                                 required="true"
                                 requiredMessage="Indique el modelo"
-                                value="#{inventarioView.nuevoequipo.modelo}"
+                                value="#{inventarioView.selectedInv.idEquipo.modelo}"
                                 class="form-control"
                                 id="new_mod">
                             </h:inputText>
@@ -185,11 +186,10 @@
                                 value="#{inventarioView.nuevoequipo.microssoftOffice}" 
                                 class="form-control" 
                                 id="new_off">
-                                <f:selectItem itemValue="Office 2010" itemLabel="2010"></f:selectItem>
-                                <f:selectItem itemValue="Office 2013" itemLabel="2013"></f:selectItem>
-                                <f:selectItem itemValue="Office 2016" itemLabel="2016"></f:selectItem>
-                                <f:selectItem itemValue="Office 2017" itemLabel="2017"></f:selectItem>
-                                <f:selectItem itemValue="Office 2019" itemLabel="2019"></f:selectItem>
+                                <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
+                                <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
+                                <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
+                                <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
                             </h:selectOneMenu>
                         </td>
 
@@ -214,20 +214,28 @@
                                 class="form-control" 
                                 id="new_ram">
                                 <f:selectItem itemValue="4 GB" itemLabel="4 GB"></f:selectItem>
-                                <f:selectItem itemValue="6 GB" itemLabel="6 GB"></f:selectItem>
                                 <f:selectItem itemValue="8 GB" itemLabel="8 GB"></f:selectItem>
                                 <f:selectItem itemValue="12 GB" itemLabel="12 GB"></f:selectItem>
                                 <f:selectItem itemValue="16 GB" itemLabel="16 GB"></f:selectItem>
                             </h:selectOneMenu>
                             <br>
+
                             </br>
                         </td>
                     </tr>
+
                     <tr>
                         <td>
                             <h5 class="tituloinv">Detalles</h5>
                         </td>
+
                     </tr>
+
+
+
+
+
+
                     <tr>
 
                         <td>

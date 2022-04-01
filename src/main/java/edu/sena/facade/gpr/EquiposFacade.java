@@ -20,9 +20,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class EquiposFacade extends AbstractFacade<Equipos> implements EquiposFacadeLocal {
-
-    
-    
+        
     @EJB
     EquiposFacadeLocal equiposFacadeLocal;
     
@@ -83,8 +81,50 @@ public class EquiposFacade extends AbstractFacade<Equipos> implements EquiposFac
     }
 
     @Override
-    public boolean actualizar(Equipos eqps, int i, int i1, int i2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean actualizar(Equipos equipo) {
+        
+        try {
+            Query qi = em.createNativeQuery("UPDATE tbl_equipos SET id_TipoPc=?,"
+                    + " id_CondicionEquipo=?, id_Marca=?,"
+                    + " modelo=?, serial=?,"
+                    + " sistemaOperativo=?, microssoftOffice=?,"
+                    + " procesador=?, memoriaRam=?,"
+                    + " capacidadDiscoDuro=?, comentarios=? where id_Equipo=? ");
+            qi.setParameter(1, equipo.getIdTipoPc().getIdTipoPc());
+            qi.setParameter(2, equipo.getIdCondicionEquipo().getIdCondicionEquipo());
+            qi.setParameter(3, equipo.getIdMarca().getIdMarca());
+            qi.setParameter(4, equipo.getModelo());
+            qi.setParameter(5, equipo.getSerial());
+            qi.setParameter(6, equipo.getSistemaOperativo());
+            qi.setParameter(7, equipo.getMicrossoftOffice());
+            qi.setParameter(8, equipo.getProcesador());
+            qi.setParameter(9, equipo.getMemoriaRam());
+            qi.setParameter(10, equipo.getCapacidadDiscoDuro());
+            qi.setParameter(11, equipo.getComentarios());
+            qi.setParameter(12, equipo.getIdEquipo());
+
+            qi.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+    
+    }
+
+    @Override
+    public boolean eliminar(Integer idEquipo) {
+       try {
+           System.out.println("idEquipo: "+ idEquipo);
+            Query qi = em.createNativeQuery("DELETE FROM tbl_equipos where id_Equipo=? ");
+            qi.setParameter(1, idEquipo);
+
+            qi.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
     }
     
 }

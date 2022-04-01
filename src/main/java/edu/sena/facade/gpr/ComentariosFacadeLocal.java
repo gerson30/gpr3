@@ -30,4 +30,5 @@ public interface ComentariosFacadeLocal {
 
     int count();
     
+    public boolean eliminarPorIncidente(Integer idIncidente);
 }

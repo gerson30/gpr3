@@ -9,6 +9,7 @@ import edu.sena.entity.gpr.Comentarios;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,23 @@ public class ComentariosFacade extends AbstractFacade<Comentarios> implements Co
 
     public ComentariosFacade() {
         super(Comentarios.class);
+    }
+
+    @Override
+    public boolean eliminarPorIncidente(Integer idIncidente) {
+        
+        try { 
+           System.out.println("idIncidente: "+ idIncidente);
+            Query qi = em.createNativeQuery("DELETE FROM tbl_comentarios where id_Ticket=? ");
+            qi.setParameter(1, idIncidente);
+
+            qi.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+    
     }
     
 }

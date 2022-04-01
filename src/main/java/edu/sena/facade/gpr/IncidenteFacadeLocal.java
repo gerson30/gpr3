@@ -31,5 +31,7 @@ public interface IncidenteFacadeLocal {
     int count();
 
     public List<Incidente> verInc();
+    public boolean eliminar(Integer idColaboradores);
+    List<Incidente> buscarPorColaborador(Integer idColaboradores);
     
 }

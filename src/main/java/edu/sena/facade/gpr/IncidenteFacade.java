@@ -38,4 +38,33 @@ public class IncidenteFacade extends AbstractFacade<Incidente> implements Incide
         Query coninc=em.createQuery("SELECT i FROM Incidente i");
         return coninc.getResultList();
     }
+    
+    @Override
+    public boolean eliminar(Integer idColaboradores) {
+       try { 
+           System.out.println("idColaboradores: "+ idColaboradores);
+            Query qi = em.createNativeQuery("DELETE FROM tbl_incidente where fk_colabAsigna=? ");
+            qi.setParameter(1, idColaboradores);
+
+            qi.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+    }
+
+    @Override
+    public List<Incidente> buscarPorColaborador(Integer idColaboradores) {
+       
+        try {
+            Query q = em.createQuery("SELECT c FROM Incidente c WHERE c.colaboradores1.idColab = :idColaboradores");
+            q.setParameter("idColaboradores", idColaboradores);
+            return  q.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+     
+    }
+    
 }
