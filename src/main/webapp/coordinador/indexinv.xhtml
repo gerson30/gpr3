@@ -30,8 +30,8 @@
                 </div>
                 <div class="nav">
 
-                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
-                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexcol.xhtml">Colaboradores</a>
+                    <!--<a class="button button_black" href="#{request.contextPath}/coordinador/indexinc.xhtml">Incidentes</a>
+                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexcol.xhtml">Colaboradores</a>-->
                     <a class="button button_black button_selected" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
                     <h:form>
                         <h:commandLink action="#{colaboradorSession.cerrarSesion()}" class="button button_black" >Salir</h:commandLink>
@@ -41,7 +41,7 @@
                     <div class="avatar">
                         <img class="imguser" src="#{request.contextPath}/assets/image/Logo_user.png" alt="imguser"/>
                     </div>
-                    <div style="max-width: 80px;">Coordinador</div>
+                    <div style="max-width: 80px;"></div>
                 </div>
             </div>
         </nav>
@@ -78,7 +78,7 @@
                     <a class="exportar" href="#{request.contextPath}/coordinador/cargarcsv.xhtml">cargar CSV</a>
                     <a class="exportar" href="#{request.contextPath}/coordinador/grafica.xhtml">Grafica</a>
                     <a class="exportar" href="#{request.contextPath}/coordinador/agregarinv.xhtml">Agregar Inventario</a>
-                   
+
                 </div>
                 <br>
                 </br>
@@ -86,15 +86,15 @@
                 <p:growl id="mensaje"></p:growl>-->
                 <!-- esta opcion muestra datos medieante una tabla -->
                 <h:form id="formPrincipal">  
-                    
-                    
+
+
                     <!-- esta es la tabla con sus datos-->
                     <p:fieldset legend="Datos" toggleable="true" >
                         <p:dataTable id="tablainventarioeq" var="inv" value="#{inventarioView.verInv()}" paginator="true" rows="10"> 
 
                             <!--podemos  agregar las etiquetas filterby, filterstyle,filtermatchmode, 
                             para poder realizar un filtrado sobre las columnas que queramos-->
-                            
+
                             <p:column headerText="N° Inventario" filterBy="#{inv.idInventario}" filterStyle="width50px" filterMatchMode="contains" >
                                 <h:outputText value="#{inv.idInventario}" > </h:outputText>
                             </p:column>
@@ -156,39 +156,39 @@
                             <p:column headerText="Comentarios" >
                                 <h:outputText value="#{inv.idEquipo.comentarios}"> </h:outputText>
                             </p:column>                            
-                            
+
                             <p:column headerText="Modificar" style="text-align: center">
                                 <p:commandButton icon="pi pi-pencil" title="Modificar" styleClass="edit-button rounded-button ui-button-success"
                                                  oncomplete="PF('dialogoModificar').show();" update=":formModificar">
                                     <f:setPropertyActionListener target="#{inventarioView.selectedInv}" value="#{inv}"/>
                                 </p:commandButton>
                             </p:column>
-                            
+
                             <p:column headerText="Eliminar" style="text-align: center">
                                 <p:commandButton icon="pi pi-trash" title="Eliminar" styleClass="edit-button rounded-button ui-button-danger"
                                                  oncomplete="PF('dialogoEliminar').show();" update=":formEliminar">
                                     <f:setPropertyActionListener target="#{inventarioView.selectedInv}" value="#{inv}"/>
                                 </p:commandButton>
                             </p:column>
-                            
+
                         </p:dataTable>
                     </p:fieldset>
 
                     <!-- reporte en pdf-->
-                    
+                    <div> Descargar Reporte en PDF
                     <h:commandLink>
                         <h:graphicImage url="/assets/image/pdf.png" width="35"></h:graphicImage>
                         <p:dataExporter type="pdf" target="tablainventarioeq" fileName="inventario"></p:dataExporter>
                     </h:commandLink>
-
+                    </div>
                 </h:form>    
 
             </div>
-            
+
         </div>
         <!--Formulario para editar-->
         <h:form id="formModificar">
-            
+
             <p:dialog id="dlgModificar" header="Modificar Inventario" widgetVar="dialogoModificar" 
                       resizable="false" showEffect="fade" hideEffect="explode" modal="true" width="60%">
                 <tr>
@@ -412,7 +412,7 @@
                 <p:commandButton  value="No" onclick="PF('dialogoEliminar').hide();"/>
             </p:dialog>
         </h:form>
-        
+
         <!--pie de pagina-->
         <div class="fila">
 
