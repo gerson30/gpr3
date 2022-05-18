@@ -5,23 +5,23 @@
 */
 
 ::-moz-selection {
-    background: #91DA32;
+    background: #00BC9C;
 }
 ::selection {
-	background: #91DA32;
+	background: #00BC9C;
 }
 
 .backgrounds {
-   background: #91DA32;
+   background: #00BC9C;
 }
 .overlay {
     background: rgba(145,218,50, 0.8);
 }
 .post-time-section .post-month .month {
-	background-color: #91DA32;
+	background-color: #00BC9C;
 }
 .search-button { 
-    background: #91DA32;
+    background: #00BC9C;
 }
 
 .btn-home a,
@@ -56,7 +56,7 @@
 .cbp-l-loadMore-button .cbp-l-loadMore-button-link:hover,
 .pager li>a:hover, .pager li>a:focus 
 {
-	background: #91DA32;
+	background: #00BC9C;
 }
 
 
@@ -109,13 +109,13 @@ footer #social-icons li a:hover,
 #notification .success,
 .section-links a:hover,
 .blog-post-title a:hover {
-	color: #91DA32;
+	color: #00BC9C;
 }
 
 .cbp-l-filters-alignRight .cbp-filter-counter:before,
 .cbp-l-filters-alignCenter .cbp-filter-counter:before,
 .cbp-l-filters-button .cbp-filter-counter:before {
-	border-top: 4px solid #91DA32;
+	border-top: 4px solid #00BC9C;
 }
 .btn-primary-full {
     box-shadow: 0 -3px rgba(0, 0, 0, 0.4) inset;
@@ -126,10 +126,10 @@ footer #social-icons li a:hover,
     background-color: rgba(178, 204, 2, 0.9);
 }
 .label-primary:after {
-    border-bottom-color: #91DA32;
+    border-bottom-color: #00BC9C;
 }
 .mega-menu .dropdown-menu {
-    border-bottom: 2px solid #91DA32;
+    border-bottom: 2px solid #00BC9C;
     border-top: none!important;
 }
 
@@ -137,11 +137,11 @@ footer #social-icons li a:hover,
 .btn-effect:focus,
 .btn-effect:active,
 .btn-effect:after {
-    background: #91DA32;
+    background: #00BC9C;
 }
 .btn-effect:hover {
     background: none; 
-    border-color: #91DA32;
+    border-color: #00BC9C;
     transition: all 0.4s;
 }
  

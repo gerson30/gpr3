@@ -82,7 +82,7 @@ public class ColaboradorSession implements Serializable {
         usuLogin = null;
         FacesContext fc = FacesContext.getCurrentInstance();
         fc.getExternalContext().invalidateSession();
-        fc.getExternalContext().redirect("../VistaPrinc/visual/vistaPrinc.xhtml");
+        fc.getExternalContext().redirect("../vistaPrinc.xhtml");
     }
 
     /**
