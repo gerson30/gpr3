@@ -8,6 +8,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough">
 
@@ -17,12 +18,7 @@ and open the template in the editor.
             <br></br>
 
             <div class="tituloinv">
-                <h3>ASIGNAR INVENTARIO</h3>
-            </div>
-            <br></br>
-            <br></br>
-            <div class="tituloinv">
-                <h5>Detalles de asignación</h5>
+                <h3>ASIGNAR EQUIPO</h3>
             </div>
             <br></br>
             <br></br>
@@ -30,45 +26,74 @@ and open the template in the editor.
 
             <div class="form-group col-md-12" align="center">
 
-                <h:form class="row g-3 needs-validation">
-                    <div class="col-md-12">
-                        <outputLabel for="validationServer01">Inventario a Entregar</outputLabel>
-                        <h:selectOneMenu class="form-control" id="validationServer01" html5:placeholder="Seleccione la marca" >
-                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                            <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
-                            <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
-                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                            <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                        </h:selectOneMenu>
-
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-
-                        <div class="col-md-12">
-                            <outputLabel for="validationServer02">Cédula</outputLabel>
-                            <h:selectOneMenu class="form-control" id="validationServer02">
-                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                                <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
-                                <f:selectItem itemValue="..." itemLabel="..." ></f:selectItem>
-                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                                <f:selectItem itemValue="..." itemLabel="..."></f:selectItem>
-                            </h:selectOneMenu>
-
-                        </div>
-                        <br></br>
-                        <div class="align-center">
-                            <a class="btn btn-primary" html5:type="submit" href="" >Guardar</a>
-                            <a class="btn btn-light" html5:type="submit" href="#{request.contextPath}/coordinador/indexinv.xhtml">Cancelar</a>
-                        </div>
-
-                    </div>
-
+                <h:form class="row g-3 needs-validation" id="formularioAsignar">
+                    
+                    <table class="form-group col-md-12" id="tablaAsignar">
+                                                    
+                        <tr>  
+                            <td>
+                                <h6 class="tituloinv">Información de Asignacion</h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 
+                                <h:outputLabel for="new_codigo">Codigo</h:outputLabel>
+                                <h:inputText required="true" requiredMessage="Indique el codigo" id="new_codigo"
+                                             value="#{asignarView.nuevoAsignacion.numeroActivo}" class="form-control">
+                                </h:inputText>
+                                <h:message style="color: red" for="new_codigo"></h:message>
+                            </td>
+                            <td> 
+                                <h:outputLabel for="new_unidad">Unidad</h:outputLabel>
+                                <h:inputText required="true" requiredMessage="Indique la unidad" id="new_unidad"
+                                             value="#{asignarView.nuevoAsignacion.unidad}" class="form-control">
+                                </h:inputText>
+                                <h:message style="color: red" for="new_unidad"></h:message>
+                            </td>
+                        </tr>            
+                        <tr>
+                            <td>
+                                <h:outputLabel for="new_colaborador">Colaborador</h:outputLabel>
+                                <h:selectOneMenu required="true" value="#{asignarView.idColaborador}"
+                                    class="form-control" id="new_colaborador">
+                                    <f:selectItems var="c" value="#{asignarView.listaColaboradores}" 
+                                                   itemLabel="#{c.nombre} #{c.apellido}" itemValue="#{c.idColab}">
+                                    </f:selectItems>
+                                </h:selectOneMenu>
+                            </td>
+                            <td>
+                                <h:outputLabel for="new_equipo">Equipo</h:outputLabel>
+                                <h:selectOneMenu required="true" value="#{asignarView.idEquipo}" 
+                                    class="form-control" id="new_equipo">
+                                    <f:selectItems var="e" value="#{asignarView.listaEquipos}" 
+                                                   itemLabel="#{e.serial} - #{e.modelo}" itemValue="#{e.idEquipo}">
+                                    </f:selectItems>
+                                    
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td> 
+                                <h:outputLabel for="new_comentario">Comentario</h:outputLabel>
+                                <h:inputText required="true" requiredMessage="Indique el comentario" id="new_comentario"
+                                             value="#{asignarView.nuevoAsignacion.comentario}" class="form-control">
+                                </h:inputText>
+                                <h:message style="color: red" for="new_comentario"></h:message>
+                            </td>
+                        </tr>                                     
+                        <tr>
+                            <td>
+                                <br></br>
+                                <br></br>              
+                                
+                                <p:commandButton id="boton" action="#{asignarView.ingresarAsignacion()}" class="btn btn-primary"  
+                                                 update=":formularioAsignar:boton" value="Guardar">
+                                </p:commandButton>
+                                
+                                <a href="#{request.contextPath}/coordinador/indexasignacion.xhtml" class="btn btn-light" html5:type="submit" >Cancelar</a>
+                            </td>
+                        </tr>
+                    </table>
                 </h:form>
 
                 <br></br>

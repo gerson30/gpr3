@@ -43,13 +43,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Colaboradores.findByIdColab", query = "SELECT c FROM Colaboradores c WHERE c.idColab = :idColab"),
     @NamedQuery(name = "Colaboradores.findByCedula", query = "SELECT c FROM Colaboradores c WHERE c.cedula = :cedula"),
     @NamedQuery(name = "Colaboradores.findByFechaIngreso", query = "SELECT c FROM Colaboradores c WHERE c.fechaIngreso = :fechaIngreso"),
-    @NamedQuery(name = "Colaboradores.findByColabFechaRetiro", query = "SELECT c FROM Colaboradores c WHERE c.colabFechaRetiro = :colabFechaRetiro"),
+    //@NamedQuery(name = "Colaboradores.findByColabFechaRetiro", query = "SELECT c FROM Colaboradores c WHERE c.colabFechaRetiro = :colabFechaRetiro"),
     @NamedQuery(name = "Colaboradores.findByNombre", query = "SELECT c FROM Colaboradores c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "Colaboradores.findByApellido", query = "SELECT c FROM Colaboradores c WHERE c.apellido = :apellido"),
     @NamedQuery(name = "Colaboradores.findByFechaNacim", query = "SELECT c FROM Colaboradores c WHERE c.fechaNacim = :fechaNacim"),
     @NamedQuery(name = "Colaboradores.findByDireccion", query = "SELECT c FROM Colaboradores c WHERE c.direccion = :direccion"),
-    @NamedQuery(name = "Colaboradores.findByBarrio", query = "SELECT c FROM Colaboradores c WHERE c.barrio = :barrio"),
-    @NamedQuery(name = "Colaboradores.findByCiudad", query = "SELECT c FROM Colaboradores c WHERE c.ciudad = :ciudad"),
+    //@NamedQuery(name = "Colaboradores.findByBarrio", query = "SELECT c FROM Colaboradores c WHERE c.barrio = :barrio"),
+    //@NamedQuery(name = "Colaboradores.findByCiudad", query = "SELECT c FROM Colaboradores c WHERE c.ciudad = :ciudad"),
     @NamedQuery(name = "Colaboradores.findByNombreContacto", query = "SELECT c FROM Colaboradores c WHERE c.nombreContacto = :nombreContacto"),
     @NamedQuery(name = "Colaboradores.findByApellidoContacto", query = "SELECT c FROM Colaboradores c WHERE c.apellidoContacto = :apellidoContacto"),
     @NamedQuery(name = "Colaboradores.findByUsuarioDominio", query = "SELECT c FROM Colaboradores c WHERE c.usuarioDominio = :usuarioDominio"),
@@ -63,104 +63,130 @@ public class Colaboradores implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_Colab")
     private Integer idColab;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "cedula")
-    private double cedula;
+    private String cedula;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "fechaIngreso")
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
-    @Column(name = "colab_FechaRetiro")
+    
+    /*@Column(name = "colab_FechaRetiro")
     @Temporal(TemporalType.DATE)
-    private Date colabFechaRetiro;
+    private Date colabFechaRetiro;*/
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "apellido")
     private String apellido;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "fechaNacim")
     @Temporal(TemporalType.DATE)
     private Date fechaNacim;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "direccion")
     private String direccion;
-    @Basic(optional = false)
+    
+    /*@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "barrio")
-    private String barrio;
-    @Basic(optional = false)
+    private String barrio;*/
+    
+    /*@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 12)
     @Column(name = "ciudad")
-    private String ciudad;
+    private String ciudad;*/
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "nombreContacto")
     private String nombreContacto;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "apellidoContacto")
     private String apellidoContacto;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "usuarioDominio")
     private String usuarioDominio;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "contrasenaDominio")
     private int contrasenaDominio;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "correo")
     private String correo;
+    
     @JoinTable(name = "tbl_colaboradores_roles", joinColumns = {
         @JoinColumn(name = "fk_id_Colab", referencedColumnName = "id_Colab"),
         @JoinColumn(name = "fk_id_Colab", referencedColumnName = "id_Colab")}, inverseJoinColumns = {
         @JoinColumn(name = "fk_id_Rol", referencedColumnName = "id_Rol")})
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Roles> rolesCollection;
+    
     @OneToMany(mappedBy = "colaboradores", fetch = FetchType.LAZY)
     private Collection<Incidente> incidenteCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "colaboradores1", fetch = FetchType.LAZY)
     private Collection<Incidente> incidenteCollection1;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "colaboradores2", fetch = FetchType.LAZY)
     private Collection<Incidente> incidenteCollection2;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "colaboradores3", fetch = FetchType.LAZY)
     private Collection<Incidente> incidenteCollection3;
+    
     @JoinColumn(name = "id_Area", referencedColumnName = "id_Area")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Area idArea;
+    
     @JoinColumn(name = "id_EstadoCivil", referencedColumnName = "id_EstadoCivil")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private EstadoCivil idEstadoCivil;
-    @JoinColumn(name = "id_EstadoColab", referencedColumnName = "id_estadocolab")
+    
+    /*@JoinColumn(name = "id_EstadoColab", referencedColumnName = "id_estadocolab")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private EstadoColaborador idEstadoColab;
+    private EstadoColaborador idEstadoColab;*/
+    
     @JoinColumn(name = "id_Genero", referencedColumnName = "id_Genero")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Genero idGenero;
-    @JoinColumn(name = "id_Inventario", referencedColumnName = "id_Inventario")
+    
+    /*@JoinColumn(name = "id_Inventario", referencedColumnName = "id_Inventario")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Inventario idInventario;
+    private Inventario idInventario;*/
+    
     @JoinColumn(name = "id_Parentesco", referencedColumnName = "id_Parentesco")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Parentesco idParentesco;
+    
     @JoinColumn(name = "id_Telefono", referencedColumnName = "id_Telefono")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Telefonos idTelefono;
@@ -172,7 +198,7 @@ public class Colaboradores implements Serializable {
         this.idColab = idColab;
     }
 
-    public Colaboradores(Integer idColab, double cedula, Date fechaIngreso, String nombre, String apellido, Date fechaNacim, String direccion, String barrio, String ciudad, String nombreContacto, String apellidoContacto, String usuarioDominio, int contrasenaDominio, String correo) {
+    public Colaboradores(Integer idColab, String cedula, Date fechaIngreso, String nombre, String apellido, Date fechaNacim, String direccion, String nombreContacto, String apellidoContacto, String usuarioDominio, int contrasenaDominio, String correo) {
         this.idColab = idColab;
         this.cedula = cedula;
         this.fechaIngreso = fechaIngreso;
@@ -180,8 +206,8 @@ public class Colaboradores implements Serializable {
         this.apellido = apellido;
         this.fechaNacim = fechaNacim;
         this.direccion = direccion;
-        this.barrio = barrio;
-        this.ciudad = ciudad;
+        //this.barrio = barrio;
+        //this.ciudad = ciudad;
         this.nombreContacto = nombreContacto;
         this.apellidoContacto = apellidoContacto;
         this.usuarioDominio = usuarioDominio;
@@ -197,11 +223,11 @@ public class Colaboradores implements Serializable {
         this.idColab = idColab;
     }
 
-    public double getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(double cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -213,13 +239,13 @@ public class Colaboradores implements Serializable {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Date getColabFechaRetiro() {
+    /*public Date getColabFechaRetiro() {
         return colabFechaRetiro;
     }
 
     public void setColabFechaRetiro(Date colabFechaRetiro) {
         this.colabFechaRetiro = colabFechaRetiro;
-    }
+    }*/
 
     public String getNombre() {
         return nombre;
@@ -253,7 +279,7 @@ public class Colaboradores implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getBarrio() {
+    /*public String getBarrio() {
         return barrio;
     }
 
@@ -267,7 +293,7 @@ public class Colaboradores implements Serializable {
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
-    }
+    }*/
 
     public String getNombreContacto() {
         return nombreContacto;
@@ -370,13 +396,13 @@ public class Colaboradores implements Serializable {
         this.idEstadoCivil = idEstadoCivil;
     }
 
-    public EstadoColaborador getIdEstadoColab() {
+    /*public EstadoColaborador getIdEstadoColab() {
         return idEstadoColab;
     }
 
     public void setIdEstadoColab(EstadoColaborador idEstadoColab) {
         this.idEstadoColab = idEstadoColab;
-    }
+    }*/
 
     public Genero getIdGenero() {
         return idGenero;
@@ -386,13 +412,13 @@ public class Colaboradores implements Serializable {
         this.idGenero = idGenero;
     }
 
-    public Inventario getIdInventario() {
+    /*public Inventario getIdInventario() {
         return idInventario;
     }
 
     public void setIdInventario(Inventario idInventario) {
         this.idInventario = idInventario;
-    }
+    }*/
 
     public Parentesco getIdParentesco() {
         return idParentesco;

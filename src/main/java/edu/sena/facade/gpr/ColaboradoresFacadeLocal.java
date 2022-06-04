@@ -34,7 +34,10 @@ public interface ColaboradoresFacadeLocal {
 
     public Colaboradores inicioSesion(String usuarioDominio, String contrasenaDominio);
 
-    public boolean agregarCol(Colaboradores colIn);
+     public boolean agregarCol(Colaboradores colIn);
+     
+    public boolean agregarColaborador(Colaboradores colIn, Integer idEstadoCivil, Integer idGenero, 
+            Integer idTelefono, Integer idArea, Integer idParentesco);
 
     public List<Colaboradores> verCol();
     

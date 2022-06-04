@@ -1,4 +1,4 @@
-/*
+                                /*
 En esta entoidad se crea la clase servertime donde se declara public string time, y se traen ls gett and setter
 de igual forma el updatetime para que actualice el formato de la fecha en el formulario principal
  */

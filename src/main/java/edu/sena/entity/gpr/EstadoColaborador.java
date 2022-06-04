@@ -48,8 +48,9 @@ public class EstadoColaborador implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "nombreEstadoColab")
     private String nombreEstadoColab;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstadoColab", fetch = FetchType.LAZY)
-    private Collection<Colaboradores> colaboradoresCollection;
+    
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstadoColab", fetch = FetchType.LAZY)
+    private Collection<Colaboradores> colaboradoresCollection;*/
 
     public EstadoColaborador() {
     }
@@ -79,14 +80,14 @@ public class EstadoColaborador implements Serializable {
         this.nombreEstadoColab = nombreEstadoColab;
     }
 
-    @XmlTransient
+    /*@XmlTransient
     public Collection<Colaboradores> getColaboradoresCollection() {
         return colaboradoresCollection;
     }
 
     public void setColaboradoresCollection(Collection<Colaboradores> colaboradoresCollection) {
         this.colaboradoresCollection = colaboradoresCollection;
-    }
+    }*/
 
     @Override
     public int hashCode() {

@@ -45,7 +45,7 @@
                         </td>
                         <td> 
                             <h:outputLabel for="new_apellido">Apellido</h:outputLabel>
-                            <h:inputText required="true" requiredMessage="Indique el apellido" id="new_apellido"
+                            <h:inputText required="true" requiredMessage="Indique la cedula" id="new_apellido"
                                          value="#{colaboradorView.nuevocol.apellido}" class="form-control">
                             </h:inputText>
                             <h:message style="color: red" for="new_apellido"></h:message>
@@ -61,16 +61,16 @@
                         </td>
                         <td> 
                             <h:outputLabel for="new_direccion">Direccion</h:outputLabel>
-                            <h:inputText required="true" requiredMessage="Indique la direccion" id="new_direccion" 
+                            <h:inputText required="true" requiredMessage="Indique la cedula" id="new_direccion" 
                                          value="#{colaboradorView.nuevocol.direccion}" class="form-control">
                             </h:inputText>
                             <h:message style="color: red" for="new_direccion"></h:message>
                         </td>
-                    </tr>    
+                    </tr>                    
                     <tr>
                         <td>
                             <h:outputLabel for="new_fecha_ingreso">Fecha Ingreso</h:outputLabel>
-                            <h:inputText required="true" requiredMessage="Ingrese la fecha de ingreso" value="#{colaboradorView.fechaIngreso}" 
+                            <h:inputText required="true" requiredMessage="Ingrese la fecha" value="#{colaboradorView.fechaIngreso}" 
                                 class="form-control" id="new_fecha_ingreso" html5:type="date">
                                 <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
                             </h:inputText>
@@ -78,17 +78,17 @@
                         </td>
                         <td>
                             <h:outputLabel for="new_fecha_nacimiento">Fecha Nacimiento</h:outputLabel>
-                            <h:inputText required="true" requiredMessage="Ingrese la fecha de nacimiento" value="#{colaboradorView.fechaNacimiento}" 
+                            <h:inputText required="true" requiredMessage="Ingrese la fecha" value="#{colaboradorView.fechaNacimiento}" 
                                 class="form-control" id="new_fecha_nacimiento" html5:type="date">
                                 <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
                             </h:inputText>
                             <h:message style="color: red" for="new_fecha_nacimiento"></h:message>
                         </td>
-                    </tr>                   
+                    </tr>                    
                     <tr>
                         <td>
                             <h:outputLabel for="new_tipo">Estado Civil</h:outputLabel>
-                            <h:selectOneMenu required="true" value="#{colaboradorView.idEstadociv}"
+                            <h:selectOneMenu required="true" value="#{inventarioView.idTipoPc}"
                                 class="form-control" id="new_tipo">
                                 <f:selectItems var="ec" value="#{colaboradorView.listadeestadociv}" 
                                                itemLabel="#{ec.nombreEstado}" itemValue="#{ec.idEstadoCivil}">
@@ -97,10 +97,10 @@
                         </td>
                         <td>
                             <h:outputLabel for="new_mar">Género</h:outputLabel>
-                            <h:selectOneMenu required="true" value="#{colaboradorView.idGenero}" 
+                            <h:selectOneMenu required="true" value="#{inventarioView.idMarca}" 
                                              class="form-control" id="new_mar">
                                 <f:selectItems var="g" value="#{colaboradorView.listagenero}" 
-                                               itemLabel="#{g.nombreGenero}"  itemValue="#{g.idGenero}">
+                                               itemLabel="#{g.nombreGenero}"  itemValue="#{mar.idGenero}">
                                 </f:selectItems>
                             </h:selectOneMenu>
                         </td>
@@ -108,7 +108,11 @@
                     <tr>
                         <td>                            
                             <h:outputLabel for="new_area">Área</h:outputLabel>
-                            <h:selectOneMenu required="true" value="#{colaboradorView.idArea}" class="form-control" id="new_area">
+                            <h:selectOneMenu 
+                                required="true"
+                                value="#{inventarioView.idMarca}"
+                                class="form-control" 
+                                id="new_area">
                                 <f:selectItems var="a" value="#{colaboradorView.listaarea}" 
                                                itemLabel="#{a.nombreArea}"  itemValue="#{a.idArea}">
                                 </f:selectItems>
@@ -154,7 +158,7 @@
                         </td>
                         <td> 
                             <h:outputLabel for="new_apellido_contacto">Apellido</h:outputLabel>
-                            <h:inputText required="true" requiredMessage="Indique el apellido" id="new_apellido_contacto"
+                            <h:inputText required="true" requiredMessage="Indique la cedula" id="new_apellido_contacto"
                                          value="#{colaboradorView.nuevocol.apellidoContacto}" class="form-control">
                             </h:inputText>
                             <h:message style="color: red" for="new_apellido_contacto"></h:message>
@@ -180,7 +184,7 @@
                     <tr>
                         <td>                            
                             <h:outputLabel for="new_parentesco">Parentesco</h:outputLabel>
-                            <h:selectOneMenu  required="true" value="#{colaboradorView.idParentesco}" class="form-control" id="new_parentesco">
+                            <h:selectOneMenu  required="true" value="#{inventarioView.idMarca}" class="form-control" id="new_parentesco">
                                 <f:selectItems var="p" value="#{colaboradorView.listaparentesco}" 
                                                itemLabel="#{p.nombreParentesco}"  itemValue="#{p.idParentesco}">
                                 </f:selectItems>
@@ -193,7 +197,7 @@
                             <br></br>                            
                             <h:commandButton action="#{colaboradorView.ingresarColaborador()}" class="btn btn-primary" 
                                               value="Guardar" html5:type="submit"> </h:commandButton>
-                            <a href="#{request.contextPath}/coordinador/indexcol.xhtml" class="btn btn-light" html5:type="submit" >Cancelar</a>
+                            <a href="#{request.contextPath}/coordinador/indexinv.xhtml" class="btn btn-light" html5:type="submit" >Cancelar</a>
                         </td>
                     </tr>
                 </table>

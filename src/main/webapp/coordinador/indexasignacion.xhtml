@@ -29,8 +29,8 @@
                     <img class="logo" src="#{request.contextPath}/assets/image/logotipo_peq.png" alt="logo"/>
                 </div>
                 <div class="nav">
-                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexasignacion.xhtml">Asignacion</a>                    
-                    <a class="button button_black button_selected" href="#{request.contextPath}/coordinador/indexcol.xhtml">Colaboradores</a>
+                    <a class="button button_black button_selected" href="#{request.contextPath}/coordinador/indexasignacion.xhtml">Asignacion</a>
+                    <a class="button button_black" href="#{request.contextPath}/coordinador/indexcol.xhtml">Colaboradores</a>
                     <a class="button button_black" href="#{request.contextPath}/coordinador/indexinv.xhtml">Inventario</a>
 
                     <h:form>
@@ -57,7 +57,7 @@
                 <div class="topnav">
                     <!--<a href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Inventario</a>-->
 
-                    <a class="exportar" href="#{request.contextPath}/coordinador/agregarcol.xhtml">Agregar colaborador</a>
+                    <a class="exportar" href="#{request.contextPath}/coordinador/asignarinv.xhtml">Asignar Equipo</a>
 
                 </div>
                 <br>
@@ -69,72 +69,45 @@
 
 
                     <!-- esta es la tabla con sus datos-->
-                    <p:fieldset legend="Lista Colaboradores" toggleable="true" >
-                        <p:dataTable id="tablacol" var="col" value="#{colaboradorView.verCol()}" paginator="true" rows="10"> 
+                    <p:fieldset legend="Lista Asignaciones" toggleable="true" >
+                        <p:dataTable id="tablaAsignado" var="asi" value="#{asignarView.verAsignacion()}" paginator="true" rows="10"> 
 
                             <!--podemos  agregar las etiquetas filterby, filterstyle,filtermatchmode, 
                             para poder realizar un filtrado sobre las columnas que queramos-->
 
-                            <p:column headerText="N° Col." >
-                                <h:outputText value="#{col.idColab}" > </h:outputText>
+                            <p:column headerText="Identificador" >
+                                <h:outputText value="#{asi.idAsignacion}" > </h:outputText>
                             </p:column>
 
-                            <p:column headerText="Nombre"  filterBy="#{col.nombre}" filterStyle="width50px" filterMatchMode="contains"  >
-                                <h:outputText value="#{col.nombre}" ></h:outputText>
+                            <p:column headerText="Equipo"  filterBy="#{asi.idEquipoo.serial}" filterStyle="width50px" filterMatchMode="contains"  >
+                                <h:outputText value="#{asi.idEquipoo.serial} - #{asi.idEquipoo.modelo}" ></h:outputText>
                             </p:column>
 
-                            <p:column headerText= "Apellido" filterBy="#{col.apellido}" filterStyle="width50px" filterMatchMode="contains"  >
-                                <h:outputText value="#{col.apellido}">   </h:outputText>
+                            <p:column headerText= "Colaborador" filterBy="#{asi.id_Colab.nombre}" filterStyle="width50px" filterMatchMode="contains"  >
+                                <h:outputText value="#{asi.id_Colab.nombre} #{asi.id_Colab.apellido} - #{asi.id_Colab.cedula}">   </h:outputText>
                             </p:column>
 
-                            <p:column headerText="cedula" filterBy="#{col.cedula}" filterStyle="width40px" filterMatchMode="contains" >
-                                <h:outputText value="#{col.cedula}"> </h:outputText>
+                            <p:column headerText="Numero" filterBy="#{asi.numeroActivo}" filterStyle="width40px" filterMatchMode="contains" >
+                                <h:outputText value="#{asi.numeroActivo}"> </h:outputText>
                             </p:column>
 
-                            <p:column headerText="Direccion"  >
-                                <h:outputText value="#{col.direccion}"> </h:outputText>
+                            <p:column headerText="Unidad"  >
+                                <h:outputText value="#{asi.unidad}"> </h:outputText>
                             </p:column>
 
-                            <p:column headerText="Fecha ingreso" >
-                                <h:outputText value="#{col.fechaIngreso}"> </h:outputText>
+                            <p:column headerText="Fecha de Asignacion" >
+                                <h:outputText value="#{asi.fechaAsignacion}">                                
+                                    <f:convertDateTime pattern="dd-MM-YYYY"> </f:convertDateTime>
+                                </h:outputText>
                             </p:column>
-
-                            <p:column headerText="Fecha Nacimiento" >
-                                <h:outputText value="#{col.fechaNacim}"> </h:outputText>
+                            
+                            <p:column headerText="Acción" style="text-align: center">
+                                <p:commandButton icon="pi pi-pencil" title="Liberar" styleClass="edit-button rounded-button ui-button-success"
+                                                 oncomplete="PF('dialogoModificar').show();" update=":formPrincipal:tablaAsignado">
+                                    <f:setPropertyActionListener target="#{asignarView.selectedAsignacion}" value="#{asi}"/>
+                                </p:commandButton>
                             </p:column>
-
-                            <p:column headerText="Estado civil" >
-                                <h:outputText value="#{col.idEstadoCivil.nombreEstado}"> </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Genero" >
-                                <h:outputText value="#{col.idGenero.nombreGenero}"> </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Área" >
-                                <h:outputText value="#{col.idArea.nombreArea}"> </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Correo" >
-                                <h:outputText value="#{col.correo}"> </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Tel. Fjo">
-                                <h:outputText value="#{col.idTelefono.telCel}"> </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Celular" >
-                                <h:outputText value="#{col.idTelefono.telContactCel}"> </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Nombre contacto emergencia" >
-                                <h:outputText value="#{col.nombreContacto}"> </h:outputText>
-                            </p:column>
-
-                            <p:column headerText="Telefono contacto emergencia" >
-                                <h:outputText value="#{col.idTelefono.telContactCel}"> </h:outputText>
-                            </p:column>
-
+                            
                         </p:dataTable>   
                     </p:fieldset>
 
@@ -164,6 +137,35 @@
                 <li><a href="https://www.linkedin.com/in/grupo-consultor-andino-sa-21a74959/?originalSubdomain=co" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
             </ul>
         </div>
+        
+        
+           <!--Formulario para editar-->
+        <h:form id="formModificar">
+
+            <p:dialog id="dlgModificar" header="Liberar Activo" widgetVar="dialogoModificar" 
+                      resizable="false" showEffect="fade" hideEffect="explode" modal="true" width="60%">
+                <tr>
+                    <td>
+                        <br></br>
+                        <h5 class="tituloinv">¿Usted desea liberar activo?</h5>
+                    </td>
+                </tr>
+                <table class="form-group col-md-12">
+                  
+                    <tr>
+                        <td>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton  style="margin-right: 20px" value="Liberar" actionListener="#{asignarView.liberarActivo()}"
+                                              update=":formPrincipal:tablaAsignado" oncomplete="PF('dialogoModificar').hide();"/>
+                            
+                            <p:commandButton  value="Cancelar" onclick="PF('dialogoModificar').hide();"/>
+                        </td>
+                        <br></br>
+                    </tr>
+                </table>                
+            </p:dialog>
+        </h:form>
 
     </h:body>
 

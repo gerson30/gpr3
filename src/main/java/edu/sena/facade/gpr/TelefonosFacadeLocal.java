@@ -5,7 +5,9 @@
  */
 package edu.sena.facade.gpr;
 
+import edu.sena.entity.gpr.Equipos;
 import edu.sena.entity.gpr.Telefonos;
+import java.math.BigInteger;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,4 +32,7 @@ public interface TelefonosFacadeLocal {
 
     int count();
     
+    public boolean ingresarTelefono(Telefonos telefonos);
+    
+    Integer obtenerUltimoId();
 }

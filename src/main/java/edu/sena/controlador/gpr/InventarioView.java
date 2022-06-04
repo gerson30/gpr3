@@ -191,7 +191,7 @@ public class InventarioView implements Serializable {
         }
         
         
-        if (colaboradoresFacadeLocal.eliminarPorInventario(selectedInv.getIdInventario())) {
+        //if (colaboradoresFacadeLocal.eliminarPorInventario(selectedInv.getIdInventario())) {
             
             inventarioFacadeLocal.eliminarinvtbl(selectedInv.getIdInventario());
             equiposFacadeLocal.eliminar(selectedInv.getIdEquipo().getIdEquipo());
@@ -203,7 +203,7 @@ public class InventarioView implements Serializable {
                     + ")");
             selectedInv = new Inventario();
         
-        } else {
+        /*} else {
             PrimeFaces.current().executeScript("Swal.fire("
                     + "  'Equipo',"
                     + "  'No se puede registrar, Intente de nuevo',"
@@ -211,7 +211,7 @@ public class InventarioView implements Serializable {
                     + ")");
             alerta = "ok";
             selectedInv = new Inventario();
-        } 
+        }*/
     }
     
     public Equipos getNuevoequipo() {
@@ -339,7 +339,10 @@ public class InventarioView implements Serializable {
     public void setSelectedInv(Inventario selectedInv) {
         this.selectedInv = selectedInv;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "InventarioView{" + "inventarioFacadeLocal=" + inventarioFacadeLocal + ", colaboradoresFacadeLocal=" + colaboradoresFacadeLocal + ", comentariosFacadeLocal=" + comentariosFacadeLocal + ", tipopcFacadeLocal=" + tipopcFacadeLocal + ", incidenteFacadeLocal=" + incidenteFacadeLocal + ", marcaFacadeLocal=" + marcaFacadeLocal + ", condicionEquipoFacadeLocal=" + condicionEquipoFacadeLocal + ", estadoEquipoFacadeLocal=" + estadoEquipoFacadeLocal + ", equiposFacadeLocal=" + equiposFacadeLocal + ", alerta=" + alerta + ", listacondiciones=" + listacondiciones + ", listademarcas=" + listademarcas + ", listadetipos=" + listadetipos + ", listadeestados=" + listadeestados + ", nuevoequipo=" + nuevoequipo + ", invnue=" + invnue + ", idTipoPc=" + idTipoPc + ", idMarca=" + idMarca + ", idCondicion=" + idCondicion + ", fechaingreso=" + fechaingreso + ", idEstadoequipo=" + idEstadoequipo + ", selectedInv=" + selectedInv + ", test=" + test + '}';
+    }
     
 }

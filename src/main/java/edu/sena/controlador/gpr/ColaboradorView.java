@@ -24,6 +24,7 @@ import edu.sena.facade.gpr.ParentescoFacadeLocal;
 import edu.sena.facade.gpr.RolesFacadeLocal;
 import edu.sena.facade.gpr.TelefonosFacadeLocal;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -59,7 +61,6 @@ public class ColaboradorView implements Serializable {
     @EJB
     InventarioFacadeLocal inventarioFacadeLocal;
     
-
     private ArrayList<Inventario> listainventario = new ArrayList<>();
     private ArrayList<Roles> listarol = new ArrayList<>();
     private ArrayList<Parentesco> listaparentesco = new ArrayList<>();
@@ -69,6 +70,7 @@ public class ColaboradorView implements Serializable {
     private ArrayList<EstadoCivil> listadeestadociv = new ArrayList<>();
     private ArrayList<EstadoColaborador> listadeestadoscol = new ArrayList<>();
     private Colaboradores nuevocol = new Colaboradores();
+    private Telefonos nuevotelefono = new Telefonos();
     private int idEstadocolab;
     private int idEstadociv;
     private int idGenero;
@@ -77,9 +79,10 @@ public class ColaboradorView implements Serializable {
     private int idParentesco;
     private int idRol;
     private Date fechaIngreso;
-    private Date fechaRetiro;
     private Date fechaNacimiento;
     private int idInventario;
+    
+    private String alerta = "";
 
     /**
      * Creates a new instance of ColaboradorView
@@ -88,7 +91,7 @@ public class ColaboradorView implements Serializable {
     }
 
     @PostConstruct
-    public void init2() {
+    public void init() {
         listadeestadoscol.addAll(estadoColaboradorFacadeLocal.findAll());
         listadeestadociv.addAll(estadoCivilFacadeLocal.findAll());
         listagenero.addAll(generoFacadeLocal.findAll());
@@ -98,7 +101,49 @@ public class ColaboradorView implements Serializable {
         listarol.addAll(rolesFacadeLocal.findAll());
         listainventario.addAll(inventarioFacadeLocal.findAll());
     }
+    
+    
+    public void ingresarColaborador() {
+        System.out.println("ingresarColaborador");
+        boolean res = telefonosFacadeLocal.ingresarTelefono(nuevotelefono);
+        
+        if(res){
+            Integer idTelefono = telefonosFacadeLocal.obtenerUltimoId();
+            
+            if(idTelefono>0){
+                
+                nuevocol.setFechaIngreso(fechaIngreso);
+                nuevocol.setFechaNacim(fechaNacimiento);
+                nuevocol.setUsuarioDominio(nuevocol.getCorreo());
+                nuevocol.setContrasenaDominio(123456);
+                
+                colaboradoresFacadeLocal.agregarColaborador(nuevocol, idEstadociv, idGenero, idTelefono, idArea, idParentesco);
+                
+                limpiarDatos();
+                
+                PrimeFaces.current().executeScript("Swal.fire("
+                    + "  'Colaborador',"
+                    + "  'Creado con Exito !!!',"
+                    + "  'success'"
+                    + ")");
+            }
+        }
+        
+        
+        
+    }
 
+    public void limpiarDatos(){    
+        nuevotelefono = new Telefonos();
+        nuevocol = new Colaboradores();
+        fechaIngreso = null;
+        fechaNacimiento = null;
+        idEstadociv = 1;
+        idGenero = 1;
+        idArea = 1;
+        idParentesco = 1;
+    }
+    
     public List<Colaboradores> verCol() {
 
         return colaboradoresFacadeLocal.verCol();
@@ -232,14 +277,6 @@ public class ColaboradorView implements Serializable {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Date getFechaRetiro() {
-        return fechaRetiro;
-    }
-
-    public void setFechaRetiro(Date fechaRetiro) {
-        this.fechaRetiro = fechaRetiro;
-    }
-
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -264,4 +301,22 @@ public class ColaboradorView implements Serializable {
         this.idInventario = idInventario;
     }
 
+    public Telefonos getNuevotelefono() {
+        return nuevotelefono;
+    }
+
+    public void setNuevotelefono(Telefonos nuevotelefono) {
+        this.nuevotelefono = nuevotelefono;
+    }
+
+    public String getAlerta() {
+        return alerta;
+    }
+
+    public void setAlerta(String alerta) {
+        this.alerta = alerta;
+    }
+    
+    
+    
 }

@@ -58,14 +58,46 @@ public class ColaboradoresFacade extends AbstractFacade<Colaboradores> implement
     @Override
     public boolean agregarCol(Colaboradores colIn) {
         try {
-            Query ac = em.createNativeQuery("INSERT INTO `gpr`.`tbl_colaboradores` (`cedula`, "
-                    + "`fechaIngreso`, `nombre`, `apellido`, `id_EstadoCivil`) VALUES ('?', "
-                    + "'?', '?', '?', '?');");
+            Query ac = em.createNativeQuery("INSERT INTO `gpr`.`tbl_colaboradores` (`cedula`, `fechaIngreso`, `nombre`, "
+                    + "`apellido`, `fechaNacim`)"
+                    + " VALUES (?, ?, ?, ?, ?, ?);");
             ac.setParameter(1, colIn.getCedula());
             ac.setParameter(2, colIn.getFechaIngreso());
             ac.setParameter(3, colIn.getNombre());
             ac.setParameter(4, colIn.getApellido());
-            ac.setParameter(5, colIn.getIdEstadoCivil());
+            ac.setParameter(5, colIn.getFechaNacim());
+
+            ac.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean agregarColaborador(Colaboradores colIn, Integer idEstadoCivil, Integer idGenero, 
+            Integer idTelefono, Integer idArea, Integer idParentesco) {
+        try {
+            Query ac = em.createNativeQuery("INSERT INTO `gpr`.`tbl_colaboradores` (`cedula`, `fechaIngreso`, `nombre`, "
+                    + "`apellido`, `fechaNacim`, `id_EstadoCivil`, `id_Genero`, `direccion`, `id_Telefono`, `id_Area`, `nombreContacto`, "
+                    + "`apellidoContacto`, `id_Parentesco`, `correo`, `contrasenaDominio`, `usuarioDominio`)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            ac.setParameter(1, colIn.getCedula());
+            ac.setParameter(2, colIn.getFechaIngreso());
+            ac.setParameter(3, colIn.getNombre());
+            ac.setParameter(4, colIn.getApellido());
+            ac.setParameter(5, colIn.getFechaNacim());
+            ac.setParameter(6, idEstadoCivil);
+            ac.setParameter(7, idGenero);
+            ac.setParameter(8, colIn.getDireccion());
+            ac.setParameter(9, idTelefono);
+            ac.setParameter(10, idArea);
+            ac.setParameter(11, colIn.getNombreContacto());
+            ac.setParameter(12, colIn.getApellidoContacto());
+            ac.setParameter(13, idParentesco);
+            ac.setParameter(14, colIn.getCorreo());
+            ac.setParameter(15, colIn.getContrasenaDominio());            
+            ac.setParameter(16, colIn.getUsuarioDominio());
 
             ac.executeUpdate();
             return true;
