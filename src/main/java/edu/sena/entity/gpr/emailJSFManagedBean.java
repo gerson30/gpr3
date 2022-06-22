@@ -44,7 +44,7 @@ public class emailJSFManagedBean {
         this.subject = null;
         this.descr = null;
         this.username = "gersonjimenez84@gmail.com";
-        this.password = "Sistemas2023";
+        this.password = "qchnubgnspsnyfkr";
         this.smtp = "smtp.gmail.com";
         this.port = 587; //25 puerto 587 para que habilite el correo Gmail
         this.descr = "Escriba algo";

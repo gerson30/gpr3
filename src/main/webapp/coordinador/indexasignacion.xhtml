@@ -71,6 +71,7 @@
                     <!-- esta es la tabla con sus datos-->
                     <p:fieldset legend="Lista Asignaciones" toggleable="true" >
                         <p:dataTable id="tablaAsignado" var="asi" value="#{asignarView.verAsignacion()}" paginator="true" rows="10"> 
+                        
 
                             <!--podemos  agregar las etiquetas filterby, filterstyle,filtermatchmode, 
                             para poder realizar un filtrado sobre las columnas que queramos-->
@@ -116,7 +117,7 @@
                     <div> Descargar Reporte en PDF
                         <h:commandLink>
                             <h:graphicImage url="/assets/image/pdf.png" width="35"></h:graphicImage>
-                            <p:dataExporter type="pdf" target="tablacol" fileName="colaboradores"></p:dataExporter>
+                            <p:dataExporter type="pdf" target="tablaAsignado" fileName="asignacion"></p:dataExporter>
                         </h:commandLink>
                     </div>
                 </h:form>    

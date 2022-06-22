@@ -43,8 +43,8 @@
                         <h:inputText 
                             value=""
                             required="true"
-                            requiredMessage="Ingrese N° de documento valido"
-                            html5:placeholder="Ingrese N° Documento sin puntos ni comas"
+                            requiredMessage="Ingrese Correo electrónico"
+                            html5:placeholder="correo registrado"
                             html5:type="Text"
                             class="input-group-text mx-auto" 
                             id="InputDocumento" />
@@ -58,10 +58,11 @@
                         <h:inputText 
                             value=""
                             required="true"
-                            requiredMessage="Ingrese Email"
+                            requiredMessage="Ingrese Contraseña"
+                            html5:type="password"
                             class="input-group-text mx-auto" 
                             id="InputEmail"
-                            html5:placeholder="Ingrese Correo Institucional"/>
+                            html5:placeholder="Ingrese Contraseña"/>
                         <br></br>
                         <small id="emailHelp" class="form-text text-muted">
                             <h:message for="InputEmail" style="color: red"></h:message>
