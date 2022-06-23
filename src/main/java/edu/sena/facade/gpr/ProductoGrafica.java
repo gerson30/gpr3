@@ -19,7 +19,7 @@ public class ProductoGrafica {
         ResultSet rs;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/graficasgpr?useSSL=false", "root", "1234$");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gpr?useSSL=false", "root", "1234$");
             
             PreparedStatement st = cn.prepareStatement("SELECT codigo, nombre, precio FROM producto");
             rs = st.executeQuery();
